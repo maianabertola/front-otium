@@ -1,0 +1,6 @@
+.blackBar {
+  width: 29px;
+  height: 480px;
+  background-color: hsl(0, 0%, 9%);
+  margin-bottom: 5rem;
+}
