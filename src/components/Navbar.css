@@ -8,6 +8,7 @@ nav {
   position: fixed;
   top: 0;
   margin: 0;
+  z-index: 1;
 }
 
 nav:hover {
@@ -19,7 +20,7 @@ nav:hover {
 .logoContainer {
   width: 5.5vw;
   height: 8vh;
-  margin: 1rem;
+  margin: 4rem;
 }
 
 ul {
@@ -32,12 +33,14 @@ ul {
 li {
   list-style-type: none;
   margin-left: 1.5rem;
+  text-decoration: none;
 }
 
 .linkNavbar {
   text-transform: uppercase;
   letter-spacing: 0.1rem;
   color: hsl(0, 0%, 98%);
+  text-decoration: none;
 }
 
 .linkNavbar:hover {

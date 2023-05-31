@@ -1,0 +1,10 @@
+.containerService {
+  width: 465px;
+  height: 280px;
+  position: relative;
+}
+
+.titleService {
+  color: hsl(0, 0, 98%);
+  position: absolute;
+}
