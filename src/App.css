@@ -1,0 +1,47 @@
+@font-face {
+  font-family: "Playfair Bold Italic";
+  src: url("./fonts/Playfair_Display/static/PlayfairDisplay-BoldItalic.ttf");
+  font-family: "Playfair Black";
+  src: url("./fonts/Playfair_Display/static/PlayfairDisplay-Black.ttf");
+  font-family: "Playfair Bold";
+  font-family: "Noto";
+  src: url("./fonts/Noto_Sans_KR/NotoSansKR-Regular.otf");
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Noto";
+  font-size: 1.1rem;
+  background-color: hsl(50, 90%, 94%);
+  margin: 0;
+  padding: 0;
+  color: hsl(0, 0, 9%);
+}
+
+h1 {
+  font-family: "Playfair Bold Italic";
+  font-size: 2.25rem;
+}
+
+h2 {
+  font-family: "Playfair Black";
+  font-size: 1.8rem;
+}
+
+h3 {
+  font-family: "Playfair Bold Italic";
+  font-size: 1.5rem;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+}
