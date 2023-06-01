@@ -1,5 +1,6 @@
-.textContainer {
+.titleContainer {
   width: 50vw;
   text-align: center;
   margin: 0 auto;
+  padding-top: 5rem;
 }

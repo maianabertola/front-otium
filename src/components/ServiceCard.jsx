@@ -4,7 +4,7 @@ import "./ServiceCard.css";
 function ServiceCard({ nameService, img }) {
   return (
     <>
-      <div className="containerService">
+      <div className="serviceCard">
         <img src={img} />
         <div className="overlay"></div>
         <h3 className="titleService">{nameService}</h3>

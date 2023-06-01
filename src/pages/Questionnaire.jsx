@@ -17,11 +17,11 @@ function postFormQuestionnaire() {
   const [petFriendly, setPetFriendly] = useState(0);
   const [numberOFBedroom, setNumberOFBedroom] = useState(0);
   const [services, setServices] = useState([]);
-  const [selectedOption, setSelectedOption] = useState(null)
+  const [selectedOption, setSelectedOption] = useState(null);
 
   const handleOptionChange = (event) => {
     setSelectedOption(event.target.value);
-  }
+  };
   async function questionnaire(event) {
     try {
       const response = await axios.post(collectionDate, {
@@ -101,7 +101,7 @@ function postFormQuestionnaire() {
             type="radio"
             name="france"
             value={country}
-            checked={selectedOption === {country}}
+            checked={selectedOption === { country }}
             onChange={(event) => setSelectedOption(event.target.value)}
           ></input>
           <label htmlFor="country">France</label>
@@ -109,7 +109,7 @@ function postFormQuestionnaire() {
             type="radio"
             name="itali"
             value={country}
-            checked={selectedOption === {country}}
+            checked={selectedOption === { country }}
             onChange={(event) => setSelectedOption(event.target.value)}
           ></input>
           <label htmlFor="country">Itali</label>
@@ -117,7 +117,7 @@ function postFormQuestionnaire() {
             type="radio"
             name="spain"
             value={country}
-            checked={selectedOption === {country}}
+            checked={selectedOption === { country }}
             onChange={(event) => setSelectedOption(event.target.value)}
           ></input>
           <label htmlFor="country">spain</label>
