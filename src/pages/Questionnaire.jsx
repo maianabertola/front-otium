@@ -3,11 +3,14 @@ import "./Questionnaire.css";
 import axios from "axios";
 import Button from "../components/Button";
 import { useState } from "react";
+import OneInput from "../components/OneInput";
+import Title from "../components/TitleSection";
+import { Outlet } from "react-router-dom";
 const collectionDate = "http://localhost:3000/questionnaire";
 
-function postFormQuestionnaire() {
+function Questionnaire() {
   const [name, setName] = useState("");
-  const [userId, setUserId] = useState("");
+  // const [userId, setUserId] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [country, setCountry] = useState("");
@@ -17,16 +20,47 @@ function postFormQuestionnaire() {
   const [petFriendly, setPetFriendly] = useState(0);
   const [numberOFBedroom, setNumberOFBedroom] = useState(0);
   const [services, setServices] = useState([]);
-  const [selectedOption, setSelectedOption] = useState(null)
 
-  const handleOptionChange = (event) => {
-    setSelectedOption(event.target.value);
-  }
-  async function questionnaire(event) {
+  const handleNameChange = (event) => {
+    setName(event.target.value);
+  };
+  // const handleUserIdChange = (event) => {
+  //   setUserId(event.target.value);
+  // };
+  const handleStartDateChange = (event) => {
+    setStartDate(event.target.value);
+  };
+  const handleEndDateChange = (event) => {
+    setEndDate(event.target.value);
+  };
+  const handleCountryChange = (event) => {
+    setCountry(event.target.value);
+  };
+  const handleViewChange = (event) => {
+    setView(event.target.value);
+  };
+  const handleIdyllicStatusChange = (event) => {
+    setIdyllicStatus(event.target.value);
+  };
+  const handleNumberOfPeopleChange = (event) => {
+    setNumberOfPeople(event.target.value);
+  };
+  const handlePetFriendlyChange = (event) => {
+    setPetFriendly(event.target.value);
+  };
+  const handleNumberOFBedroomChange = (event) => {
+    setNumberOFBedroom(event.target.value);
+  };
+  const handleServicesChange = (event) => {
+    setServices(event.target.value);
+  };
+
+  async function handleSubmitQuestionnaire(event) {
+    event.preventDefault();
     try {
       const response = await axios.post(collectionDate, {
         name,
-        userId,
+        // userId,
         startDate,
         endDate,
         country,
@@ -42,12 +76,13 @@ function postFormQuestionnaire() {
       console.log(e);
     }
   }
-
   return (
     <>
       <div className="first_block">
         <div className="presentation">
-          <h2>Take rest; a field that has rested gives a bountiful crop.</h2>
+          <Title
+            title={"Take rest; a field that has rested gives a bountiful crop."}
+          ></Title>
           <div>
             <p>- Ovid</p>
           </div>
@@ -67,199 +102,220 @@ function postFormQuestionnaire() {
           </div>
         </div>
       </div>
-      <form className="second_block">
+      <form onSubmit={handleSubmitQuestionnaire} className="second_block">
         <div>
-          <h3>What the name of your retreat project ?</h3>
-          <input
-            type="text"
+          <Title title={"What the name of your retreat project ?"}></Title>
+          <OneInput
+            label={""}
+            type={"text"}
+            htmlFor={"name"}
             value={name}
-            onChange={(event) => setName(event.target.value)}
-          ></input>
+            name={"name"}
+            onChange={handleNameChange}
+          />
           <div className="separation2"></div>
-          <div className="block_trip">
-            <h3>What are the start and end dates of your trip?</h3>
-            <div className="date_trip">
-              <label htmlFor="startDate">Start Date</label>
-
-              <input
-                type="date"
-                value={startDate}
-                onChange={(event) => setStartDate(event.target.value)}
-              ></input>
-              <label htmlFor="endDate">End Date</label>
-
-              <input
-                type="date"
-                value={endDate}
-                onChange={(event) => setEndDate(event.target.value)}
-              ></input>
-            </div>
+          <div className="blockTrip">
+            <Title
+              title={"What are the start and end dates of your trip?"}
+            ></Title>
+            <OneInput
+              label={"Start Date"}
+              htmlFor={"Date"}
+              type={"date"}
+              value={startDate}
+              name={"Date"}
+              onChange={handleStartDateChange}
+            />
+            <OneInput
+              label={"End Date"}
+              htmlFor={"Date"}
+              type={"date"}
+              value={endDate}
+              name={"Date"}
+              onChange={handleEndDateChange}
+            />
           </div>
           <div className="separation2"></div>
-          <h3>Which country appeals you?</h3>
-          <input
-            type="radio"
-            name="france"
+          <Title title={"Which country appeals you?"}></Title>
+          <OneInput
+            label={"france"}
+            htmlFor={"country"}
+            type={"radio"}
             value={country}
-            checked={selectedOption === {country}}
-            onChange={(event) => setSelectedOption(event.target.value)}
-          ></input>
-          <label htmlFor="country">France</label>
-          <input
-            type="radio"
-            name="itali"
+            name={"country"}
+            onChangeDate={handleCountryChange}
+          />
+          <OneInput
+            label={"itali"}
+            htmlFor={"country"}
+            type={"radio"}
             value={country}
-            checked={selectedOption === {country}}
-            onChange={(event) => setSelectedOption(event.target.value)}
-          ></input>
-          <label htmlFor="country">Itali</label>
-          <input
-            type="radio"
-            name="spain"
+            name={"country"}
+            onChangeDate={handleCountryChange}
+          />
+          <OneInput
+            label={"spain"}
+            htmlFor={"country"}
+            type={"radio"}
             value={country}
-            checked={selectedOption === {country}}
-            onChange={(event) => setSelectedOption(event.target.value)}
-          ></input>
-          <label htmlFor="country">spain</label>
+            name={"country"}
+            onChangeDate={handleCountryChange}
+          />
           <div className="separation2"></div>
-          <h3>What view do your prefer for your holidays?</h3>
-          <input
-            type="radio"
+          <Title title={"What view do your prefer for your holidays?"}></Title>
+          <OneInput
+            label={"mountain"}
+            type={"radio"}
+            htmlFor={"view"}
             value={view}
-            onChange={(event) => setView(event.target.value)}
-          ></input>
-          <label htmlFor="view">photo</label>
-          <input
-            type="radio"
+            name={"view"}
+            onChangeDate={handleViewChange}
+          />
+          <OneInput
+            label={"sea"}
+            type={"radio"}
+            htmlFor={"view"}
             value={view}
-            onChange={(event) => setView(event.target.value)}
-          ></input>
-          <label htmlFor="view">photo</label>
+            name={"view"}
+            onChangeDate={handleViewChange}
+          />
+          <div className="separation2"></div>
+          <Title title={"What atmosphere do you seek?"}></Title>
+          <OneInput
+            label={"Family Moment"}
+            type={"checkbox"}
+            htmlFor={"idyllicStatus"}
+            value={"Family Moment"}
+            name={"idyllicStatus"}
+            onChangeDate={handleIdyllicStatusChange}
+          />
+          <OneInput
+            label={"Life Party"}
+            type={"checkbox"}
+            htmlFor={"idyllicStatus"}
+            value={"Life Party"}
+            name={"idyllicStatus"}
+            onChangeDate={handleIdyllicStatusChange}
+          />
+          <OneInput
+            label={"Friends Trip"}
+            type={"checkbox"}
+            htmlFor={"idyllicStatus"}
+            value={"Friends Trip"}
+            name={"idyllicStatus"}
+            onChangeDate={handleIdyllicStatusChange}
+          />
 
           <div className="separation2"></div>
-          <h3>What atmosphere do you seek?</h3>
-          <input
-            type="checkbox"
-            value={idyllicStatus}
-            onChange={(event) => setIdyllicStatus(event.target.value)}
-          ></input>
-          <label htmlFor="idyllicStatus">Family Moment</label>
-          <input
-            type="checkbox"
-            value={idyllicStatus}
-            onChange={(event) => setIdyllicStatus(event.target.value)}
-          ></input>
-          <label htmlFor="idyllicStatus">Life Party</label>
+          <Title title={"How many people are accompanying you?"}></Title>
 
-          <input
-            type="checkbox"
-            value={idyllicStatus}
-            onChange={(event) => setIdyllicStatus(event.target.value)}
-          ></input>
-          <label htmlFor="idyllicStatus">Friends Trip</label>
-
-          <div className="separation2"></div>
-          <h3>How many people are accompanying you?</h3>
-          <input
-            type="text"
+          <OneInput
+            label={""}
+            type={"number"}
+            htmlFor={"people"}
             value={numberOfPeople}
-            onChange={(event) => setNumberOfPeople(event.target.value)}
-          ></input>
+            name={"numberOfPeople"}
+            onChange={handleNumberOfPeopleChange}
+          />
           <div className="separation2"></div>
-          <h3>Do you travel with your pets?</h3>
-          <input
-            type="text"
+          <Title title={"Do you travel with your pets?"}></Title>
+          <OneInput
+            label={""}
+            type={"number"}
+            htmlFor={"petFriendly"}
             value={petFriendly}
-            onChange={(event) => setPetFriendly(event.target.value)}
-          ></input>
+            name={"petFriendly"}
+            onChange={handlePetFriendlyChange}
+          />
           <div className="separation2"></div>
-          <h3>How many bedrooms do you need?</h3>
-          <input
-            type="text"
+          <Title title={"How many bedrooms do you need?"}></Title>
+          <OneInput
+            label={""}
+            type={"number"}
+            htmlFor={"bedrooms"}
             value={numberOFBedroom}
-            onChange={(event) => setNumberOFBedroom(event.target.value)}
-          ></input>
+            name={"numberOFBedroom"}
+            onChange={handleNumberOFBedroomChange}
+          />
           <div className="separation2"></div>
-          <h3>What services are essential for you?</h3>
-          <div className="services">
-            <div className="services_block">
-              <div className="services_align">
-                <input
-                  type="checkbox"
-                  id="services"
-                  value={services}
-                  onChange={(event) => setServices(event.target.value)}
-                />
-                <label htmlFor="services">Private Chef</label>
-
-                <input
-                  type="checkbox"
-                  id="services"
-                  value={services}
-                  onChange={(event) => setServices(event.target.value)}
-                />
-                <label htmlFor="services">Chauffeur</label>
-
-                <input
-                  type="checkbox"
-                  id="services"
-                  value={services}
-                  onChange={(event) => setServices(event.target.value)}
-                />
-                <label htmlFor="services">Gouvernante</label>
-                <input
-                  type="checkbox"
-                  id="services"
-                  value={services}
-                  onChange={(event) => setServices(event.target.value)}
-                />
-                <label htmlFor="services">Private Chef</label>
-
-                <input
-                  type="checkbox"
-                  id="services"
-                  value={services}
-                  onChange={(event) => setServices(event.target.value)}
-                />
-                <label htmlFor="services">Chauffeur</label>
-
-                <input
-                  type="checkbox"
-                  id="services"
-                  value={services}
-                  onChange={(event) => setServices(event.target.value)}
-                />
-                <label htmlFor="services">Gouvernante</label>
-                <input
-                  type="checkbox"
-                  id="services"
-                  value={services}
-                  onChange={(event) => setServices(event.target.value)}
-                />
-                <label htmlFor="services">Private Chef</label>
-
-                <input
-                  type="checkbox"
-                  id="services"
-                  value={services}
-                  onChange={(event) => setServices(event.target.value)}
-                />
-                <label htmlFor="services">Chauffeur</label>
-
-                <input
-                  type="checkbox"
-                  id="services"
-                  value={services}
-                  onChange={(event) => setServices(event.target.value)}
-                />
-                <label htmlFor="services">Gouvernante</label>
-              </div>
-            </div>
-          </div>
+          <Title title={"What services are essential for you?"}></Title>
+          <OneInput
+            label={"Yachting"}
+            type={"checkbox"}
+            htmlFor={"services"}
+            value={"Yachting"}
+            name={"idyllicStatus"}
+            onChange={handleServicesChange}
+          />
+          <OneInput
+            label={"Event planner"}
+            type={"checkbox"}
+            htmlFor={"services"}
+            value={"Event planner"}
+            name={"idyllicStatus"}
+            onChange={handleServicesChange}
+          />
+          <OneInput
+            label={"Sport coach"}
+            type={"checkbox"}
+            htmlFor={"services"}
+            value={"Sport coach"}
+            name={"idyllicStatus"}
+            onChange={handleServicesChange}
+          />
+          <OneInput
+            label={"Exclusive Excursions"}
+            type={"checkbox"}
+            htmlFor={"services"}
+            value={"Exclusive Excursions"}
+            name={"idyllicStatus"}
+            onChange={handleServicesChange}
+          />
+          <OneInput
+            label={"Personal Stylist"}
+            type={"checkbox"}
+            htmlFor={"services"}
+            value={"Personal Stylist"}
+            name={"idyllicStatus"}
+            onChange={handleServicesChange}
+          />
+          <OneInput
+            label={"Ultimate Spa"}
+            type={"checkbox"}
+            htmlFor={"services"}
+            value={"Ultimate Spa"}
+            name={"idyllicStatus"}
+            onChange={handleServicesChange}
+          />
+          <OneInput
+            label={"Private Chef"}
+            type={"checkbox"}
+            htmlFor={"services"}
+            value={"Private Chef"}
+            name={"idyllicStatus"}
+            onChange={handleServicesChange}
+          />
+          <OneInput
+            label={"Chauffeur"}
+            type={"checkbox"}
+            htmlFor={"services"}
+            value={"Chauffeur"}
+            name={"idyllicStatus"}
+            onChange={handleServicesChange}
+          />
+          <OneInput
+            label={"Gouvernante"}
+            type={"checkbox"}
+            htmlFor={"services"}
+            value={"Gouvernante"}
+            name={"idyllicStatus"}
+            onChange={handleServicesChange}
+          />
         </div>
+        <Button />
       </form>
     </>
   );
 }
 
-export default postFormQuestionnaire;
+export default Questionnaire;
