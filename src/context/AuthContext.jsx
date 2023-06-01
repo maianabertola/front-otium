@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-
+import service from "../service/service";
 const AuthContext = createContext();
 
 const AuthContextWrapper = ({ children }) => {
@@ -15,7 +15,7 @@ const AuthContextWrapper = ({ children }) => {
     try {
       const token = localStorage.getItem("token");
       if (token) {
-        const response = await axios.get("", {
+        const response = await service.get("/verify", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -35,7 +35,6 @@ const AuthContextWrapper = ({ children }) => {
       setIsLoading(false);
     }
   };
-  
 
   const updateToken = (token) => {
     localStorage.setItem("token", token);
@@ -46,14 +45,20 @@ const AuthContextWrapper = ({ children }) => {
     localStorage.removeItem("token");
   };
 
-
   return (
     <AuthContext.Provider
-      value={{ user, setUser, isLoggedIn, isLoading, setToken: updateToken, logout }}
+      value={{
+        user,
+        setUser,
+        isLoggedIn,
+        isLoading,
+        setToken: updateToken,
+        logout,
+      }}
     >
       {children}
     </AuthContext.Provider>
   );
 };
 
-export { AuthContextWrapper };
+export { AuthContextWrapper, AuthContext };

@@ -21,14 +21,8 @@ function LoginPage() {
 
         try {
             const response = await axios.post(collectionLogin, {
-              name,
-              birthDate,
               email,
-              phoneNumber,
-              address,
-              country,
               password,
-              postalCode,
             })
         } catch(e) {
             console.log(e)

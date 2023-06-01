@@ -4,24 +4,21 @@ import Button from "../components/Button";
 import React, { useState, useContext } from "react";
 import OneInput from "../components/OneInput";
 import Title from "../components/TitleSection";
-// import { AuthContextWrapper } from "../context/AuthContext";
+import { AuthContext } from "../context/AuthContext";
 const collectionDate = "http://localhost:3000/questionnaire";
 
-
 function Questionnaire() {
-  // const { user } = useContext(AuthContextWrapper);
-  // console.log(AuthContextWrapper)
+  const { user } = useContext(AuthContext);
 
   const [name, setName] = useState("");
-  // const userId = user._id;
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
-  const [country, setCountry] = useState("");
+  const [pickedCountry, setPickedCountry] = useState([]);
   const [view, setView] = useState("");
-  const [idyllicStatus, setIdyllicStatus] = useState("");
-  const [numberOfPeople, setNumberOfPeople] = useState(0);
-  const [petFriendly, setPetFriendly] = useState(0);
-  const [numberOFBedroom, setNumberOFBedroom] = useState(0);
+  const [idyllicStatus, setIdyllicStatus] = useState([]);
+  const [numberOfPeople, setNumberOfPeople] = useState(1);
+  const [petFriendly, setPetFriendly] = useState(false);
+  const [numberOFBedroom, setNumberOFBedroom] = useState(1);
   const [services, setServices] = useState([]);
 
   const handleNameChange = (event) => {
@@ -34,7 +31,12 @@ function Questionnaire() {
     setEndDate(event.target.value);
   };
   const handleCountryChange = (event) => {
-    setCountry(event.target.value);
+    const country = event.target.value;
+    if (!pickedCountry.includes(country)) {
+      setPickedCountry((current) => [...current, country]);
+    } else {
+      setPickedCountry(pickedCountry.filter((element) => element !== country));
+    }
   };
   const handleViewChange = (event) => {
     setView(event.target.value);
@@ -57,15 +59,14 @@ function Questionnaire() {
 
   async function handleSubmitQuestionnaire(event) {
     event.preventDefault();
-
+    const id = user._id;
     async function questionnaire(event) {
       try {
         const response = await axios.post(collectionDate, {
           name,
-          // userId,
           startDate,
           endDate,
-          country,
+          pickedCountry,
           view,
           idyllicStatus,
           numberOfPeople,
@@ -140,7 +141,19 @@ function Questionnaire() {
           </div>
           <div className="separation2"></div>
           <Title title={"Which country appeals you?"}></Title>
-          <OneInput
+          {["France", "Italy", "Spain"].map((name) => {
+            return (
+              <OneInput
+                key={name}
+                label={name}
+                type={"checkbox"}
+                value={name}
+                name={"country"}
+                onChange={handleCountryChange}
+              />
+            );
+          })}
+          {/* <OneInput
             label={"france"}
             htmlFor={"country"}
             type={"radio"}
@@ -163,50 +176,50 @@ function Questionnaire() {
             value={country}
             name={"country"}
             onChangeDate={handleCountryChange}
-          />
+          /> */}
           <div className="separation2"></div>
           <Title title={"What view do your prefer for your holidays?"}></Title>
           <OneInput
             label={"mountain"}
             type={"radio"}
-            htmlFor={"view"}
+            htmlFor={"mountain"}
             value={view}
             name={"view"}
-            onChangeDate={handleViewChange}
+            onChange={handleViewChange}
           />
           <OneInput
             label={"sea"}
             type={"radio"}
-            htmlFor={"view"}
+            htmlFor={"sea"}
             value={view}
             name={"view"}
-            onChangeDate={handleViewChange}
+            onChange={handleViewChange}
           />
           <div className="separation2"></div>
           <Title title={"What atmosphere do you seek?"}></Title>
           <OneInput
             label={"Family Moment"}
             type={"checkbox"}
-            htmlFor={"idyllicStatus"}
+            htmlFor={"family-moment"}
             value={"Family Moment"}
             name={"idyllicStatus"}
-            onChangeDate={handleIdyllicStatusChange}
+            onChange={handleIdyllicStatusChange}
           />
           <OneInput
             label={"Life Party"}
             type={"checkbox"}
-            htmlFor={"idyllicStatus"}
+            htmlFor={"life-party"}
             value={"Life Party"}
             name={"idyllicStatus"}
-            onChangeDate={handleIdyllicStatusChange}
+            onChange={handleIdyllicStatusChange}
           />
           <OneInput
             label={"Friends Trip"}
             type={"checkbox"}
-            htmlFor={"idyllicStatus"}
+            htmlFor={"friends-trip"}
             value={"Friends Trip"}
             name={"idyllicStatus"}
-            onChangeDate={handleIdyllicStatusChange}
+            onChange={handleIdyllicStatusChange}
           />
 
           <div className="separation2"></div>

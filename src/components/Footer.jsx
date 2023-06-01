@@ -4,6 +4,7 @@ import BlackBar from "./BlackBar";
 import BlackBarHorizontal from "./BlackBarHorizontal";
 import "../App.css";
 import logo from "../assets/OtiumLogo.png";
+import { Link } from "react-router-dom";
 
 export default function Footer() {
   return (
