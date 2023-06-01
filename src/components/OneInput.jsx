@@ -1,7 +1,14 @@
 import React from "react";
 import "../components/OneInput.css";
 
-function OneInput({ label, type, htmlFor, value, name, onChange }) {
+function OneInput({
+  label,
+  type,
+  htmlFor,
+  value,
+  name,
+  onChange,
+}) {
   return (
     <div>
       <label htmlFor={htmlFor}>{label}</label>

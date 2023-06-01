@@ -56,6 +56,7 @@ function Questionnaire() {
 
   async function handleSubmitQuestionnaire(event) {
     event.preventDefault();
+
     try {
       const response = await axios.post(collectionDate, {
         name,
