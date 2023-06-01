@@ -59,4 +59,23 @@ img {
 .containerPictureVertical {
   width: 560px;
   height: 820px;
+  padding: 2rem;
 }
+
+.spanLineBreak {
+  display: block;
+}
+
+.flexVertical {
+  display: flex;
+  flex-direction: column;
+}
+
+.flexRow {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  gap: 1rem;
+  justify-content: center;
+}
+/*  */

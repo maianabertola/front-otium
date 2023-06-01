@@ -58,23 +58,25 @@ function Questionnaire() {
   async function handleSubmitQuestionnaire(event) {
     event.preventDefault();
 
-    try {
-      const response = await axios.post(collectionDate, {
-        name,
-        // userId,
-        startDate,
-        endDate,
-        country,
-        view,
-        idyllicStatus,
-        numberOfPeople,
-        petFriendly,
-        numberOFBedroom,
-        services,
-      });
-      console.log("response", response);
-    } catch (e) {
-      console.log(e);
+    async function questionnaire(event) {
+      try {
+        const response = await axios.post(collectionDate, {
+          name,
+          // userId,
+          startDate,
+          endDate,
+          country,
+          view,
+          idyllicStatus,
+          numberOfPeople,
+          petFriendly,
+          numberOFBedroom,
+          services,
+        });
+        console.log("response", response);
+      } catch (e) {
+        console.log(e);
+      }
     }
   }
   return (
@@ -209,7 +211,6 @@ function Questionnaire() {
 
           <div className="separation2"></div>
           <Title title={"How many people are accompanying you?"}></Title>
-
           <OneInput
             label={""}
             type={"number"}
