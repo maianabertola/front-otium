@@ -1,10 +1,17 @@
-.containerService {
+.serviceCard {
   width: 465px;
   height: 280px;
   position: relative;
+  margin-top: 3rem;
+  margin-bottom: 1.2rem;
+  margin-right: 1rem;
 }
 
 .titleService {
-  color: hsl(0, 0, 98%);
+  color: hsl(0, 0%, 98%);
   position: absolute;
+  z-index: 1;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
 }
