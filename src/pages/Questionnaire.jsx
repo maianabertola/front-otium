@@ -1,15 +1,19 @@
-import React from "react";
 import "./Questionnaire.css";
 import axios from "axios";
 import Button from "../components/Button";
-import { useState } from "react";
+import React, { useState, useContext } from "react";
 import OneInput from "../components/OneInput";
 import Title from "../components/TitleSection";
+// import { AuthContextWrapper } from "../context/AuthContext";
 const collectionDate = "http://localhost:3000/questionnaire";
 
+
 function Questionnaire() {
+  // const { user } = useContext(AuthContextWrapper);
+  // console.log(AuthContextWrapper)
+
   const [name, setName] = useState("");
-  // const [userId, setUserId] = useState("");
+  // const userId = user._id;
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [country, setCountry] = useState("");
@@ -23,9 +27,6 @@ function Questionnaire() {
   const handleNameChange = (event) => {
     setName(event.target.value);
   };
-  // const handleUserIdChange = (event) => {
-  //   setUserId(event.target.value);
-  // };
   const handleStartDateChange = (event) => {
     setStartDate(event.target.value);
   };
@@ -313,7 +314,9 @@ function Questionnaire() {
             onChange={handleServicesChange}
           />
         </div>
-        <Button />
+        <div className="positionButton">
+          <button>find</button>
+        </div>
       </form>
     </>
   );
