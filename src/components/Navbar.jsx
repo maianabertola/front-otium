@@ -26,7 +26,7 @@ function Navbar() {
         <Link>
           <li className="linkNavbar">Log In</li>
         </Link>
-        <Button cta={"Book now"}></Button>
+        <Button cta={"Book now"} backgroundColor={"black"}></Button>
       </ul>
     </nav>
   );

@@ -1,4 +1,3 @@
-import React from "react";
 import "./Homepage.css";
 import heroImg from "../assets/Positano.jpeg";
 import BlackBar from "../components/BlackBar";
@@ -10,8 +9,50 @@ import BlackBarHorizontal from "../components/BlackBarHorizontal";
 import ServiceCard from "../components/ServiceCard";
 import serviceImg from "../assets/ChefService.jpg";
 import aboutImg from "../assets/Founderspictures.jpg";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import NeedHelp from "../components/NeedHelp";
+import "../App.css";
 
 function Homepage() {
+  const navigate = useNavigate();
+
+  const [villas, setVillas] = useState(null);
+  const getAllVillas = async () => {
+    try {
+      console.log("useEffet works");
+      const myVillas = await axios.get("http://localhost:3000/villa");
+      setVillas(myVillas.data);
+      // console.log(myVillas.data);
+    } catch (error) {
+      console.log("there is an error when fetching all the villas from db");
+    }
+  };
+
+  const [services, setServices] = useState(null);
+  const getAllServices = async () => {
+    try {
+      const myServices = await axios.get("http://localhost:3000/service");
+      setServices(myServices.data);
+    } catch (error) {
+      console.log("there is an error when fetching all the services from db");
+    }
+  };
+  console.log("here are our services", services);
+  function navToQuestionnaire(event) {
+    event.preventDefault();
+    navigate("questionnaire");
+  }
+
+  useEffect(() => {
+    getAllVillas(), getAllServices();
+  }, []);
+
+  if (!villas || !services) {
+    return <div>Content is loading</div>;
+  }
+
   return (
     <>
       <section id="heroSection">
@@ -28,19 +69,22 @@ function Homepage() {
         </div>
       </section>
 
-      <div className="introContainer">
-        <div className="introTextContainer">
-          <h1>Ciao Fabien</h1>
-          <h2>Otium, an exquisite haven for discerning epicureans</h2>
-          <p>
-            Discover enchanting retreats that rejuvenate your senses and evoke
-            pure bliss. Indulge in elegance, unwind in serenity, and embark on a
-            journey of delightful discovery. Welcome to the epitome of refined
-            hospitality.
-          </p>
+      <section id="intro">
+        <div className="introContainer">
+          <div className="introTextContainer">
+            <h1>Ciao Fabien</h1>
+            <h2>Otium, an exquisite haven for discerning epicureans</h2>
+            <p>
+              Discover enchanting retreats that rejuvenate your senses and evoke
+              pure bliss. Indulge in elegance, unwind in serenity, and embark on
+              a journey of delightful discovery. Welcome to the epitome of
+              refined hospitality.
+            </p>
+          </div>
+          <BlackBar height={60}></BlackBar>
         </div>
-        <BlackBar height={60}></BlackBar>
-      </div>
+      </section>
+
       <section id="villaCollection">
         <TitleSection
           title={"Your perfect holidays begin here"}
@@ -48,12 +92,20 @@ function Homepage() {
             "Immerse yourself in a sanctuary of refined indulgence, where each moment unveils blissful tranquility, captivating beauty, and an extraordinary connection to nature."
           }
         ></TitleSection>
-
-        <VillaCard
-          region={"Almafi Coast"}
-          name={"Villa Damdam"}
-          slogan={"A little tagline about the place."}
-        ></VillaCard>
+        <div className="collectionContainer">
+          {villas.Villa.map((villa) => {
+            return (
+              <>
+                <VillaCard
+                  key={villa.id}
+                  region={villa.region}
+                  name={villa.name}
+                  slogan={villa.slogan}
+                ></VillaCard>
+              </>
+            );
+          })}
+        </div>
         <div className="callOut">
           <div className="textContainerCallOut">
             <h2>Do you need help in your research?</h2>
@@ -64,7 +116,11 @@ function Homepage() {
             </p>
           </div>
           <div className="flexButton">
-            <Button cta={"Find Your Perfect Retreat"}></Button>
+            <Button
+              cta={"Find Your Perfect Retreat"}
+              url={navToQuestionnaire}
+              backgroundColor={"black"}
+            ></Button>
           </div>
         </div>
       </section>
@@ -110,10 +166,18 @@ function Homepage() {
               "Immerse yourself in a sanctuary of refined indulgence, where each moment unveils blissful tranquility, captivating beauty, and an extraordinary connection to nature."
             }
           ></TitleSection>
-          <ServiceCard
-            nameService={"Private Chef"}
-            img={serviceImg}
-          ></ServiceCard>
+          <div className="collectionContainer">
+            {services.ServiceDetail.map((service) => {
+              return (
+                <>
+                  <ServiceCard
+                    nameService={service.title}
+                    img={serviceImg}
+                  ></ServiceCard>
+                </>
+              );
+            })}
+          </div>
         </div>
       </section>
       <section id="aboutUs">
@@ -138,11 +202,16 @@ function Homepage() {
                 dedication. Welcome to a world where the extraordinary is woven
                 into the fabric of your existence.
               </p>
-              <Button cta={"Discover Our Story"}></Button>
+              <Button
+                cta={"Discover Our Story"}
+                backgroundColor={"black"}
+              ></Button>
             </div>
           </div>
         </div>
       </section>
+      <section id="help"></section>
+      <NeedHelp></NeedHelp>
     </>
   );
 }

@@ -1,0 +1,9 @@
+.logoFooterContainer {
+  max-width: 7rem;
+  margin-left: 4rem;
+}
+
+.leftFooter {
+  display: flex;
+  max-width: 50vw;
+}
