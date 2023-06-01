@@ -9,6 +9,7 @@ import SmallItalicText from "../components/SmallItalicText";
 import BlackBarHorizontal from "../components/BlackBarHorizontal";
 import ServiceCard from "../components/ServiceCard";
 import serviceImg from "../assets/ChefService.jpg";
+import aboutImg from "../assets/Founderspictures.jpg";
 
 function Homepage() {
   return (
@@ -38,7 +39,7 @@ function Homepage() {
             hospitality.
           </p>
         </div>
-        <BlackBar></BlackBar>
+        <BlackBar height={60}></BlackBar>
       </div>
       <section id="villaCollection">
         <TitleSection
@@ -100,18 +101,47 @@ function Homepage() {
           ></SmallItalicText>
         </div>
       </section>
-      <BlackBarHorizontal></BlackBarHorizontal>
+      <BlackBarHorizontal height={160}></BlackBarHorizontal>
       <section id="services">
-        <TitleSection
-          title={"Opium's Elite Services"}
-          paragraph={
-            "Immerse yourself in a sanctuary of refined indulgence, where each moment unveils blissful tranquility, captivating beauty, and an extraordinary connection to nature."
-          }
-        ></TitleSection>
-        <ServiceCard
-          nameService={"Private Chef"}
-          img={serviceImg}
-        ></ServiceCard>
+        <div className="greenBackgroundServices">
+          <TitleSection
+            title={"Opium's Elite Services"}
+            paragraph={
+              "Immerse yourself in a sanctuary of refined indulgence, where each moment unveils blissful tranquility, captivating beauty, and an extraordinary connection to nature."
+            }
+          ></TitleSection>
+          <ServiceCard
+            nameService={"Private Chef"}
+            img={serviceImg}
+          ></ServiceCard>
+        </div>
+      </section>
+      <section id="aboutUs">
+        <div className="flexRow">
+          <div className="containerPictureVertical">
+            <img src={aboutImg}></img>
+          </div>
+          <BlackBar height={160}></BlackBar>
+          <div className="introContainer">
+            <div className="introTextContainer">
+              <h2 style={{ fontSize: 40, fontStyle: "italic" }}>
+                Otium,
+                <br />
+                Born from a Vision,
+                <br /> Crafted with passion,
+              </h2>
+              <p>
+                Opium was born from a vision to create an unparalleled
+                experience—a harmonious blend of opulence, tranquility, and
+                refined indulgence. With meticulous design and unwavering
+                commitment, we crafted a haven where every detail reflects our
+                dedication. Welcome to a world where the extraordinary is woven
+                into the fabric of your existence.
+              </p>
+              <Button cta={"Discover Our Story"}></Button>
+            </div>
+          </div>
+        </div>
       </section>
     </>
   );
