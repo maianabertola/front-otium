@@ -57,8 +57,6 @@ function Questionnaire() {
   async function handleSubmitQuestionnaire(event) {
     event.preventDefault();
 
-  async function questionnaire(event) {
-
     try {
       const response = await axios.post(collectionDate, {
         name,
@@ -210,6 +208,7 @@ function Questionnaire() {
 
           <div className="separation2"></div>
           <Title title={"How many people are accompanying you?"}></Title>
+
           <OneInput
             label={""}
             type={"number"}
