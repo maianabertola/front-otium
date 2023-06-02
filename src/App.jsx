@@ -5,6 +5,7 @@ import Homepage from "./pages/Homepage";
 import Layout from "./components/Layout";
 import Questionnaire from "./pages/Questionnaire";
 import LoginPage from "./pages/LoginPage";
+import VillaPage from "./pages/VillaPage";
 function App() {
   return (
     // faire les routes protégées avec mayo
@@ -12,6 +13,7 @@ function App() {
       <Routes>
         <Route element={<Layout />}>
           <Route index element={<Homepage />} />
+          <Route path="/villa" element={<VillaPage />} />
         </Route>
         <Route path="/questionnaire" element={<Questionnaire />} />
           <Route path="/login" element={<LoginPage />} />
