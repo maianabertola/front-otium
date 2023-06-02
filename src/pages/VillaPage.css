@@ -1,0 +1,17 @@
+.heroVillaContainer {
+  width: 100%;
+  height: 80vh;
+  position: relative;
+}
+
+.textVillaContainer {
+  width: 45vw;
+  margin: 2rem 4rem;
+}
+
+.sloganVilla {
+  font-family: "Playfair";
+  font-weight: 400;
+  font-style: italic;
+  font-size: 2.2rem;
+}
