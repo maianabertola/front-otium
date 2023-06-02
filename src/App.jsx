@@ -14,8 +14,10 @@ function App() {
           <Route index element={<Homepage />} />
         </Route>
         <Route path="/questionnaire" element={<Questionnaire />} />
-        {/* <Route path="/login" element={<LoginPage />} /> */}
-        {/* <Route path="/signup" element={<SignupPage />} /> */}
+          <Route path="/login" element={<LoginPage />} />
+            
+          
+          {/* <Route path="/signup" element={<SignupPage />} /> */}
       </Routes>
     </>
   );

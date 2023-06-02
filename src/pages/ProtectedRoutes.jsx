@@ -8,7 +8,7 @@ function ProtectedRoutes() {
         return<p>Loading...</p>
     }
     if(!isLoggedIn) {
-        return <Navigate to={"/login"} />
+        return <Navigate to={"/"} />
     }
 
     if(isLoggedIn) {
