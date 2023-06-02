@@ -3,31 +3,33 @@ import Navbar from "../components/Navbar";
 import Button from "../components/Button";
 import OneInput from "../components/OneInput";
 import axios from "axios";
-const collectionLogin = "http://localhost:3000/login"
+import AuthForm from "../components/AuthForm";
+import { AuthContextWrapper } from "../context/AuthContext";
+const collectionLogin = "http://localhost:3000/login";
 
 function LoginPage() {
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-    const handleEmailChange = (event) => {
-        setEmail(event.target.value)
-    }
-    const handlePasswordChange = (event) => {
-        setPassword(event.target.value)
-    }
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value);
+  };
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value);
+  };
 
-    async function handleSubmitLogin(event) {
-        event.preventDefault()
+  async function handleSubmitLogin(event) {
+    event.preventDefault();
 
-        try {
-            const response = await axios.post(collectionLogin, {
-              email,
-              password,
-            })
-        } catch(e) {
-            console.log(e)
-        }
+    try {
+      const response = await axios.post(collectionLogin, {
+        email,
+        password,
+      });
+    } catch (e) {
+      console.log(e);
     }
+  }
   return (
     <>
       <Navbar></Navbar>
@@ -47,25 +49,7 @@ function LoginPage() {
       </div>
       <div>
         <p>Already a member?</p>
-        <form>
-        <OneInput
-          label={"email"}
-          type={"text"}
-          htmlFor={"email"}
-          value={email}
-          name={"email"}
-          onChange={handleNameChange}
-        />
-        <OneInput
-          label={"password"}
-          type={"text"}
-          htmlFor={"password"}
-          value={password}
-          name={"password"}
-          onChange={handleNameChange}
-        />
-        <Button>Connect with us</Button>
-        </form>
+       <AuthForm mode={"login"}/>
       </div>
     </>
   );
