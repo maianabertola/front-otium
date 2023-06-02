@@ -2,10 +2,12 @@ import { createContext, useEffect, useState } from "react";
 import service from "../service/service";
 const AuthContext = createContext();
 
+export const AuthCOntext = createContext()
 const AuthContextWrapper = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState(null);
+  const [token, setToken] = useState("")
 
   useEffect(() => {
     authentificationUser();
@@ -15,11 +17,12 @@ const AuthContextWrapper = ({ children }) => {
     try {
       const token = localStorage.getItem("token");
       if (token) {
-        const response = await service.get("/verify", {
+        const response = await service.get("/auth/verify", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
+        setToken(token)
         setUser(response.data);
         setIsLoggedIn(true);
         setIsLoading(false);
@@ -52,8 +55,10 @@ const AuthContextWrapper = ({ children }) => {
         setUser,
         isLoggedIn,
         isLoading,
+        authentificationUser,
         setToken: updateToken,
         logout,
+        token,
       }}
     >
       {children}

@@ -8,18 +8,21 @@ import { AuthContext } from "../context/AuthContext";
 const collectionDate = "http://localhost:3000/questionnaire";
 
 function Questionnaire() {
-  const { user } = useContext(AuthContext);
+  const { user, authentificationUser, token } = useContext(AuthContext);
+  console.log(user);
+  console.log("auth fct", authentificationUser);
+  console.log("token de auth fct", token);
 
   const [name, setName] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [pickedCountry, setPickedCountry] = useState([]);
   const [view, setView] = useState("");
-  const [idyllicStatus, setIdyllicStatus] = useState([]);
+  const [pickedIdyllicStatus, setPickedIdyllicStatus] = useState([]);
   const [numberOfPeople, setNumberOfPeople] = useState(1);
   const [petFriendly, setPetFriendly] = useState(false);
   const [numberOFBedroom, setNumberOFBedroom] = useState(1);
-  const [services, setServices] = useState([]);
+  const [pickedServices, setPickedServices] = useState([]);
 
   const handleNameChange = (event) => {
     setName(event.target.value);
@@ -42,7 +45,14 @@ function Questionnaire() {
     setView(event.target.value);
   };
   const handleIdyllicStatusChange = (event) => {
-    setIdyllicStatus(event.target.value);
+    const idyllicStatus = event.target.value;
+    if (!pickedIdyllicStatus.includes(idyllicStatus)) {
+      setPickedIdyllicStatus((current) => [...current, idyllicStatus]);
+    } else {
+      setPickedIdyllicStatus(
+        pickedIdyllicStatus.filter((element) => element !== idyllicStatus)
+      );
+    }
   };
   const handleNumberOfPeopleChange = (event) => {
     setNumberOfPeople(event.target.value);
@@ -54,16 +64,25 @@ function Questionnaire() {
     setNumberOFBedroom(event.target.value);
   };
   const handleServicesChange = (event) => {
-    setServices(event.target.value);
+    const services = event.target.value;
+    if (!pickedServices.includes(services)) {
+      setPickedServices((current) => [...current, services]);
+    } else {
+      setPickedServices(
+        pickedServices.filter((element) => element !== services)
+      );
+    }
   };
 
   async function handleSubmitQuestionnaire(event) {
     event.preventDefault();
     const id = user._id;
+    console.log(id);
     async function questionnaire(event) {
       try {
         const response = await axios.post(collectionDate, {
           name,
+          userId: user._id,
           startDate,
           endDate,
           pickedCountry,
@@ -153,30 +172,6 @@ function Questionnaire() {
               />
             );
           })}
-          {/* <OneInput
-            label={"france"}
-            htmlFor={"country"}
-            type={"radio"}
-            value={country}
-            name={"country"}
-            onChangeDate={handleCountryChange}
-          />
-          <OneInput
-            label={"itali"}
-            htmlFor={"country"}
-            type={"radio"}
-            value={country}
-            name={"country"}
-            onChangeDate={handleCountryChange}
-          />
-          <OneInput
-            label={"spain"}
-            htmlFor={"country"}
-            type={"radio"}
-            value={country}
-            name={"country"}
-            onChangeDate={handleCountryChange}
-          /> */}
           <div className="separation2"></div>
           <Title title={"What view do your prefer for your holidays?"}></Title>
           <OneInput
@@ -197,30 +192,18 @@ function Questionnaire() {
           />
           <div className="separation2"></div>
           <Title title={"What atmosphere do you seek?"}></Title>
-          <OneInput
-            label={"Family Moment"}
-            type={"checkbox"}
-            htmlFor={"family-moment"}
-            value={"Family Moment"}
-            name={"idyllicStatus"}
-            onChange={handleIdyllicStatusChange}
-          />
-          <OneInput
-            label={"Life Party"}
-            type={"checkbox"}
-            htmlFor={"life-party"}
-            value={"Life Party"}
-            name={"idyllicStatus"}
-            onChange={handleIdyllicStatusChange}
-          />
-          <OneInput
-            label={"Friends Trip"}
-            type={"checkbox"}
-            htmlFor={"friends-trip"}
-            value={"Friends Trip"}
-            name={"idyllicStatus"}
-            onChange={handleIdyllicStatusChange}
-          />
+          {["Family Moment", "Life Party", "Friends Trip"].map((name) => {
+            return (
+              <OneInput
+                key={name}
+                label={name}
+                type={"checkbox"}
+                value={name}
+                name={"idyllicStatus"}
+                onChange={handleIdyllicStatusChange}
+              />
+            );
+          })}
 
           <div className="separation2"></div>
           <Title title={"How many people are accompanying you?"}></Title>
@@ -254,78 +237,28 @@ function Questionnaire() {
           />
           <div className="separation2"></div>
           <Title title={"What services are essential for you?"}></Title>
-          <OneInput
-            label={"Yachting"}
-            type={"checkbox"}
-            htmlFor={"services"}
-            value={"Yachting"}
-            name={"idyllicStatus"}
-            onChange={handleServicesChange}
-          />
-          <OneInput
-            label={"Event planner"}
-            type={"checkbox"}
-            htmlFor={"services"}
-            value={"Event planner"}
-            name={"idyllicStatus"}
-            onChange={handleServicesChange}
-          />
-          <OneInput
-            label={"Sport coach"}
-            type={"checkbox"}
-            htmlFor={"services"}
-            value={"Sport coach"}
-            name={"idyllicStatus"}
-            onChange={handleServicesChange}
-          />
-          <OneInput
-            label={"Exclusive Excursions"}
-            type={"checkbox"}
-            htmlFor={"services"}
-            value={"Exclusive Excursions"}
-            name={"idyllicStatus"}
-            onChange={handleServicesChange}
-          />
-          <OneInput
-            label={"Personal Stylist"}
-            type={"checkbox"}
-            htmlFor={"services"}
-            value={"Personal Stylist"}
-            name={"idyllicStatus"}
-            onChange={handleServicesChange}
-          />
-          <OneInput
-            label={"Ultimate Spa"}
-            type={"checkbox"}
-            htmlFor={"services"}
-            value={"Ultimate Spa"}
-            name={"idyllicStatus"}
-            onChange={handleServicesChange}
-          />
-          <OneInput
-            label={"Private Chef"}
-            type={"checkbox"}
-            htmlFor={"services"}
-            value={"Private Chef"}
-            name={"idyllicStatus"}
-            onChange={handleServicesChange}
-          />
-          <OneInput
-            label={"Chauffeur"}
-            type={"checkbox"}
-            htmlFor={"services"}
-            value={"Chauffeur"}
-            name={"idyllicStatus"}
-            onChange={handleServicesChange}
-          />
-          <OneInput
-            label={"Gouvernante"}
-            type={"checkbox"}
-            htmlFor={"services"}
-            value={"Gouvernante"}
-            name={"idyllicStatus"}
-            onChange={handleServicesChange}
-          />
+          {[
+            "Yachting",
+            "Event planner",
+            "Sport coach",
+            "Exclusive Excursions",
+            "Personal Stylist",
+            "Ultimate Spa",
+            "Private Chef",
+            "Chauffeur",
+            "Gouvernante",
+          ].map((name) => {
+            return (
+              <OneInput
+                label={name} 
+                type={"checkbox"}
+                htmlFor={name}
+                value={name}
+                name={"services"}
+                onChange={handleServicesChange}
+              />
+            );
+          })}
         </div>
         <div className="positionButton">
           <button>find</button>
