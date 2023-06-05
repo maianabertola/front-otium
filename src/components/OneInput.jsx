@@ -3,9 +3,10 @@ import "../components/OneInput.css";
 
 function OneInput({ label, type, htmlFor, value, name, onChange }) {
   return (
-    <div>
+    <div className="divInput">
       <label htmlFor={htmlFor}>{label}</label>
       <input
+        key={label}
         type={type}
         value={value}
         id={htmlFor}

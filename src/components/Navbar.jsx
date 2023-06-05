@@ -23,8 +23,11 @@ function Navbar() {
         <Link>
           <li className="linkNavbar">About</li>
         </Link>
-        <Link>
+        <Link to={"/auth/login"}>
           <li className="linkNavbar">Log In</li>
+        </Link>
+        <Link to={"/auth/signup"}>
+          <li className="linkNavbar">Sign Up</li>
         </Link>
         <Button cta={"Book now"} backgroundColor={"black"}></Button>
       </ul>
