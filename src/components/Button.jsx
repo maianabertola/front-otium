@@ -1,7 +1,7 @@
 import React from "react";
 import "./Button.css";
 
-function Button({ cta, url, backgroundColor, width }) {
+function Button({ cta, backgroundColor, width, onClick }) {
   let myStyle;
   if (backgroundColor === "black") {
     myStyle = {
@@ -35,7 +35,12 @@ function Button({ cta, url, backgroundColor, width }) {
   const buttonStyle = { ...myStyle, newWidth };
 
   return (
-    <div className="button" onClick={url} style={buttonStyle}>
+    <div
+      className="button"
+      onClick={onClick}
+      style={buttonStyle}
+      // onChange={onChange}
+    >
       {cta}
     </div>
   );

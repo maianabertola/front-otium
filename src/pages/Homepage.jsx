@@ -19,14 +19,17 @@ function Homepage() {
   const navigate = useNavigate();
 
   const [villas, setVillas] = useState(null);
+
   const getAllVillas = async () => {
     try {
-      console.log("useEffet works");
+      // console.log("useEffet works");
       const myVillas = await axios.get("http://localhost:3000/villa");
       setVillas(myVillas.data);
-      // console.log(myVillas.data);
+      console.log(myVillas.data);
     } catch (error) {
-      console.log("there is an error when fetching all the villas from db");
+      console.log(
+        "there is an error when fetching all the villas from db on the homepage"
+      );
     }
   };
 

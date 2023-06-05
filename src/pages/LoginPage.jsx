@@ -3,7 +3,7 @@ import Navbar from "../components/Navbar";
 import Button from "../components/Button";
 import OneInput from "../components/OneInput";
 import axios from "axios";
-import AuthForm from "../components/AuthForm";
+// import AuthForm from "../components/AuthForm";
 import { AuthContextWrapper } from "../context/AuthContext";
 const collectionLogin = "http://localhost:3000/login";
 
@@ -49,7 +49,7 @@ function LoginPage() {
       </div>
       <div>
         <p>Already a member?</p>
-       <AuthForm mode={"login"}/>
+        <AuthForm mode={"login"} />
       </div>
     </>
   );

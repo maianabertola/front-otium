@@ -13,17 +13,17 @@ function VillaCardDetailsCells({ icone, info, text }) {
 
   return (
     <>
-      <div style={{ width: "40%" }}>
-        <td colSpan={2} className="flexCells">
-          <div className="iconeContainer">
-            <img style={myStyle} src={icone} />
-            <p>{text}</p>
-          </div>
-          {/* </td>
+      {/* <div style={{ width: "40%" }}> */}
+      <td colSpan={2} style={{ width: "40%" }} className="flexCells">
+        <div className="iconeContainer">
+          <img style={myStyle} src={icone} />
+          <p>{text}</p>
+        </div>
+        {/* </td>
         <td> */}
-          <p>{info}</p>
-        </td>
-      </div>
+        <p>{info}</p>
+      </td>
+      {/* </div> */}
     </>
   );
 }
