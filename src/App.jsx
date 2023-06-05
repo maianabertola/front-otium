@@ -15,7 +15,7 @@ function App() {
       <Routes>
         <Route element={<Layout />}>
           <Route index element={<Homepage />} />
-          <Route path="/villa" element={<VillaPage />} />
+          <Route path="/villa/:id" element={<VillaPage />} />
         </Route>
         <Route path="/questionnaire" element={<Questionnaire />} />
         <Route path="/auth">
@@ -24,6 +24,7 @@ function App() {
           <Route path="login" element={<LoginPage />} />
         </Route>
         <Route path="/account" element={<Account />} />
+
       </Routes>
     </>
   );

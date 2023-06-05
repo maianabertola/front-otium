@@ -5,4 +5,13 @@
   padding: 1rem;
   text-transform: uppercase;
   letter-spacing: 0.1rem;
+  margin-bottom: 1rem;
+}
+
+.flexBox {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  align-items: stretch;
+  gap: 1rem;
 }
