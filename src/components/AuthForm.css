@@ -1,0 +1,8 @@
+.login, .identity, .contact {
+    display: flex;
+    margin-bottom: 5rem;
+}
+
+p {
+    width: 500px;
+}

@@ -1,0 +1,19 @@
+.buttonAccount {
+    border-style: none;
+    font-size: 30px;
+    margin: 2rem;
+    width: 200px;
+    height: 3vh;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 40vh;
+    margin-top: 10rem;
+}
+
+.menu h1 {
+    margin-bottom: 5rem;
+}

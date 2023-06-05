@@ -1,26 +1,23 @@
-import "./Questionnaire.css";
-import axios from "axios";
+import "./QuestionnairePage.css";
 import Button from "../components/Button";
 import React, { useState, useContext } from "react";
 import OneInput from "../components/OneInput";
 import Title from "../components/TitleSection";
 import { AuthContext } from "../context/AuthContext";
-const collectionDate = "http://localhost:3000/questionnaire";
+import service from "../service/service";
+const collectionDate = "/questionnaire";
 
-function Questionnaire() {
-  const { user, authentificationUser, token } = useContext(AuthContext);
-  console.log(user);
-  console.log("auth fct", authentificationUser);
-  console.log("token de auth fct", token);
+function QuestionnairePage() {
+  const { user } = useContext(AuthContext);
 
   const [name, setName] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [pickedCountry, setPickedCountry] = useState([]);
-  const [view, setView] = useState("");
+  const [pickedView, setPickedView] = useState("");
   const [pickedIdyllicStatus, setPickedIdyllicStatus] = useState([]);
   const [numberOfPeople, setNumberOfPeople] = useState(1);
-  const [petFriendly, setPetFriendly] = useState(false);
+  const [petFriendly, setPetFriendly] = useState("");
   const [numberOFBedroom, setNumberOFBedroom] = useState(1);
   const [pickedServices, setPickedServices] = useState([]);
 
@@ -42,7 +39,7 @@ function Questionnaire() {
     }
   };
   const handleViewChange = (event) => {
-    setView(event.target.value);
+    setPickedView(event.target.value);
   };
   const handleIdyllicStatusChange = (event) => {
     const idyllicStatus = event.target.value;
@@ -73,30 +70,26 @@ function Questionnaire() {
       );
     }
   };
-
   async function handleSubmitQuestionnaire(event) {
     event.preventDefault();
+    console.log(user);
     const id = user._id;
-    console.log(id);
-    async function questionnaire(event) {
-      try {
-        const response = await axios.post(collectionDate, {
-          name,
-          userId: user._id,
-          startDate,
-          endDate,
-          pickedCountry,
-          view,
-          idyllicStatus,
-          numberOfPeople,
-          petFriendly,
-          numberOFBedroom,
-          services,
-        });
-        console.log("response", response);
-      } catch (e) {
-        console.log(e);
-      }
+    try {
+      const response = await service.post(collectionDate, {
+        name,
+        userId: id,
+        startDate,
+        endDate,
+        pickedCountry,
+        pickedView,
+        pickedIdyllicStatus,
+        numberOfPeople,
+        petFriendly,
+        numberOFBedroom,
+        pickedServices,
+      });
+    } catch (e) {
+      console.log(e);
     }
   }
   return (
@@ -129,9 +122,9 @@ function Questionnaire() {
         <div>
           <Title title={"What the name of your retreat project ?"}></Title>
           <OneInput
+            key={"name"}
             label={""}
             type={"text"}
-            htmlFor={"name"}
             value={name}
             name={"name"}
             onChange={handleNameChange}
@@ -142,6 +135,7 @@ function Questionnaire() {
               title={"What are the start and end dates of your trip?"}
             ></Title>
             <OneInput
+              key={"Start Date"}
               label={"Start Date"}
               htmlFor={"Date"}
               type={"date"}
@@ -150,6 +144,7 @@ function Questionnaire() {
               onChange={handleStartDateChange}
             />
             <OneInput
+              key={"End Date"}
               label={"End Date"}
               htmlFor={"Date"}
               type={"date"}
@@ -160,54 +155,47 @@ function Questionnaire() {
           </div>
           <div className="separation2"></div>
           <Title title={"Which country appeals you?"}></Title>
-          {["France", "Italy", "Spain"].map((name) => {
+          {["France", "Italy", "Spain"].map((country) => {
             return (
               <OneInput
-                key={name}
-                label={name}
+                key={country}
+                label={country}
                 type={"checkbox"}
-                value={name}
+                value={country}
                 name={"country"}
                 onChange={handleCountryChange}
               />
-            );
-          })}
+            )})}
           <div className="separation2"></div>
           <Title title={"What view do your prefer for your holidays?"}></Title>
-          <OneInput
-            label={"mountain"}
-            type={"radio"}
-            htmlFor={"mountain"}
-            value={view}
-            name={"view"}
-            onChange={handleViewChange}
-          />
-          <OneInput
-            label={"sea"}
-            type={"radio"}
-            htmlFor={"sea"}
-            value={view}
-            name={"view"}
-            onChange={handleViewChange}
-          />
-          <div className="separation2"></div>
-          <Title title={"What atmosphere do you seek?"}></Title>
-          {["Family Moment", "Life Party", "Friends Trip"].map((name) => {
+          {["mountain", "sea"].map((view) => {
             return (
               <OneInput
-                key={name}
-                label={name}
+                key={view}
+                label={view}
+                type={"radio"}
+                value={view}
+                name={"view"}
+                onChange={handleViewChange}
+              />
+            )})}
+          <div className="separation2"></div>
+          <Title title={"What atmosphere do you seek?"}></Title>
+          {["Family Moment", "Life Party", "Friends Trip"].map((trip) => {
+            return (
+              <OneInput
+                key={trip}
+                label={trip}
                 type={"checkbox"}
-                value={name}
+                value={trip}
                 name={"idyllicStatus"}
                 onChange={handleIdyllicStatusChange}
               />
-            );
-          })}
-
+            )})}
           <div className="separation2"></div>
           <Title title={"How many people are accompanying you?"}></Title>
           <OneInput
+            key={"number"}
             label={""}
             type={"number"}
             htmlFor={"people"}
@@ -217,17 +205,21 @@ function Questionnaire() {
           />
           <div className="separation2"></div>
           <Title title={"Do you travel with your pets?"}></Title>
-          <OneInput
-            label={""}
-            type={"number"}
-            htmlFor={"petFriendly"}
-            value={petFriendly}
-            name={"petFriendly"}
-            onChange={handlePetFriendlyChange}
-          />
+          {["yes", "no"].map((response) => {
+            return (
+              <OneInput
+                key={response}
+                label={response}
+                type={"radio"}
+                value={response}
+                name={"petFriendly"}
+                onChange={handlePetFriendlyChange}
+              />
+            )})}
           <div className="separation2"></div>
           <Title title={"How many bedrooms do you need?"}></Title>
           <OneInput
+            key={"bedroom"}
             label={""}
             type={"number"}
             htmlFor={"bedrooms"}
@@ -247,13 +239,14 @@ function Questionnaire() {
             "Private Chef",
             "Chauffeur",
             "Gouvernante",
-          ].map((name) => {
+          ].map((services) => {
             return (
               <OneInput
-                label={name} 
+                key={services}
+                label={services}
                 type={"checkbox"}
-                htmlFor={name}
-                value={name}
+                htmlFor={services}
+                value={services}
                 name={"services"}
                 onChange={handleServicesChange}
               />
@@ -268,4 +261,4 @@ function Questionnaire() {
   );
 }
 
-export default Questionnaire;
+export default QuestionnairePage;
