@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import "./VillaCardDetails.css";
 import peopleIcon from "../assets/peopleIcon.png";
 import squareMeterIcon from "../assets/squaremeterIcon.png";
@@ -36,7 +36,7 @@ export default function VillaCardDetails({
   const getOneVilla = async () => {
     try {
       const oneVilla = await axios.get(`${collectionVilla}/${id}`);
-      //   console.log(oneVilla.data);
+      console.log(oneVilla.data);
       setVilla(oneVilla.data);
     } catch (error) {
       console.log(
@@ -48,55 +48,48 @@ export default function VillaCardDetails({
 
   //create a post when checking the dates
   //comparing the booked date and booking date
-
   function createDate(event) {
     const newStartDate = startDate.toISOString();
     const newEndDate = endDate.toISOString();
     event.preventDefault();
     const newDates = { newStartDate, newEndDate };
-
     setDates(newDates);
-
-    // try {
-    //   console.log("==========", startDate, date);
-    //   const newDates = await axios.post(bookingVilla, {
-    //     startDate,
-    //     endDate,
-    //   });
-    //   console.log("les news dates sont : ", newDates.data);
-    //   setDates(newDates.data);
-    //   // console.log("new dates created in the villaPage", newDates);
-    //   //     console.log =   endDate:"2023-06-05T11:43:49.925Z" startDate:"2023-06-07T11:43:49.000Z"
-    //   // console.log(dates.createTrip.endDate);
-    //   console.log("tab de dates : ", dates);
-
-    //   dates.map((date) => {
-    //     if (dates.length === 0) {
-    //       return <div>wait</div>;
-    //     }
-    //     console.log("yes its mapping the dates");
-    //     if (date !== villa.Villa.startDate && date !== villa.Villa.endDate) {
-    //       return <div>These dates are not available</div>;
-    //     }
-    //   });
-    // } catch (error) {
-    //   console.log(
-    //     "there's an issue when creating dates in the villaPage",
-    //     error
-    //   );
-    // }
-    console.log("tessssttttttttt");
-    console.log("voilà les dates", dates);
+    console.log("here's the dates the user wants to book", dates);
   }
 
   useEffect(() => {
     getOneVilla();
-    // createDate();
   }, []);
 
-  // console.log(villa.Villa.endDate);
-  // console.log(villa.Villa.startDate);c
-  console.log("my booking dates", dates);
+  const memoDates = useMemo(() => {
+    if (villa && villa.Villa && villa.Villa.bookedDates) {
+      return villa.Villa.bookedDates.map((element) => {
+        return {
+          start: new Date(element.Start),
+          end: new Date(element.End),
+        };
+      });
+    }
+    return [];
+  }, [villa]);
+
+  // let test = {}
+  //   function isTest(){
+  //      test = villa.Villa.bookedDates.map((element) => {
+  //             return {
+  //               start: new Date(element.Start),
+  //               end: new Date(element.End),
+  //             };
+  //           });
+  //         }
+  //   }
+
+  //   useEffect(() => {
+  //     isTest()
+
+  //   }, [villa])
+
+  console.log("my booking dates", memoDates);
 
   return (
     <>
@@ -157,8 +150,8 @@ export default function VillaCardDetails({
                 isClearable
                 closeOnScroll={true}
                 dateFormat="yyyy/MM/dd"
-                excludeDates={[new Date(), subDays(new Date(), 1)]}
-                placeholderText="Select a date other than today or yesterday"
+                minDate={new Date()}
+                excludeDateIntervals={memoDates}
               />
               <DatePicker
                 key={endDate}
@@ -174,7 +167,7 @@ export default function VillaCardDetails({
                 isClearable
                 closeOnScroll={true}
                 dateFormat="yyyy/MM/dd"
-                excludeDates={[new Date(), subDays(new Date(), 0)]}
+                excludeDateIntervals={memoDates}
                 placeholderText="Select a date other than today or yesterday"
               />
               <Button
@@ -197,4 +190,3 @@ export default function VillaCardDetails({
     </>
   );
 }
-
