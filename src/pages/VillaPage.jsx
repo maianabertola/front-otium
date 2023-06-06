@@ -11,14 +11,16 @@ import Grid from "./Grid";
 import imagetest from "../assets/Positano.jpeg";
 import NeedHelp from "../components/NeedHelp";
 import DatePicker from "react-datepicker";
-import { isMatch } from "date-fns";
+import { isMatch, setDate } from "date-fns";
 
 function VillaPage() {
   const [villa, setVilla] = useState(null);
   const [services, setServices] = useState([]);
-  const [matchedServices, setMatchedServices] = useState([]);
   const collectionVilla = "http://localhost:3000/villa";
   const collectionService = "http://localhost:3000/service";
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
+  const [dates, setDates] = useState([]);
   const { id } = useParams();
 
   //fetch Villas Data from db
@@ -42,7 +44,6 @@ function VillaPage() {
       const otiumServices = await axios.get(collectionService);
 
       setServices(otiumServices.data);
-      //   console.log("OTIUM SERV:", otiumServices.data);
     } catch (error) {
       console.log(
         "there is an error when fetching all the services from db on the villaPage",
@@ -51,40 +52,9 @@ function VillaPage() {
     }
   };
 
-  // let matchedIDServices = [];
-  // let response;
-
-  //check if services.id and villa.Villa.services are a match
-  // useEffect(() => {
-  //   const checkServices = () => {
-  //     if (!villa || services.length === 0) {
-  //       return <div>waiting</div>;
-  //     }
-
-  //     // console.log(services);
-
-  //     villa.Villa.services.forEach((oneService) => {
-  //       // console.log(oneService);
-  //       const isMatching = services.ServiceDetail.find(
-  //         (element) => element.id === oneService
-  //       );
-  //       // console.log("it's a match!", isMatching);
-
-  //       if (isMatching) {
-  //         // console.log(matchedIDServices);
-  //         // return matchedIDServices.push(isMatching);
-  //         setMatchedServices(isMatching);
-  //       }
-  //     });
-  //   };
-  //   checkServices();
-  //   // setMatchedServices(response);
-  // }, [services]);
-
   //use UseEffect to give time to the data to load
   useEffect(() => {
     getOneVilla(), getAllServices();
-    // checkServices();
   }, []);
 
   //if not, display a little message to avoid error message
@@ -185,6 +155,11 @@ function VillaPage() {
           bathrooms={`${villa.Villa.bathrooms} bathrooms`}
           view={`${villa.Villa.view} view`}
           pricePerWeek={`${villa.Villa.pricePerWeek}€/week`}
+          startDate={startDate}
+          setStartDate={setStartDate}
+          endDate={setEndDate}
+          dates={dates}
+          setDates={setDates}
         ></VillaCardDetails>
       </section>
     </>
