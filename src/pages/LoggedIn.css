@@ -1,9 +1,8 @@
-.buttonAccount {
-    border-style: none;
+.menuAccount {
     font-size: 30px;
-    margin: 2rem;
     width: 200px;
     height: 3vh;
+    color: black;
 }
 
 .menu {
@@ -14,6 +13,6 @@
     margin-top: 10rem;
 }
 
-.menu h1 {
-    margin-bottom: 5rem;
+.menu .welcome {
+    margin-bottom: 3rem;
 }
