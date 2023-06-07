@@ -42,15 +42,18 @@ function QuestionnairesDisplay() {
   });
 
   console.log("les questionnaires sont:", currentUsertQuestionnaire);
-  
+
   return (
     <>
       <div className="questionnaireDisplay">
         {currentUsertQuestionnaire.map((question) => {
-            return <p>{question.name} test</p>;
-          })
-        }
-    </div>
+          return (
+            <div>
+              <p>{question._id} test</p>
+            </div>
+          );
+        })}
+      </div>
     </>
   );
 }
