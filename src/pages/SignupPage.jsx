@@ -2,11 +2,10 @@ import React from "react";
 import axios from "axios";
 import Navbar from "../components/Navbar";
 import AuthForm from "../components/AuthForm";
-import "../pages/signupPage.css"
+import "../pages/signupPage.css";
 
-const collectionUser = "http://localhost:3000/signup";
+const collectionUser = "http://localhost:3000/auth/signup";
 function SignupPage() {
-  
   async function handleSubmitUser(event) {
     event.preventDefault();
     try {
@@ -25,11 +24,13 @@ function SignupPage() {
   }
   return (
     <>
-    <Navbar></Navbar>
-    <div className="body">
-      <h1 className="h1Signup">You are one click away to become an Otium member</h1>
-      <AuthForm mode={"signup"}/>
-    </div>
+      <Navbar></Navbar>
+      <div className="body">
+        <h1 className="h1Signup">
+          You are one click away to become an Otium member
+        </h1>
+        <AuthForm mode={"signup"} />
+      </div>
     </>
   );
 }
