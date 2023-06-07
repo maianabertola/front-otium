@@ -8,6 +8,8 @@ function AccountTripBooked() {
 
   const [userBookings, setUserBookings] = useState();
 
+  console.log("toto")
+
   //get all the bookings
   const getUserBookings = async () => {
     try {
