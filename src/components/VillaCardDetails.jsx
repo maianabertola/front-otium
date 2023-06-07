@@ -28,33 +28,10 @@ export default function VillaCardDetails({
 }) {
   const { startDate, setStartDate, endDate, setEndDate, dates, setDates } =
     useContext(AuthContext);
-  // const [dates, setDates] = useState([]);
-  // const [startDate, setStartDate] = useState(new Date());
-  // const [endDate, setEndDate] = useState(new Date());
+
   const navigate = useNavigate();
 
-  // console.log("TEST CONTEXT", startDate, endDate, dates);
-
-  // console.log("myvilla", villa);
-
-  // const bookingVilla = "http://localhost:3000/booking/trip";
-  // const [villa, setVilla] = useState(null);
-
   const { id } = useParams();
-
-  //get the villa by ID and check the date available
-  // const getOneVilla = async () => {
-  //   try {
-  //     const oneVilla = await axios.get(`${collectionVilla}/${id}`);
-  //     console.log(oneVilla.data);
-  //     setVilla(oneVilla.data);
-  //   } catch (error) {
-  //     console.log(
-  //       error,
-  //       "there is an error when fetching one villa by ID from db on the villaPage"
-  //     );
-  //   }
-  // };
 
   // create a post when checking the dates
   // comparing the booked date and booking date
@@ -74,6 +51,7 @@ export default function VillaCardDetails({
     villa;
   }, []);
 
+  //memorize the results of the function. Will relaunch if villa changes
   const memoDates = useMemo(() => {
     if (villa && villa.Villa && villa.Villa.bookedDates) {
       return villa.Villa.bookedDates.map((element) => {

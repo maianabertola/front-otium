@@ -11,7 +11,6 @@ import bathIcon from "../assets/iconebathroom.png";
 import moutainviewIcon from "../assets/iconeview.png";
 import DatePicker from "react-datepicker";
 import { AuthContext } from "../context/AuthContext";
-import Box from "../components/Box";
 import { memo } from "react";
 
 function BookingPage() {

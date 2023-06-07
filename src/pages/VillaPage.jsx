@@ -17,9 +17,6 @@ function VillaPage() {
   const [services, setServices] = useState([]);
   const collectionVilla = "http://localhost:3000/villa";
   const collectionService = "http://localhost:3000/service";
-  // const [startDate, setStartDate] = useState(new Date());
-  // const [endDate, setEndDate] = useState(new Date());
-  // const [dates, setDates] = useState([]);
   const { id } = useParams();
 
   const { startDate, endDate, dates } = useContext(AuthContext);

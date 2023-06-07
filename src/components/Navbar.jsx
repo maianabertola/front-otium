@@ -11,25 +11,37 @@ function Navbar() {
         <img src={logo} alt="Otium logo" />
       </div>
       <ul>
-        <Link>
-          <li className="linkNavbar">Destinations</li>
-        </Link>
-        <Link>
-          <li className="linkNavbar">Services</li>
-        </Link>
-        <Link>
-          <li className="linkNavbar">Find yours</li>
-        </Link>
-        <Link>
-          <li className="linkNavbar">About</li>
-        </Link>
-        <Link to={"/auth/login"}>
-          <li className="linkNavbar">Log In</li>
-        </Link>
-        <Link to={"/auth/signup"}>
-          <li className="linkNavbar">Sign Up</li>
-        </Link>
-        <Button cta={"Book now"} backgroundColor={"black"}></Button>
+        <li>
+          <Link to="/" className="linkNavbar">
+            Destinations
+          </Link>
+        </li>
+        <li>
+          <Link to="/services" className="linkNavbar">
+            Services
+          </Link>
+        </li>
+        <li>
+          <Link to="/questionnaire" className="linkNavbar">
+            Find yours
+          </Link>
+        </li>
+        <li>
+          <Link to="/about" className="linkNavbar">
+            About
+          </Link>
+        </li>
+        <li>
+          <Link to="/auth/login" className="linkNavbar">
+            Log In
+          </Link>
+        </li>
+        <li>
+          <Link to="/auth/signup" className="linkNavbar">
+            Sign Up
+          </Link>
+        </li>
+        {/* <Button cta={"Book now"} backgroundColor={"black"}></Button> */}
       </ul>
     </nav>
   );

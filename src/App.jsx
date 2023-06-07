@@ -14,6 +14,7 @@ import Account from "./pages/LoggedIn";
 import BookingPage from "./pages/BookingPage";
 import ConfirmationBookingPage from "./pages/ConfirmationBookingPage";
 import GalleryPhotos from "./pages/GalleryPhotos";
+import AccountTripBooked from "./pages/AccountTripBooked";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
             path="/booking-confirmed"
             element={<ConfirmationBookingPage />}
           />
+          <Route path="/account-trips" element={<AccountTripBooked />} />
         </Route>
 
         <Route path="/questionnaire" element={<Questionnaire />} />
