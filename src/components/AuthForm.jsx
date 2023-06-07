@@ -13,8 +13,8 @@ const AuthForm = ({ mode }) => {
   const [name, setName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [birthDate, setBirthDate] = useState("");
-  const [address, setAddress] = useState("")
-  const [country, setCountry] = useState("")
+  const [address, setAddress] = useState("");
+  const [country, setCountry] = useState("");
   const [error, setError] = useState("");
 
   const navigate = useNavigate();
@@ -43,7 +43,15 @@ const AuthForm = ({ mode }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const userToSignup = { email, password, name, phoneNumber, birthDate };
+      const userToSignup = {
+        email,
+        password,
+        name,
+        phoneNumber,
+        birthDate,
+        address,
+        country,
+      };
       const userToLogin = { email, password };
       if (mode === "signup") {
         const response = await axios.post(
@@ -59,7 +67,7 @@ const AuthForm = ({ mode }) => {
         localStorage.setItem("token", response.data.token);
         setError("");
         await authentificationUser();
-        navigate("/")
+        navigate("/");
       }
     } catch (error) {
       console.log(error);
