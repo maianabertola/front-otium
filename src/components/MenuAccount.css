@@ -1,0 +1,19 @@
+.menuAccount {
+  font-size: 30px;
+  width: 200px;
+  height: 3vh;
+  color: black;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 40vh;
+  margin-top: 10rem;
+}
+
+.welcome {
+  margin-bottom: 3rem;
+  padding: 0;
+}

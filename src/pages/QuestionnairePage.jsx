@@ -5,11 +5,13 @@ import OneInput from "../components/OneInput";
 import Title from "../components/TitleSection";
 import { AuthContext } from "../context/AuthContext";
 import service from "../service/service";
+import { useNavigate } from "react-router-dom";
+
 const collectionDate = "/questionnaire";
 
 function QuestionnairePage() {
   const { user } = useContext(AuthContext);
-
+  
   const [name, setName] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
@@ -20,6 +22,8 @@ function QuestionnairePage() {
   const [petFriendly, setPetFriendly] = useState("");
   const [numberOFBedroom, setNumberOFBedroom] = useState(1);
   const [pickedServices, setPickedServices] = useState([]);
+  
+  const navigate = useNavigate();
 
   const handleNameChange = (event) => {
     setName(event.target.value);
@@ -74,8 +78,9 @@ function QuestionnairePage() {
     event.preventDefault();
     console.log(user);
     const id = user._id;
+    
     try {
-      const response = await service.post(collectionDate, {
+      const response = await service.post("/questionnaire", {
         name,
         userId: id,
         startDate,
@@ -88,9 +93,11 @@ function QuestionnairePage() {
         numberOFBedroom,
         pickedServices,
       });
+      navigate("/created");
     } catch (e) {
       console.log(e);
     }
+
   }
   return (
     <>
@@ -165,7 +172,8 @@ function QuestionnairePage() {
                 name={"country"}
                 onChange={handleCountryChange}
               />
-            )})}
+            );
+          })}
           <div className="separation2"></div>
           <Title title={"What view do your prefer for your holidays?"}></Title>
           {["mountain", "sea"].map((view) => {
@@ -178,7 +186,8 @@ function QuestionnairePage() {
                 name={"view"}
                 onChange={handleViewChange}
               />
-            )})}
+            );
+          })}
           <div className="separation2"></div>
           <Title title={"What atmosphere do you seek?"}></Title>
           {["Family Moment", "Life Party", "Friends Trip"].map((trip) => {
@@ -191,7 +200,8 @@ function QuestionnairePage() {
                 name={"idyllicStatus"}
                 onChange={handleIdyllicStatusChange}
               />
-            )})}
+            );
+          })}
           <div className="separation2"></div>
           <Title title={"How many people are accompanying you?"}></Title>
           <OneInput
@@ -215,7 +225,8 @@ function QuestionnairePage() {
                 name={"petFriendly"}
                 onChange={handlePetFriendlyChange}
               />
-            )})}
+            );
+          })}
           <div className="separation2"></div>
           <Title title={"How many bedrooms do you need?"}></Title>
           <OneInput

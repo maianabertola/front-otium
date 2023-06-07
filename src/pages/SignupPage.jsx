@@ -16,6 +16,8 @@ function SignupPage() {
         name,
         birthDate,
         phoneNumber,
+        country,
+        address,
       });
     } catch (e) {
       console.log(e);

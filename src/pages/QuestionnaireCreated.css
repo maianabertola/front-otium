@@ -1,0 +1,18 @@
+.description {
+  display: flex;
+  align-items: center;
+  margin-top: 10rem;
+  margin-bottom: 7rem;
+}
+
+.description h1 {
+  margin-bottom: 3rem;
+  font-size: 50px;
+  width: 520px;
+}
+
+.mapping {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}

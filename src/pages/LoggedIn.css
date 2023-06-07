@@ -1,18 +1,3 @@
-.menuAccount {
-    font-size: 30px;
-    width: 200px;
-    height: 3vh;
-    color: black;
-}
-
-.menu {
+.bodi {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 40vh;
-    margin-top: 10rem;
-}
-
-.menu .welcome {
-    margin-bottom: 3rem;
 }
