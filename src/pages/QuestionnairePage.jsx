@@ -13,8 +13,6 @@ function QuestionnairePage() {
   const { user } = useContext(AuthContext);
   
   const [name, setName] = useState("");
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
   const [pickedCountry, setPickedCountry] = useState([]);
   const [pickedView, setPickedView] = useState("");
   const [pickedIdyllicStatus, setPickedIdyllicStatus] = useState([]);
@@ -27,12 +25,6 @@ function QuestionnairePage() {
 
   const handleNameChange = (event) => {
     setName(event.target.value);
-  };
-  const handleStartDateChange = (event) => {
-    setStartDate(event.target.value);
-  };
-  const handleEndDateChange = (event) => {
-    setEndDate(event.target.value);
   };
   const handleCountryChange = (event) => {
     const country = event.target.value;
@@ -83,8 +75,6 @@ function QuestionnairePage() {
       const response = await service.post("/questionnaire", {
         name,
         userId: id,
-        startDate,
-        endDate,
         pickedCountry,
         pickedView,
         pickedIdyllicStatus,
@@ -136,30 +126,6 @@ function QuestionnairePage() {
             name={"name"}
             onChange={handleNameChange}
           />
-          <div className="separation2"></div>
-          <div className="blockTrip">
-            <Title
-              title={"What are the start and end dates of your trip?"}
-            ></Title>
-            <OneInput
-              key={"Start Date"}
-              label={"Start Date"}
-              htmlFor={"Date"}
-              type={"date"}
-              value={startDate}
-              name={"Date"}
-              onChange={handleStartDateChange}
-            />
-            <OneInput
-              key={"End Date"}
-              label={"End Date"}
-              htmlFor={"Date"}
-              type={"date"}
-              value={endDate}
-              name={"Date"}
-              onChange={handleEndDateChange}
-            />
-          </div>
           <div className="separation2"></div>
           <Title title={"Which country appeals you?"}></Title>
           {["France", "Italy", "Spain"].map((country) => {

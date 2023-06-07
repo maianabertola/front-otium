@@ -14,7 +14,7 @@ import Account from "./pages/LoggedIn";
 import BookingPage from "./pages/BookingPage";
 import ConfirmationBookingPage from "./pages/ConfirmationBookingPage";
 import GalleryPhotos from "./pages/GalleryPhotos";
-
+import QuestionnaireUpdate from "./pages/QuestionnaireUpdate";
 
 function App() {
   return (
@@ -33,15 +33,14 @@ function App() {
         </Route>
 
         <Route path="/questionnaire" element={<Questionnaire />} />
+        <Route path="/questionnaire/:id" element={<QuestionnaireUpdate />} />
         <Route path="/created" element={<Created />} />
         <Route path="/auth">
           <Route path="signup" element={<SignupPage />} />
           <Route path="accountcreated" element={<AccountCreatedPage />} />
           <Route path="login" element={<LoginPage />} />
         </Route>
-        <Route path="/account" element={<Account />}>
-        </Route>
-        
+        <Route path="/account" element={<Account />}></Route>
       </Routes>
     </>
   );
