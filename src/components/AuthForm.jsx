@@ -5,7 +5,6 @@ import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import OneInput from "./OneInput";
-import Button from "./Button";
 
 const AuthForm = ({ mode }) => {
   const { authentificationUser } = useContext(AuthContext);
@@ -14,6 +13,8 @@ const AuthForm = ({ mode }) => {
   const [name, setName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [birthDate, setBirthDate] = useState("");
+  const [address, setAddress] = useState("")
+  const [country, setCountry] = useState("")
   const [error, setError] = useState("");
 
   const navigate = useNavigate();
@@ -32,6 +33,12 @@ const AuthForm = ({ mode }) => {
   };
   const handleBirthDateChange = (event) => {
     setBirthDate(event.target.value);
+  };
+  const handleAddressChange = (event) => {
+    setAddress(event.target.value);
+  };
+  const handleCountryChange = (event) => {
+    setCountry(event.target.value);
   };
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -111,6 +118,22 @@ const AuthForm = ({ mode }) => {
               value={phoneNumber}
               name={"phoneNumber"}
               onChange={handlePhoneNumberChange}
+            />
+            <OneInput
+              key={"country"}
+              label={"country"}
+              type={"text"}
+              value={country}
+              name={"country"}
+              onChange={handleCountryChange}
+            />
+            <OneInput
+              key={"address"}
+              label={"address"}
+              type={"text"}
+              value={address}
+              name={"address"}
+              onChange={handleAddressChange}
             />
           </div>
           <button>submit</button>
