@@ -1,7 +1,7 @@
 import React from "react";
-import "./VillaCardDetails.css";
+import "./BookingVillaCard.css";
 
-function VillaCardDetailsCells({ icone, info, text }) {
+function BookingCardDetailCells({ icone, info, text }) {
   let myStyle;
   if (!icone) {
     myStyle = { display: "none" };
@@ -13,7 +13,8 @@ function VillaCardDetailsCells({ icone, info, text }) {
 
   return (
     <>
-      <td colSpan={2} style={{ width: "40%" }} className="flexCells">
+      <td>
+        {/* <td colSpan={2} style={{ width: "40%" }} className="flexCells"> */}
         <div className="iconeContainer">
           <img style={myStyle} src={icone} />
           <p>{text}</p>
@@ -24,5 +25,4 @@ function VillaCardDetailsCells({ icone, info, text }) {
     </>
   );
 }
-
-export default VillaCardDetailsCells;
+export default BookingCardDetailCells;

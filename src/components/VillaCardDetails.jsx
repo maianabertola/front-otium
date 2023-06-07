@@ -1,18 +1,18 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useContext, useEffect, useMemo } from "react";
 import "./VillaCardDetails.css";
+import VillaCardDetailsCells from "./VillaCardDetailsCells";
 import peopleIcon from "../assets/peopleIcon.png";
 import squareMeterIcon from "../assets/squaremeterIcon.png";
-import VillaCardDetailsCells from "./VillaCardDetailsCells";
 import bedroomIcon from "../assets/iconebed.png";
 import bathIcon from "../assets/iconebathroom.png";
 import moutainviewIcon from "../assets/iconeview.png";
 import Button from "./Button";
 import "react-datepicker/dist/react-datepicker.css";
-import subDays from "date-fns/subDays";
 import DatePicker from "react-datepicker";
 import { useState } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
+import { useNavigate, Outlet, useParams } from "react-router-dom";
 
 export default function VillaCardDetails({
   name,
@@ -23,42 +23,54 @@ export default function VillaCardDetails({
   bathrooms,
   view,
   pricePerWeek,
+  villa,
 }) {
-  const collectionVilla = "http://localhost:3000/villa";
-  const bookingVilla = "http://localhost:3000/booking/trip";
-  const [villa, setVilla] = useState(null);
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
-  const [dates, setDates] = useState([]);
+  const { startDate, setStartDate, endDate, setEndDate, dates, setDates } =
+    useContext(AuthContext);
+  // const [dates, setDates] = useState([]);
+  // const [startDate, setStartDate] = useState(new Date());
+  // const [endDate, setEndDate] = useState(new Date());
+  const navigate = useNavigate();
+
+  // console.log("TEST CONTEXT", startDate, endDate, dates);
+
+  // console.log("myvilla", villa);
+
+  // const bookingVilla = "http://localhost:3000/booking/trip";
+  // const [villa, setVilla] = useState(null);
+
   const { id } = useParams();
 
   //get the villa by ID and check the date available
-  const getOneVilla = async () => {
-    try {
-      const oneVilla = await axios.get(`${collectionVilla}/${id}`);
-      console.log(oneVilla.data);
-      setVilla(oneVilla.data);
-    } catch (error) {
-      console.log(
-        error,
-        "there is an error when fetching one villa by ID from db on the villaPage"
-      );
-    }
-  };
+  // const getOneVilla = async () => {
+  //   try {
+  //     const oneVilla = await axios.get(`${collectionVilla}/${id}`);
+  //     console.log(oneVilla.data);
+  //     setVilla(oneVilla.data);
+  //   } catch (error) {
+  //     console.log(
+  //       error,
+  //       "there is an error when fetching one villa by ID from db on the villaPage"
+  //     );
+  //   }
+  // };
 
-  //create a post when checking the dates
-  //comparing the booked date and booking date
+  // create a post when checking the dates
+  // comparing the booked date and booking date
   function createDate(event) {
     const newStartDate = startDate.toISOString();
     const newEndDate = endDate.toISOString();
     event.preventDefault();
     const newDates = { newStartDate, newEndDate };
     setDates(newDates);
-    console.log("here's the dates the user wants to book", dates);
+    // console.log(
+    //   "here's the dates the user wants to book on VillaCardDetails",
+    //   dates
+    // );
   }
 
   useEffect(() => {
-    getOneVilla();
+    villa;
   }, []);
 
   const memoDates = useMemo(() => {
@@ -73,23 +85,12 @@ export default function VillaCardDetails({
     return [];
   }, [villa]);
 
-  // let test = {}
-  //   function isTest(){
-  //      test = villa.Villa.bookedDates.map((element) => {
-  //             return {
-  //               start: new Date(element.Start),
-  //               end: new Date(element.End),
-  //             };
-  //           });
-  //         }
-  //   }
+  // console.log("the villa is booked at these dates", memoDates);
 
-  //   useEffect(() => {
-  //     isTest()
-
-  //   }, [villa])
-
-  console.log("my booking dates", memoDates);
+  function changePage(event) {
+    event.preventDefault();
+    navigate(`/villa/${id}/booking`);
+  }
 
   return (
     <>
@@ -182,7 +183,9 @@ export default function VillaCardDetails({
               <Button
                 backgroundColor={"black"}
                 cta={"Book your stay now"}
+                onClick={changePage}
               ></Button>
+              <Outlet />
             </tr>
           </tbody>
         </table>

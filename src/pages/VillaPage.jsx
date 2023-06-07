@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import "./VillaPage.css";
 import villaHero from "../assets/villa_era.webp";
 import Button from "../components/Button";
@@ -10,18 +10,20 @@ import { useParams } from "react-router-dom";
 import Grid from "./Grid";
 import imagetest from "../assets/Positano.jpeg";
 import NeedHelp from "../components/NeedHelp";
-import DatePicker from "react-datepicker";
-import { isMatch, setDate } from "date-fns";
+import { AuthContext } from "../context/AuthContext";
 
 function VillaPage() {
-  const [villa, setVilla] = useState(null);
+  const [villa, setVilla] = useState("");
   const [services, setServices] = useState([]);
   const collectionVilla = "http://localhost:3000/villa";
   const collectionService = "http://localhost:3000/service";
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
-  const [dates, setDates] = useState([]);
+  // const [startDate, setStartDate] = useState(new Date());
+  // const [endDate, setEndDate] = useState(new Date());
+  // const [dates, setDates] = useState([]);
   const { id } = useParams();
+
+  const { startDate, endDate, dates } = useContext(AuthContext);
+  console.log(startDate);
 
   //fetch Villas Data from db
   const getOneVilla = async () => {
@@ -81,7 +83,7 @@ function VillaPage() {
         </div>
       </section>
       <section id="villaInfo">
-        <div className="textVillaContainer">
+        <div className="textVillaContainer" key={id}>
           <p className="sloganVilla">{villa.Villa.slogan}</p>
           <p className="descriptionVilla">{villa.Villa.description}</p>
           <h2>An Idyllic Villa for</h2>
@@ -112,9 +114,6 @@ function VillaPage() {
           })}
           <h2>Services included</h2>
           {villa.Villa.services.map((element) => {
-            {
-              /* console.log(element.title); */
-            }
             return <Grid cellContent={element.title}></Grid>;
           })}
           <h2>Rooms & furnitures</h2>
@@ -155,13 +154,19 @@ function VillaPage() {
           bathrooms={`${villa.Villa.bathrooms} bathrooms`}
           view={`${villa.Villa.view} view`}
           pricePerWeek={`${villa.Villa.pricePerWeek}€/week`}
-          startDate={startDate}
-          setStartDate={setStartDate}
-          endDate={setEndDate}
-          dates={dates}
-          setDates={setDates}
+          villa={villa}
         ></VillaCardDetails>
       </section>
+      {/* <Outlet
+        context={{
+          startDate: [startDate, setStartDate],
+          endDate: [endDate, setEndDate],
+          dates: [dates, setDates],
+          villaId: id,
+          galleryphotos: villa.Villa.galleryphotos,
+          //userId??
+        }}
+      /> */}
     </>
   );
 }

@@ -8,7 +8,11 @@ import LoginPage from "./pages/LoginPage";
 import VillaPage from "./pages/VillaPage";
 import SignupPage from "./pages/SignupPage";
 import AccountCreatedPage from "./pages/AccountCreatedPage";
-import Account from "./pages/LoggedIn"
+import Account from "./pages/LoggedIn";
+import BookingPage from "./pages/BookingPage";
+import ConfirmationBookingPage from "./pages/ConfirmationBookingPage";
+import GalleryPhotos from "./pages/GalleryPhotos";
+
 function App() {
   return (
     <>
@@ -16,7 +20,15 @@ function App() {
         <Route element={<Layout />}>
           <Route index element={<Homepage />} />
           <Route path="/villa/:id" element={<VillaPage />} />
+
+          <Route path="photos" element={<GalleryPhotos />} />
+          <Route path="/villa/:id/booking" element={<BookingPage />} />
+          <Route
+            path="/villa/:id/booking-confirmed"
+            element={<ConfirmationBookingPage />}
+          />
         </Route>
+
         <Route path="/questionnaire" element={<Questionnaire />} />
         <Route path="/auth">
           <Route path="signup" element={<SignupPage />} />
@@ -24,7 +36,6 @@ function App() {
           <Route path="login" element={<LoginPage />} />
         </Route>
         <Route path="/account" element={<Account />} />
-
       </Routes>
     </>
   );

@@ -2,12 +2,15 @@ import { createContext, useEffect, useState } from "react";
 import service from "../service/service";
 const AuthContext = createContext();
 
-export const AuthCOntext = createContext()
+export const AuthCOntext = createContext();
 const AuthContextWrapper = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState(null);
-  const [token, setToken] = useState("")
+  const [token, setToken] = useState("");
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
+  const [dates, setDates] = useState([]);
 
   useEffect(() => {
     authentificationUser();
@@ -22,7 +25,7 @@ const AuthContextWrapper = ({ children }) => {
             Authorization: `Bearer ${token}`,
           },
         });
-        setToken(token)
+        setToken(token);
         setUser(response.data);
         setIsLoggedIn(true);
         setIsLoading(false);
@@ -48,6 +51,8 @@ const AuthContextWrapper = ({ children }) => {
     localStorage.removeItem("token");
   };
 
+  // const [startDate, setStartDate] = useState()
+
   return (
     <AuthContext.Provider
       value={{
@@ -59,6 +64,12 @@ const AuthContextWrapper = ({ children }) => {
         setToken: updateToken,
         logout,
         token,
+        startDate,
+        setStartDate,
+        endDate,
+        setEndDate,
+        dates,
+        setDates,
       }}
     >
       {children}
