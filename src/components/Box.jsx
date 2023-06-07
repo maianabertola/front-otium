@@ -1,10 +1,11 @@
 import React from "react";
 import "./Box.css";
 
-function Box({ text, status, petFriendly }) {
+function Box({ text, status, petFriendly, isClickable }) {
   let myStyle = {};
+  let boxClasses = "box";
 
-  console.log(petFriendly);
+  // console.log(petFriendly);
 
   if (petFriendly === true && text === "YES") {
     myStyle.backgroundColor = "hsl(64, 17%, 84%)";
@@ -25,10 +26,14 @@ function Box({ text, status, petFriendly }) {
   //   };
   // }
 
+  if (isClickable === "yes") {
+    boxClasses += " clickable";
+  }
+
   // console.log(myStyle);
   return (
     <>
-      <div className="box" style={myStyle}>
+      <div className={boxClasses} style={myStyle}>
         {text}
       </div>
     </>

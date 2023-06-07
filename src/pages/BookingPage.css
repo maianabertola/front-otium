@@ -1,0 +1,17 @@
+.bookingVillaContainer {
+  margin: 15vh 4rem 15vh;
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+}
+
+.villaBookingDetails {
+  width: 45vw;
+  margin-right: 2rem;
+}
+
+.precisionsBooking {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+}
