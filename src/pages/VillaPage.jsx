@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import "./VillaPage.css";
-import villaHero from "../assets/villa_era.webp";
+import villaHero from "../assets/villaera.webp";
 import Button from "../components/Button";
 import VillaCardDetails from "../components/VillaCardDetails";
 import Box from "../components/Box";

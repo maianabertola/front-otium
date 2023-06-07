@@ -24,8 +24,8 @@ function Homepage() {
     try {
       // console.log("useEffet works");
       const myVillas = await axios.get("http://localhost:3000/villa");
-      setVillas(myVillas.data);
-      console.log(myVillas.data);
+      // setVillas(myVillas.data);
+      // console.log(myVillas.data);
     } catch (error) {
       console.log(
         "there is an error when fetching all the villas from db on the homepage"
@@ -42,7 +42,7 @@ function Homepage() {
       console.log("there is an error when fetching all the services from db");
     }
   };
-  console.log("here are our services", services);
+  // console.log("here are our services", services);
   function navToQuestionnaire(event) {
     event.preventDefault();
     navigate("questionnaire");

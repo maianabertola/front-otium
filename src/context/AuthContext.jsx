@@ -26,6 +26,8 @@ const AuthContextWrapper = ({ children }) => {
           },
         });
         setToken(token);
+        console.log("ici ma rep de user", response);
+        console.log("ici ma rep.data de user", response.data);
         setUser(response.data);
         setIsLoggedIn(true);
         setIsLoading(false);

@@ -1,11 +1,12 @@
 import React, { useContext, useEffect, useMemo } from "react";
 import "./VillaCardDetails.css";
-import VillaCardDetailsCells from "./VillaCardDetailsCells";
+// import VillaCardDetailsCells from "./VillaCardDetailsCells";
 import peopleIcon from "../assets/peopleIcon.png";
 import squareMeterIcon from "../assets/squaremeterIcon.png";
 import bedroomIcon from "../assets/iconebed.png";
 import bathIcon from "../assets/iconebathroom.png";
 import moutainviewIcon from "../assets/iconeview.png";
+
 import Button from "./Button";
 import "react-datepicker/dist/react-datepicker.css";
 import DatePicker from "react-datepicker";
@@ -106,39 +107,52 @@ export default function VillaCardDetails({
           <tbody>
             <tr>
               <td colSpan={2}>
-                <h2 style={{ textAlign: "center" }}>{region}</h2>
+                <h2
+                  style={{ textAlign: "center" }}
+                >{`${villa.Villa.region} — ${villa.Villa.country}`}</h2>
               </td>
             </tr>
             <tr className="flexRowTable">
-              <VillaCardDetailsCells
-                info={numberOfPeople}
-                icone={peopleIcon}
-              ></VillaCardDetailsCells>
-
-              <VillaCardDetailsCells
-                info={squareMeter}
-                icone={squareMeterIcon}
-              ></VillaCardDetailsCells>
+              <td colSpan={2} style={{ width: "40%" }} className="flexCells">
+                <div className="iconeContainer">
+                  <img src={peopleIcon} />
+                  <p>{`${villa.Villa.numberOfPeople} people`}</p>
+                </div>
+              </td>
+              <td colSpan={2} style={{ width: "40%" }} className="flexCells">
+                <div className="iconeContainer">
+                  <img src={squareMeterIcon} />
+                  <p>{`${villa.Villa.squareMeter} m2`}</p>
+                </div>
+              </td>
             </tr>
             <tr className="flexRowTable">
-              <VillaCardDetailsCells
-                info={beds}
-                icone={bedroomIcon}
-              ></VillaCardDetailsCells>
-              <VillaCardDetailsCells
-                info={bathrooms}
-                icone={bathIcon}
-              ></VillaCardDetailsCells>
+              <td colSpan={2} style={{ width: "40%" }} className="flexCells">
+                <div className="iconeContainer">
+                  <img src={bedroomIcon} />
+                  <p>{`${villa.Villa.bedrooms} bedrooms`}</p>
+                </div>
+              </td>
+              <td colSpan={2} style={{ width: "40%" }} className="flexCells">
+                <div className="iconeContainer">
+                  <img src={bathIcon} />
+                  <p>{`${villa.Villa.bathrooms} bathrooms`}</p>
+                </div>
+              </td>
             </tr>
             <tr className="flexRowTable">
-              <VillaCardDetailsCells
-                info={view}
-                icone={moutainviewIcon}
-              ></VillaCardDetailsCells>
-              <VillaCardDetailsCells
-                info={pricePerWeek}
-                text={"From"}
-              ></VillaCardDetailsCells>
+              <td colSpan={2} style={{ width: "40%" }} className="flexCells">
+                <div className="iconeContainer">
+                  <img src={moutainviewIcon} />
+                  <p>{`${villa.Villa.view} view`}</p>
+                </div>
+              </td>
+              <td colSpan={2} style={{ width: "40%" }} className="flexCells">
+                <div className="iconeContainer">
+                  <p>From</p>
+                  <p>{`${villa.Villa.pricePerWeek}€/week`}</p>
+                </div>
+              </td>
             </tr>
             <tr colSpan={2} className="flexVerticalCTA">
               <DatePicker
@@ -172,14 +186,14 @@ export default function VillaCardDetails({
                 placeholderText="Select a date other than today or yesterday"
               />
               <Button
-                cta={"Check availability"}
+                cta={"Confirm your dates"}
                 backgroundColor={"black"}
                 onClick={createDate}
               ></Button>
-              <Button
+              {/* <Button
                 backgroundColor={"white"}
                 cta={"Save it in your wishlist"}
-              ></Button>
+              ></Button> */}
               <Button
                 backgroundColor={"black"}
                 cta={"Book your stay now"}
