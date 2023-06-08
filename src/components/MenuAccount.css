@@ -12,6 +12,7 @@
   align-items: center;
   width: 40vh;
   margin-top: 10rem;
+  position: fixed;
 }
 
 .welcome {
