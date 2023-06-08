@@ -7,7 +7,8 @@ function ConfirmationBookingPage() {
       <h1>Your booking has been successfully created</h1>
       <p>
         Thank you for your trust. Your request has been successfully recorded.
-        You can find <Link to="/"> all your reservations in your account.</Link>
+        You can find{" "}
+        <Link to="/account-trips"> all your reservations in your account.</Link>
       </p>
     </div>
   );
