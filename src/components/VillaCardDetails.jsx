@@ -33,8 +33,7 @@ export default function VillaCardDetails({
 
   const { id } = useParams();
 
-  // create a post when checking the dates
-  // comparing the booked date and booking date
+  // when firing the button, the state is updated with a date object
   function createDate(event) {
     const newStartDate = startDate.toISOString();
     const newEndDate = endDate.toISOString();
