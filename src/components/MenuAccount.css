@@ -3,7 +3,7 @@
   width: 200px;
   height: 6vh;
   color: black;
-  margin: 1rem
+  margin: 1rem;
 }
 
 .menu {
@@ -12,6 +12,7 @@
   align-items: center;
   width: 40vh;
   margin-top: 10rem;
+  position: fixed;
 }
 
 .welcome {
