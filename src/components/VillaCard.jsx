@@ -1,5 +1,5 @@
 import React from "react";
-import "./villaCard.css";
+import "./VillaCard.css";
 import imgVilla from "../assets/imageVilla.jpg";
 
 function villaCard({ region, name, slogan }) {

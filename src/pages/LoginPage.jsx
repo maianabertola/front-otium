@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Navbar from "../components/Navbar";
-import "../Pages/LoginPage.css";
+import "../pages/LoginPage.css";
 import axios from "axios";
 import { AuthContextWrapper } from "../context/AuthContext";
 import AuthForm from "../components/AuthForm";
