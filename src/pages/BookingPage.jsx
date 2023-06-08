@@ -1,4 +1,4 @@
-import { useOutletContext, useParams } from "react-router-dom";
+import { useNavigate, useOutletContext, useParams } from "react-router-dom";
 import React, { useContext, useState, useEffect, useMemo } from "react";
 import OneInput from "../components/OneInput";
 import Button from "../components/Button";
@@ -11,12 +11,10 @@ import bathIcon from "../assets/iconebathroom.png";
 import moutainviewIcon from "../assets/iconeview.png";
 import DatePicker from "react-datepicker";
 import { AuthContext } from "../context/AuthContext";
-import Box from "../components/Box";
+import { memo } from "react";
 
 function BookingPage() {
-  //post on Booking
-  //as props the dates, startdate and endate and user ID and idVilla
-
+  //Grab info from AuthContext
   const {
     startDate,
     setStartDate,
@@ -27,16 +25,18 @@ function BookingPage() {
     user,
   } = useContext(AuthContext);
 
-  console.log("user", user);
+  // console.log("user", user);
+  // console.log("starDate", startDate);
+  console.log("your dates", dates);
 
   const [numberOfPeople, setNumberOfPeople] = useState(1);
-  const [pet, setPet] = useState(false);
+  // const [pet, setPet] = useState(false);
   const [message, setMessage] = useState("");
   const [villa, setVilla] = useState("");
   const { id } = useParams();
   const collectionVilla = "http://localhost:3000/villa";
   const collectionBooking = "http://localhost:3000/booking";
-  const collectionTrip = "";
+  const navigate = useNavigate();
 
   //fetch Villas Data from db
   const getOneVilla = async () => {
@@ -52,7 +52,7 @@ function BookingPage() {
     }
   };
 
-  console.log("ID Villa is ", id);
+  // console.log("ID Villa is ", id);
 
   function handleNumberOfPeople(event) {
     event.preventDefault();
@@ -84,36 +84,63 @@ function BookingPage() {
   async function submitBooking(event) {
     event.preventDefault();
     try {
+      console.log("you are in submitBooking");
+      // console.log("the date's booking", dates);
+      //creating a new array to store the bookedDates from villa collection and from my booking
+      const newDatesVillaCollection = [];
+
+      villa.Villa.bookedDates.map((element) => {
+        console.log("voici un element", element);
+        newDatesVillaCollection.push(element);
+      });
+      newDatesVillaCollection.push(dates);
+
+      const patchDates = await axios.patch(
+        `${collectionVilla}/${id}`,
+        newDatesVillaCollection
+      );
+
+      console.log("the dates patched", patchDates);
+
+      console.log("new array to patch", newDatesVillaCollection);
+
+      //creating a post in Booking collection
       const booking = await axios.post(
-        { collectionBooking },
+        collectionBooking,
         {
           numberOfPeople,
           message,
-          userId: user.id,
+          userId: user._id,
           villaId: id,
+          bookedDates: { Start: dates.newStartDate, End: dates.newEndDate },
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
         }
       );
-      console.log("this booking is postes in the db", booking);
+      console.log("this booking is posted in the db", booking);
 
-      // // const bookingDates = await axios.post("", {
-      // //   dates,
-      // });
-
-      // ajouter memodates et dates
-      const changeBookedDatesVilla = await axios.patch("", {});
+      navigateToConfirmationBookingPage(event);
     } catch (error) {
-      console.log("there's an error when creating a booking error", error);
+      console.log(
+        "there's an error when creating a booking or patching the bookedDates in the BookingPage",
+        error
+      );
     }
+  }
+
+  function navigateToConfirmationBookingPage(event) {
+    event.preventDefault();
+    navigate("/booking-confirmed");
   }
 
   useEffect(() => {
     getOneVilla();
   }, []);
-  console.log("here's the data from the villa", villa);
 
-  let petAllowed;
-
-  console.log(villa);
+  // let petAllowed;
 
   // if (villa.Villa.petFriendly === false) {
   //   petAllowed = false;
@@ -132,6 +159,8 @@ function BookingPage() {
     }
     return [];
   }, [villa]);
+
+  console.log("memodates should changed after the submit", memoDates);
 
   //if not, display a little message to avoid error message
   if (!villa) {

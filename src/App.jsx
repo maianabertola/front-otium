@@ -14,7 +14,7 @@ import Account from "./pages/LoggedIn";
 import BookingPage from "./pages/BookingPage";
 import ConfirmationBookingPage from "./pages/ConfirmationBookingPage";
 import GalleryPhotos from "./pages/GalleryPhotos";
-
+import AccountTripBooked from "./pages/AccountTripBooked";
 
 function App() {
   return (
@@ -27,9 +27,10 @@ function App() {
           <Route path="photos" element={<GalleryPhotos />} />
           <Route path="/villa/:id/booking" element={<BookingPage />} />
           <Route
-            path="/villa/:id/booking-confirmed"
+            path="/booking-confirmed"
             element={<ConfirmationBookingPage />}
           />
+          <Route path="/account-trips" element={<AccountTripBooked />} />
         </Route>
 
         <Route path="/questionnaire" element={<Questionnaire />} />
@@ -39,9 +40,7 @@ function App() {
           <Route path="accountcreated" element={<AccountCreatedPage />} />
           <Route path="login" element={<LoginPage />} />
         </Route>
-        <Route path="/account" element={<Account />}>
-        </Route>
-        
+        <Route path="/account" element={<Account />}></Route>
       </Routes>
     </>
   );

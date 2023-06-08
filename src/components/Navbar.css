@@ -18,8 +18,8 @@ nav:hover {
 }
 
 .logoContainer {
-  width: 5.5vw;
-  height: 8vh;
+  width: 3.5vw;
+  height: 6vh;
   margin: 4rem;
 }
 
@@ -45,4 +45,5 @@ li {
 
 .linkNavbar:hover {
   color: hsl(0, 0%, 9%);
+  text-decoration: none;
 }
