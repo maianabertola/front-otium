@@ -1,7 +1,7 @@
 import "./Homepage.css";
 import heroImg from "../assets/Positano.jpeg";
 import BlackBar from "../components/BlackBar";
-import VillaCard from "../components/villaCard";
+import VillaCard from "../components/VillaCard";
 import Button from "../components/Button";
 import TitleSection from "../components/TitleSection";
 import SmallItalicText from "../components/SmallItalicText";
