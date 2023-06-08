@@ -13,8 +13,10 @@ import AccountCreatedPage from "./pages/AccountCreatedPage";
 import Account from "./pages/LoggedIn";
 import BookingPage from "./pages/BookingPage";
 import ConfirmationBookingPage from "./pages/ConfirmationBookingPage";
-import GalleryPhotos from "./pages/GalleryPhotos";
+import GalleryPhotos from "./pages/GalleryPhotos"; 
 import QuestionnaireUpdate from "./pages/QuestionnaireUpdate";
+import AccountTripBooked from "./pages/AccountTripBooked";
+
 
 function App() {
   return (
@@ -27,9 +29,10 @@ function App() {
           <Route path="photos" element={<GalleryPhotos />} />
           <Route path="/villa/:id/booking" element={<BookingPage />} />
           <Route
-            path="/villa/:id/booking-confirmed"
+            path="/booking-confirmed"
             element={<ConfirmationBookingPage />}
           />
+          <Route path="/account-trips" element={<AccountTripBooked />} />
         </Route>
 
         <Route path="/questionnaire" element={<Questionnaire />} />

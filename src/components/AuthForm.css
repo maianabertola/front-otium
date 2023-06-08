@@ -1,8 +1,10 @@
-.login, .identity, .contact {
-    display: flex;
-    margin-bottom: 5rem;
+.login,
+.identity,
+.contact {
+  display: flex;
+  margin-bottom: 5rem;
 }
 
-p {
+/* p {
     width: 500px;
-}
+} */

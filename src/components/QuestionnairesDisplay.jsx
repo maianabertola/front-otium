@@ -48,6 +48,7 @@ function QuestionnairesDisplay() {
     }
   });
   console.log("les questionnaires sont:", currentUsertQuestionnaire);
+
   return (
     <>
       <div className="questionnaireDisplay">

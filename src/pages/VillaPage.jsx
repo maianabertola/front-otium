@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import "./VillaPage.css";
-import villaHero from "../assets/villa_era.webp";
+import villaHero from "../assets/villaera.webp";
 import Button from "../components/Button";
 import VillaCardDetails from "../components/VillaCardDetails";
 import Box from "../components/Box";
@@ -17,9 +17,6 @@ function VillaPage() {
   const [services, setServices] = useState([]);
   const collectionVilla = "http://localhost:3000/villa";
   const collectionService = "http://localhost:3000/service";
-  // const [startDate, setStartDate] = useState(new Date());
-  // const [endDate, setEndDate] = useState(new Date());
-  // const [dates, setDates] = useState([]);
   const { id } = useParams();
 
   const { startDate, endDate, dates } = useContext(AuthContext);
