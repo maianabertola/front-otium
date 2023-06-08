@@ -79,7 +79,7 @@ function BookingPage() {
 
       //creating a post in Booking collection
       const booking = await service.post(
-        "/booking",
+        `/booking/${id}`,
         {
           numberOfPeople,
           message,
