@@ -18,9 +18,7 @@ function VillaPage() {
   const collectionVilla = "http://localhost:3000/villa";
   const collectionService = "http://localhost:3000/service";
   const { id } = useParams();
-
   const { startDate, endDate, dates } = useContext(AuthContext);
-  console.log(startDate);
 
   //fetch Villas Data from db
   const getOneVilla = async () => {
@@ -60,12 +58,6 @@ function VillaPage() {
   if (!villa || !services) {
     return <div>Please wait, content is loading</div>;
   }
-
-  // console.log("mon array de matched services", villa.Villa.services);
-  //   //   console.log(villa.Villa);
-  //   console.log("services through villa", villa.Villa.services);
-  //   console.log("services through services", services);
-  //   console.log("services id", services.ServiceDetail[0].id);
 
   return (
     <>
@@ -116,7 +108,7 @@ function VillaPage() {
           <h2>Rooms & furnitures</h2>
         </div>
         <section id="galleryPhotos">
-          <div className="greenBackgroundServices">
+          <div className="greenBackgroundServicesVilla">
             <div className="gallery">
               <div className="imageGalleryContainer1">
                 <img src={imagetest}></img>

@@ -48,8 +48,9 @@ function BookingPage() {
     }
   };
 
-  console.log("BOOKING", booking);
+  // console.log("BOOKING", booking);
 
+  //handling before submit
   function handleNumberOfPeople(event) {
     event.preventDefault();
     setNumberOfPeople(event.target.value);
@@ -60,6 +61,7 @@ function BookingPage() {
     setMessage(event.target.value);
   }
 
+  //submit fire the patch
   async function submitPatching(event) {
     event.preventDefault();
     try {
@@ -81,8 +83,6 @@ function BookingPage() {
       console.log("new array to patch", newDatesVillaCollection);
 
       //   creating a patch in Booking collection
-
-      //   console.log("Here qre the dqtes: ", dates);
       const updatedBooking = await axios.patch(
         `http://localhost:3000/booking/${id}`,
         {
@@ -101,7 +101,7 @@ function BookingPage() {
           },
         }
       );
-      console.log("this booking is posted in the db", updatedBooking);
+      // console.log("this booking is posted in the db", updatedBooking);
 
       navigateToConfirmationBookingPage();
     } catch (error) {
@@ -111,6 +111,8 @@ function BookingPage() {
       );
     }
   }
+
+  //navigate to the next page once submit is ok
 
   function navigateToConfirmationBookingPage() {
     navigate("/booking-confirmed");
@@ -146,6 +148,7 @@ function BookingPage() {
     }
   }, [booking]);
 
+  //memo the dates
   const memoDates = useMemo(() => {
     if (villa && villa.bookedDates) {
       return villa.bookedDates.map((element) => {
@@ -158,7 +161,9 @@ function BookingPage() {
     return [];
   }, [villa]);
 
-  console.log("villa info", villa);
+  // console.log("villa info", villa);
+
+  //changin the db dates for the react format
   const newStartDate = new Date(startDate);
   const newEndDate = new Date(endDate);
 

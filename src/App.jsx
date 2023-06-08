@@ -20,7 +20,6 @@ import Protected from "./pages/ProtectedRoutes";
 
 import BookingPageEdit from "./pages/BookingPageEdit";
 
-
 function App() {
   return (
     <>
@@ -36,13 +35,13 @@ function App() {
             path="/booking-confirmed"
             element={<ConfirmationBookingPage />}
           />
-          <Route path="/account-trips" element={<AccountTripBooked />} />
         </Route>
 
         <Route element={<Protected />}>
           <Route path="/questionnaire" element={<Questionnaire />} />
           <Route path="/questionnaire/:id" element={<QuestionnaireUpdate />} />
           <Route path="/account" element={<Account />}></Route>
+          <Route path="/account-trips" element={<AccountTripBooked />} />
         </Route>
         <Route path="/created" element={<Created />} />
         <Route path="/auth">
