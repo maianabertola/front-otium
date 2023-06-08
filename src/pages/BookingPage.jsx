@@ -27,10 +27,9 @@ function BookingPage() {
 
   // console.log("user", user);
   // console.log("starDate", startDate);
-  console.log("your dates", dates);
+  // console.log("your dates", dates);
 
   const [numberOfPeople, setNumberOfPeople] = useState(1);
-  // const [pet, setPet] = useState(false);
   const [message, setMessage] = useState("");
   const [villa, setVilla] = useState("");
   const { id } = useParams();
@@ -52,8 +51,7 @@ function BookingPage() {
     }
   };
 
-  // console.log("ID Villa is ", id);
-
+  //handling the value before submit
   function handleNumberOfPeople(event) {
     event.preventDefault();
     setNumberOfPeople(event.target.value);
@@ -63,23 +61,6 @@ function BookingPage() {
     event.preventDefault();
     setMessage(event.target.value);
   }
-
-  // function handlePet(event) {
-  //   event.preventDefault();
-  //   setPet(event.target.value);
-  // }
-  // function choosePet() {
-  //   console.log("totot");
-
-  //   setPet(true);
-  //   console.log("what's my petstate?", pet);
-  // }
-
-  // function chooseNoPet() {
-  //   console.log("totot");
-  //   setPet(false);
-  //   console.log("what's my petstate?", pet);
-  // }
 
   async function submitBooking(event) {
     event.preventDefault();
@@ -131,6 +112,7 @@ function BookingPage() {
     }
   }
 
+  //navigate to the next page once submit is ok
   function navigateToConfirmationBookingPage(event) {
     event.preventDefault();
     navigate("/booking-confirmed");
@@ -140,14 +122,7 @@ function BookingPage() {
     getOneVilla();
   }, []);
 
-  // let petAllowed;
-
-  // if (villa.Villa.petFriendly === false) {
-  //   petAllowed = false;
-  // } else {
-  //   petAllowed = true;
-  // }
-
+  //memo the results for the dates
   const memoDates = useMemo(() => {
     if (villa && villa.Villa && villa.Villa.bookedDates) {
       return villa.Villa.bookedDates.map((element) => {
@@ -160,7 +135,7 @@ function BookingPage() {
     return [];
   }, [villa]);
 
-  console.log("memodates should changed after the submit", memoDates);
+  // console.log("memodates should changed after the submit", memoDates);
 
   //if not, display a little message to avoid error message
   if (!villa) {

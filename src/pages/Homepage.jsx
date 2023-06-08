@@ -14,18 +14,18 @@ import axios from "axios";
 import React, { useEffect, useState, useContext } from "react";
 import NeedHelp from "../components/NeedHelp";
 import { AuthContext } from "../context/AuthContext";
+import { Link } from "react-router-dom";
 
 import "../App.css";
 
 function Homepage() {
   const navigate = useNavigate();
-
   const [villas, setVillas] = useState(null);
-
   const { user, isLoggedIn } = useContext(AuthContext);
 
-  console.log("your user", user);
+  // console.log("your user", user);
 
+  //fetch data from the villa
   const getAllVillas = async () => {
     try {
       // console.log("useEffet works");
@@ -39,6 +39,7 @@ function Homepage() {
     }
   };
 
+  //fetching the services
   const [services, setServices] = useState(null);
   const getAllServices = async () => {
     try {
@@ -104,14 +105,19 @@ function Homepage() {
         ></TitleSection>
         <div className="collectionContainer">
           {villas.Villa.map((villa) => {
+            {
+              /* console.log(villa); */
+            }
             return (
               <>
-                <VillaCard
-                  key={villa.id}
-                  region={villa.region}
-                  name={villa.name}
-                  slogan={villa.slogan}
-                ></VillaCard>
+                <Link to={`/villa/${villa._id}`}>
+                  <VillaCard
+                    key={villa._id}
+                    region={villa.region}
+                    name={villa.name}
+                    slogan={villa.slogan}
+                  ></VillaCard>
+                </Link>
               </>
             );
           })}

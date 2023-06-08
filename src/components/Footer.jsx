@@ -23,12 +23,12 @@ export default function Footer() {
           pleasurable pursuits
         </p>
       </div>
-      <div className="rightFooter">
+      {/* <div className="rightFooter">
         <h3>Our experiences</h3>
         <Link>All our villas</Link>
         <Link>The services</Link>
         <Link>Find your ideal villas</Link>
-      </div>
+      </div> */}
     </>
   );
 }

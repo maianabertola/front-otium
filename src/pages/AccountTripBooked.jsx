@@ -8,7 +8,6 @@ function AccountTripBooked() {
   const { user } = useContext(AuthContext);
   const collectionBookingofOneUser = "http://localhost:3000/booking/created";
   const collectionBooking = "http://localhost:3000/booking";
-
   const [userBookings, setUserBookings] = useState(null);
   const [loading, setLoading] = useState(true);
   const [deleteItem, setDeleteItem] = useState(false);
@@ -61,22 +60,14 @@ function AccountTripBooked() {
         },
       });
       setDeleteItem(true);
-      // {
-      //   <div>We confirm that your booking has been successfully canceled</div>;
-      // }
-      // console.log("booking is canceled", deletedBooking.data);
     } catch (error) {
       console.log("there is an error when deleting the villa", error);
     }
   };
 
+  //redirect to BookingPageEdit
   const patchOneBooking = async (id) => {
     try {
-      //if dates changed -> patch the dates in Villa collection
-      // const patchedBooking = await axios.patch;
-      //Patch the booking document you change nb of People, message, dates
-      console.log("ICI", id);
-
       navigate(`/booking/${id}`);
     } catch (error) {
       console.log(error);
@@ -86,8 +77,6 @@ function AccountTripBooked() {
   if (!user || loading || !userBookings) {
     return <p>Loading user data...</p>;
   }
-
-  // console.log("bookings of one user", userBookings);
 
   return (
     <>

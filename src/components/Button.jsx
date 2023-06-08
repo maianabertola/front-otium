@@ -8,7 +8,6 @@ function Button({ cta, backgroundColor, width, onClick }) {
       backgroundColor: "hsl(0, 0%, 9%)",
       color: "hsl(0, 0%, 98%)",
     };
-    // console.log(myStyle);
   }
 
   if (backgroundColor === "white") {
