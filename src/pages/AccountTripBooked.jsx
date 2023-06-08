@@ -1,13 +1,13 @@
 import React, { useState, useContext, useMemo, useEffect } from "react";
 import { AuthContext } from "../context/AuthContext";
-import axios from "axios";
 import "./AccountTripBooked.css";
 import { useNavigate } from "react-router-dom";
+import service from "../service/service";
 
 function AccountTripBooked() {
   const { user } = useContext(AuthContext);
-  const collectionBookingofOneUser = "http://localhost:3000/booking/created";
-  const collectionBooking = "http://localhost:3000/booking";
+  // const collectionBookingofOneUser = "http://localhost:3000/booking/created";
+  // const collectionBooking = "http://localhost:3000/booking";
   const [userBookings, setUserBookings] = useState(null);
   const [loading, setLoading] = useState(true);
   const [deleteItem, setDeleteItem] = useState(false);
@@ -36,7 +36,7 @@ function AccountTripBooked() {
   const getUserBookings = async () => {
     try {
       // console.log("into getUserBookings");
-      const allBookings = await axios.get(collectionBookingofOneUser, {
+      const allBookings = await service.get("/booking/created", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -54,7 +54,7 @@ function AccountTripBooked() {
   //delete a booking
   const deleteOneBooking = async (event, id) => {
     try {
-      const deletedBooking = await axios.delete(`${collectionBooking}/${id}`, {
+      const deletedBooking = await service.delete(`/booking/${id}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },

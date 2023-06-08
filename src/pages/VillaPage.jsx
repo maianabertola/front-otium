@@ -5,25 +5,23 @@ import Button from "../components/Button";
 import VillaCardDetails from "../components/VillaCardDetails";
 import Box from "../components/Box";
 import DistinctiveFeatures from "../components/DistinctiveFeatures";
-import axios from "axios";
 import { useParams } from "react-router-dom";
 import Grid from "./Grid";
 import imagetest from "../assets/Positano.jpeg";
 import NeedHelp from "../components/NeedHelp";
 import { AuthContext } from "../context/AuthContext";
+import service from "../service/service";
 
 function VillaPage() {
   const [villa, setVilla] = useState("");
   const [services, setServices] = useState([]);
-  const collectionVilla = "http://localhost:3000/villa";
-  const collectionService = "http://localhost:3000/service";
   const { id } = useParams();
   const { startDate, endDate, dates } = useContext(AuthContext);
 
   //fetch Villas Data from db
   const getOneVilla = async () => {
     try {
-      const oneVilla = await axios.get(`${collectionVilla}/${id}`);
+      const oneVilla = await service.get(`/villa"/${id}`);
       //   console.log(oneVilla.data);
       setVilla(oneVilla.data);
     } catch (error) {
@@ -38,7 +36,7 @@ function VillaPage() {
   //fetch Services Data from db
   const getAllServices = async () => {
     try {
-      const otiumServices = await axios.get(collectionService);
+      const otiumServices = await service.get("/service");
 
       setServices(otiumServices.data);
     } catch (error) {

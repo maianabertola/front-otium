@@ -1,15 +1,15 @@
 import React from "react";
-import axios from "axios";
+import service from "../service/service";
 import Navbar from "../components/Navbar";
 import AuthForm from "../components/AuthForm";
 import "../pages/SignupPage.css";
 
-const collectionUser = "http://localhost:3000/auth/signup";
+// const collectionUser = "http://localhost:3000/auth/signup";
 function SignupPage() {
   async function handleSubmitUser(event) {
     event.preventDefault();
     try {
-      const response = await axios.post(collectionUser, {
+      const response = await service.post("/auth/signup", {
         email,
         password,
         name,

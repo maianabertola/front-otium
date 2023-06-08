@@ -2,7 +2,6 @@ import { useNavigate, useOutletContext, useParams } from "react-router-dom";
 import React, { useContext, useState, useEffect, useMemo } from "react";
 import OneInput from "../components/OneInput";
 import Button from "../components/Button";
-import axios from "axios";
 import "./BookingPage.css";
 import peopleIcon from "../assets/peopleIcon.png";
 import squareMeterIcon from "../assets/squaremeterIcon.png";
@@ -12,6 +11,7 @@ import moutainviewIcon from "../assets/iconeview.png";
 import DatePicker from "react-datepicker";
 import { AuthContext } from "../context/AuthContext";
 import { memo } from "react";
+import service from "../service/service";
 
 function BookingPage() {
   //Grab info from AuthContext
@@ -25,22 +25,18 @@ function BookingPage() {
     user,
   } = useContext(AuthContext);
 
-  // console.log("user", user);
-  // console.log("starDate", startDate);
-  // console.log("your dates", dates);
-
   const [numberOfPeople, setNumberOfPeople] = useState(1);
   const [message, setMessage] = useState("");
   const [villa, setVilla] = useState("");
   const { id } = useParams();
-  const collectionVilla = "http://localhost:3000/villa";
-  const collectionBooking = "http://localhost:3000/booking";
+  // const collectionVilla = "http://localhost:3000/villa";
+  // const collectionBooking = "http://localhost:3000/booking";
   const navigate = useNavigate();
 
   //fetch Villas Data from db
   const getOneVilla = async () => {
     try {
-      const oneVilla = await axios.get(`${collectionVilla}/${id}`);
+      const oneVilla = await service.get(`/villa/${id}`);
       //   console.log(oneVilla.data);
       setVilla(oneVilla.data);
     } catch (error) {
@@ -76,8 +72,8 @@ function BookingPage() {
       });
       newDatesVillaCollection.push(dates);
 
-      const patchDates = await axios.patch(
-        `${collectionVilla}/${id}`,
+      const patchDates = await service.patch(
+        `villa/${id}`,
         newDatesVillaCollection
       );
 
@@ -86,8 +82,8 @@ function BookingPage() {
       // console.log("new array to patch", newDatesVillaCollection);
 
       //creating a post in Booking collection
-      const booking = await axios.post(
-        collectionBooking,
+      const booking = await service.post(
+        "/booking",
         {
           numberOfPeople,
           message,

@@ -10,11 +10,11 @@ import ServiceCard from "../components/ServiceCard";
 import serviceImg from "../assets/ChefService.jpg";
 import aboutImg from "../assets/Founderspictures.jpg";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import React, { useEffect, useState, useContext } from "react";
 import NeedHelp from "../components/NeedHelp";
 import { AuthContext } from "../context/AuthContext";
 import { Link } from "react-router-dom";
+import service from "../service/service";
 
 import "../App.css";
 
@@ -23,15 +23,11 @@ function Homepage() {
   const [villas, setVillas] = useState(null);
   const { user, isLoggedIn } = useContext(AuthContext);
 
-  // console.log("your user", user);
-
   //fetch data from the villa
   const getAllVillas = async () => {
     try {
-      // console.log("useEffet works");
-      const myVillas = await axios.get("http://localhost:3000/villa");
+      const myVillas = await service.get("/villa");
       setVillas(myVillas.data);
-      // console.log(myVillas.data);
     } catch (error) {
       console.log(
         "there is an error when fetching all the villas from db on the homepage"
@@ -43,13 +39,12 @@ function Homepage() {
   const [services, setServices] = useState(null);
   const getAllServices = async () => {
     try {
-      const myServices = await axios.get("http://localhost:3000/service");
+      const myServices = await service.get("/service");
       setServices(myServices.data);
     } catch (error) {
       console.log("there is an error when fetching all the services from db");
     }
   };
-  // console.log("here are our services", services);
   function navToQuestionnaire(event) {
     event.preventDefault();
     navigate("questionnaire");
@@ -82,7 +77,6 @@ function Homepage() {
       <section id="intro">
         <div className="introContainer">
           <div className="introTextContainer">
-
             {!isLoggedIn && <h1>Ciao,</h1>}
             <h2>Otium, an exquisite haven for discerning epicureans</h2>
             <p>

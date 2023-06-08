@@ -2,11 +2,9 @@ import React from "react";
 import "./QuestionnaireCreated.css";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import axios from "axios";
+import service from "../service/service";
 import VillaCard from "../components/VillaCard";
 import Navbar from "../components/Navbar";
-
-const collectionVillas = "http://localhost:3000/villa";
 
 function QuestionnaireCreated() {
   const navigate = useNavigate();
@@ -17,7 +15,7 @@ function QuestionnaireCreated() {
 
   async function fetchVillas() {
     try {
-      const response = await axios.get(collectionVillas);
+      const response = await service.get("/villa");
       setVillas(response.data.Villa);
     } catch (e) {
       console.log(e);
