@@ -1,20 +1,25 @@
 .bodyLogin {
-    display: flex;
-    align-items: center;
-    margin-top: 10rem;
-    justify-content: space-evenly;
-    margin-top: 10rem;
+  display: flex;
+  align-items: center;
+  margin-top: 10rem;
+  justify-content: space-evenly;
+  margin-top: 10rem;
+  flex-direction: column;
 }
 
-.connection {
+.text {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 5rem;
 }
 
-.description {
-    display: flex;
-    flex-direction: column
+.connection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-
+.paragraph {
+  width: 600px;
 }

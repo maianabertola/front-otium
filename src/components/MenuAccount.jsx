@@ -3,15 +3,11 @@ import "./MenuAccount.css";
 import Questionnaire from "../components/QuestionnairesDisplay";
 import User from "../components/UserDisplay";
 import { useState } from "react";
-import service from "../service/service";
-import { useNavigate } from "react-router-dom";
 function MenuAccount() {
-  const navigate = useNavigate();
   let [questionnaireShow, setQuestionnaireShow] = useState(true);
   let [userShow, setUserShow] = useState(false);
 
   function displayUser(event) {
-    console.log("USER ======");
     setUserShow(true);
     setQuestionnaireShow(false);
   }

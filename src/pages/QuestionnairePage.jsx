@@ -11,16 +11,16 @@ const collectionDate = "/questionnaire";
 
 function QuestionnairePage() {
   const { user } = useContext(AuthContext);
-  
+
   const [name, setName] = useState("");
   const [pickedCountry, setPickedCountry] = useState([]);
   const [pickedView, setPickedView] = useState("");
   const [pickedIdyllicStatus, setPickedIdyllicStatus] = useState([]);
   const [numberOfPeople, setNumberOfPeople] = useState(1);
   const [petFriendly, setPetFriendly] = useState("");
-  const [numberOFBedroom, setNumberOFBedroom] = useState(1);
+  const [numberOfBedroom, setNumberOfBedroom] = useState(1);
   const [pickedServices, setPickedServices] = useState([]);
-  
+
   const navigate = useNavigate();
 
   const handleNameChange = (event) => {
@@ -53,8 +53,8 @@ function QuestionnairePage() {
   const handlePetFriendlyChange = (event) => {
     setPetFriendly(event.target.value);
   };
-  const handleNumberOFBedroomChange = (event) => {
-    setNumberOFBedroom(event.target.value);
+  const handleNumberOfBedroomChange = (event) => {
+    setNumberOfBedroom(event.target.value);
   };
   const handleServicesChange = (event) => {
     const services = event.target.value;
@@ -70,7 +70,7 @@ function QuestionnairePage() {
     event.preventDefault();
     console.log(user);
     const id = user._id;
-    
+
     try {
       const response = await service.post("/questionnaire", {
         name,
@@ -80,38 +80,35 @@ function QuestionnairePage() {
         pickedIdyllicStatus,
         numberOfPeople,
         petFriendly,
-        numberOFBedroom,
+        numberOfBedroom,
         pickedServices,
       });
       navigate("/created");
     } catch (e) {
       console.log(e);
     }
-
   }
   return (
     <>
       <div className="first_block">
         <div className="presentation">
-          <Title
-            title={"Take rest; a field that has rested gives a bountiful crop."}
-          ></Title>
+          <h1 className="titleContainers">
+            "Take rest; a field that has rested gives a bountiful crop."
+          </h1>
           <div>
             <p>- Ovid</p>
           </div>
         </div>
         <div className="separation"></div>
-        <div>
-          <div className="retreat">
-            <div className="block_retreat">
-              <p className="description_retreat">
-                Indulge in the journey of finding your perfect Opium villa
-                through our questionnaire. Designed with meticulous care, this
-                interactive experience guides you through a seamless exploration
-                of your desires, preferences, and dreams.
-              </p>
-              <Button>Find Your Perfect Retreat </Button>
-            </div>
+        <div className="retreat">
+          <div className="block_retreat">
+            <p className="description_retreat">
+              Indulge in the journey of finding your perfect Opium villa through
+              our questionnaire. Designed with meticulous care, this interactive
+              experience guides you through a seamless exploration of your
+              desires, preferences, and dreams.
+            </p>
+            <Button>Find Your Perfect Retreat </Button>
           </div>
         </div>
       </div>
@@ -196,13 +193,12 @@ function QuestionnairePage() {
           <div className="separation2"></div>
           <Title title={"How many bedrooms do you need?"}></Title>
           <OneInput
-            key={"bedroom"}
+            key={"number1"}
             label={""}
             type={"number"}
-            htmlFor={"bedrooms"}
-            value={numberOFBedroom}
-            name={"numberOFBedroom"}
-            onChange={handleNumberOFBedroomChange}
+            value={numberOfBedroom}
+            name={"numberOfBedroom"}
+            onChange={handleNumberOfBedroomChange}
           />
           <div className="separation2"></div>
           <Title title={"What services are essential for you?"}></Title>

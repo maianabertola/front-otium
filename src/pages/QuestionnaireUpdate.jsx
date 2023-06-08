@@ -8,7 +8,6 @@ import Title from "../components/TitleSection";
 
 function QuestionnaireUpdate() {
   const param = useParams();
-  console.log(param);
   const { user } = useContext(AuthContext);
 
   const [name, setName] = useState("");
@@ -17,7 +16,7 @@ function QuestionnaireUpdate() {
   const [pickedIdyllicStatus, setPickedIdyllicStatus] = useState([]);
   const [numberOfPeople, setNumberOfPeople] = useState(1);
   const [petFriendly, setPetFriendly] = useState("");
-  const [numberOFBedroom, setNumberOFBedroom] = useState(1);
+  const [numberOfBedroom, setNumberOfBedroom] = useState(1);
   const [pickedServices, setPickedServices] = useState([]);
 
   const navigate = useNavigate();
@@ -52,8 +51,8 @@ function QuestionnaireUpdate() {
   const handlePetFriendlyChange = (event) => {
     setPetFriendly(event.target.value);
   };
-  const handleNumberOFBedroomChange = (event) => {
-    setNumberOFBedroom(event.target.value);
+  const handleNumberOfBedroomChange = (event) => {
+    setNumberOfBedroom(event.target.value);
   };
   const handleServicesChange = (event) => {
     const services = event.target.value;
@@ -79,10 +78,10 @@ function QuestionnaireUpdate() {
         pickedIdyllicStatus,
         numberOfPeople,
         petFriendly,
-        numberOFBedroom,
+        numberOfBedroom,
         pickedServices,
       });
-
+      navigate("/account")
       console.log("la respinse", response);
       //   navigate(`/questionnaire/${idEnquestion}`);
     } catch (e) {
@@ -175,9 +174,9 @@ function QuestionnaireUpdate() {
           label={""}
           type={"number"}
           htmlFor={"bedrooms"}
-          value={numberOFBedroom}
-          name={"numberOFBedroom"}
-          onChange={handleNumberOFBedroomChange}
+          value={numberOfBedroom}
+          name={"numberOfBedroom"}
+          onChange={handleNumberOfBedroomChange}
         />
         <div className="separation2"></div>
         <Title title={"What services are essential for you?"}></Title>

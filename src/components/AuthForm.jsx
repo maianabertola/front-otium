@@ -67,7 +67,7 @@ const AuthForm = ({ mode }) => {
         localStorage.setItem("token", response.data.token);
         setError("");
         await authentificationUser();
-        navigate("/");
+        navigate("/account");
       }
     } catch (error) {
       console.log(error);
@@ -78,9 +78,9 @@ const AuthForm = ({ mode }) => {
   return (
     <>
       {mode === "signup" && (
-        <form onSubmit={handleSubmit}>
-          <p className="h1Signup">login</p>
-          <div className="login">
+        <form onSubmit={handleSubmit} className="formulaire">
+          <h1 className="h1">Sign Up</h1>
+          <div className="login box2">
             <OneInput
               key={"email"}
               label={"email"}
@@ -98,8 +98,8 @@ const AuthForm = ({ mode }) => {
               onChange={handlePasswordChange}
             />
           </div>
-          <p>Identity</p>
-          <div className="identity">
+          <h3>Identity</h3>
+          <div className="identity box2">
             <OneInput
               key={"name"}
               label={"name"}
@@ -117,8 +117,8 @@ const AuthForm = ({ mode }) => {
               onChange={handleBirthDateChange}
             />
           </div>
-          <p>contact details</p>
-          <div className="identity">
+          <h3>contact details</h3>
+          <div className="identity box2">
             <OneInput
               key={"phoneNumber"}
               label={"phoneNumber"}

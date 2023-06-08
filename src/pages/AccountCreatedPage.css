@@ -1,0 +1,15 @@
+.description2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 13rem;
+}
+
+.successfully {
+    margin-bottom: 5rem;
+}
+
+.explication {
+    width: 700px;
+    margin-bottom: 5rem;
+}
