@@ -21,7 +21,7 @@ function VillaPage() {
   //fetch Villas Data from db
   const getOneVilla = async () => {
     try {
-      const oneVilla = await service.get(`/villa"/${id}`);
+      const oneVilla = await service.get(`/villa/${id}`);
       //   console.log(oneVilla.data);
       setVilla(oneVilla.data);
     } catch (error) {

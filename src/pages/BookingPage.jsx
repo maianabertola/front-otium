@@ -73,13 +73,9 @@ function BookingPage() {
       newDatesVillaCollection.push(dates);
 
       const patchDates = await service.patch(
-        `villa/${id}`,
+        `/villa/${id}`,
         newDatesVillaCollection
       );
-
-      // console.log("the dates patched", patchDates);
-
-      // console.log("new array to patch", newDatesVillaCollection);
 
       //creating a post in Booking collection
       const booking = await service.post(

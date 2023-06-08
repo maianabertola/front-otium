@@ -52,7 +52,7 @@ function AccountTripBooked() {
   };
 
   //delete a booking
-  const deleteOneBooking = async (event, id) => {
+  const deleteOneBooking = async (id) => {
     try {
       const deletedBooking = await service.delete(`/booking/${id}`, {
         headers: {
