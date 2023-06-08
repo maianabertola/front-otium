@@ -3,21 +3,22 @@ import "./MenuAccount.css";
 import Questionnaire from "../components/QuestionnairesDisplay";
 import User from "../components/UserDisplay";
 import { useState } from "react";
-
+import service from "../service/service";
+import { useNavigate } from "react-router-dom";
 function MenuAccount() {
+  const navigate = useNavigate();
   let [questionnaireShow, setQuestionnaireShow] = useState(true);
   let [userShow, setUserShow] = useState(false);
 
   function displayUser(event) {
-    event.preventDefault();
-    setUserShow = true;
-    setQuestionnaireShow = false;
+    console.log("USER ======");
+    setUserShow(true);
+    setQuestionnaireShow(false);
   }
 
   function displayQuestionnaire(event) {
-    event.preventDefault();
-    setUserShow = false;
-    setQuestionnaireShow = true;
+    setUserShow(false);
+    setQuestionnaireShow(true);
   }
 
   return (
@@ -34,8 +35,8 @@ function MenuAccount() {
         </button>
         <button className="menuAccount">Email us</button>
       </div>
-      {userShow === true && <User></User>}
-      {questionnaireShow === true && <Questionnaire></Questionnaire>}
+      {userShow && <User></User>}
+      {questionnaireShow && <Questionnaire></Questionnaire>}
     </>
   );
 }
