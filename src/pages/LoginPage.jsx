@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import Navbar from "../components/Navbar";
 import "../pages/LoginPage.css";
-import axios from "axios";
 import AuthForm from "../components/AuthForm";
+import service from "../service/service";
 
-const collectionLogin = "http://localhost:3000/auth/login";
+// const collectionLogin = "http://localhost:3000/auth/login";
 
 function LoginPage() {
   async function handleSubmitLogin(event) {
     event.preventDefault();
     try {
-      const response = await axios.post(collectionLogin, {
+      const response = await service.post("/auth/login", {
         email,
         password,
       });

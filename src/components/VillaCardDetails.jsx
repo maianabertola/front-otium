@@ -1,17 +1,15 @@
 import React, { useContext, useEffect, useMemo } from "react";
 import "./VillaCardDetails.css";
-// import VillaCardDetailsCells from "./VillaCardDetailsCells";
 import peopleIcon from "../assets/peopleIcon.png";
 import squareMeterIcon from "../assets/squaremeterIcon.png";
 import bedroomIcon from "../assets/iconebed.png";
 import bathIcon from "../assets/iconebathroom.png";
 import moutainviewIcon from "../assets/iconeview.png";
-
+import service from "../service/service";
 import Button from "./Button";
 import "react-datepicker/dist/react-datepicker.css";
 import DatePicker from "react-datepicker";
 import { useState } from "react";
-import axios from "axios";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate, Outlet, useParams } from "react-router-dom";
 

@@ -2,7 +2,7 @@ import { useNavigate, useOutletContext, useParams } from "react-router-dom";
 import React, { useContext, useState, useEffect, useMemo } from "react";
 import OneInput from "../components/OneInput";
 import Button from "../components/Button";
-import axios from "axios";
+import service from "../service/service";
 import "./BookingPage.css";
 import peopleIcon from "../assets/peopleIcon.png";
 import squareMeterIcon from "../assets/squaremeterIcon.png";
@@ -16,9 +16,7 @@ import { parseISO } from "date-fns";
 
 function BookingPage() {
   const { id } = useParams();
-  //   console.log("id booking is", id);
-  const collectionVilla = "http://localhost:3000/villa";
-
+  // const collectionVilla = "http://localhost:3000/villa";
   const [booking, setBooking] = useState(null);
   const [villa, setVilla] = useState("");
   const [startDate, setStartDate] = useState();
@@ -31,14 +29,11 @@ function BookingPage() {
   //fetch data from the booking ID
   const getOneBooking = async () => {
     try {
-      const oneBooking = await axios.get(
-        `http://localhost:3000/booking/edit/:${id}`,
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        }
-      );
+      const oneBooking = await service.get(`/booking/edit/:${id}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
       setBooking(oneBooking.data);
     } catch (error) {
       console.log(
@@ -73,18 +68,14 @@ function BookingPage() {
       });
       newDatesVillaCollection.push(dates);
 
-      const patchDates = await axios.patch(
-        `${collectionVilla}/${villa._id}`,
+      const patchDates = await service.patch(
+        `/villa/${villa._id}`,
         newDatesVillaCollection
       );
 
-      console.log("the dates patched", patchDates);
-
-      console.log("new array to patch", newDatesVillaCollection);
-
       //   creating a patch in Booking collection
-      const updatedBooking = await axios.patch(
-        `http://localhost:3000/booking/${id}`,
+      const updatedBooking = await service.patch(
+        `/booking/${id}`,
         {
           numberOfPeople,
           message,
@@ -101,7 +92,6 @@ function BookingPage() {
           },
         }
       );
-      // console.log("this booking is posted in the db", updatedBooking);
 
       navigateToConfirmationBookingPage();
     } catch (error) {
