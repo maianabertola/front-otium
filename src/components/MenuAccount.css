@@ -1,8 +1,9 @@
 .menuAccount {
   font-size: 30px;
   width: 200px;
-  height: 3vh;
+  height: 6vh;
   color: black;
+  margin: 1rem
 }
 
 .menu {
@@ -16,4 +17,15 @@
 .welcome {
   margin-bottom: 3rem;
   padding: 0;
+}
+
+.buttons {
+  display: flex;
+  margin-top: 2rem;
+  justify-content: space-evenly
+}
+
+.informations {
+  border: 1px black solid;
+  padding: 1rem;
 }

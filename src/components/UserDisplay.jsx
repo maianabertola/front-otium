@@ -5,27 +5,24 @@ import "./UserDisplay.css";
 
 function UserDisplay() {
   const { user } = useContext(AuthContext);
-  console.log(user, "coucoucoucou");
-
   if (!user) {
     return <div>wait</div>;
   }
-
   const date = user.birthDate;
   const birth = date.split("T");
-  console.log(birth);
-
   return (
     <>
       <div className="user">
-        <p className="element">{user.name}</p>
-        <p className="element">{birth[0]}</p>
-        <p className="element">{user.email}</p>
-        <p className="element">{user.phoneNumber}</p>
+        <p className="element titleDiv">Identity : </p>
+        <p className="element">name : {user.name}</p>
+        <p className="element">birthdate : {birth[0]}</p>
+        <p className="element">email : {user.email}</p>
+        <p className="element">phone number : {user.phoneNumber}</p>
       </div>
       <div className="user">
-        <p className="element">{user.address}</p>
-        <p className="element">{user.country}</p>
+        <p className="element titleDiv">Contact Details : </p>
+        <p className="element">address : {user.address}</p>
+        <p className="element">country : {user.country}</p>
       </div>
     </>
   );

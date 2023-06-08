@@ -7,7 +7,7 @@ function LoggedIn() {
 
   return (
     <>
-      {/* <Navbar></Navbar> */}
+      <Navbar></Navbar>
       <div className="bodi">
         <Menu></Menu>
       </div>

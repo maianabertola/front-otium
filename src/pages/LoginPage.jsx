@@ -4,12 +4,14 @@ import "../Pages/LoginPage.css";
 import axios from "axios";
 import { AuthContextWrapper } from "../context/AuthContext";
 import AuthForm from "../components/AuthForm";
+import { useNavigate } from "react-router-dom";
 
 const collectionLogin = "http://localhost:3000/auth/login";
 
 function LoginPage() {
   async function handleSubmitLogin(event) {
     event.preventDefault();
+    const navigate = UseNavigete();
     try {
       const response = await axios.post(collectionLogin, {
         email,
@@ -23,9 +25,9 @@ function LoginPage() {
     <>
       <Navbar></Navbar>
       <div className="bodyLogin">
-        <div className="description">
+        <div className="text">
           <h1>First time here?</h1>
-          <p>
+          <p className="paragraph">
             As an esteemed member of Otium, gain access to our exclusive
             collection of villas by submitting a membership application.
             Experience unrivaled luxury and reserve your dream accommodations.

@@ -1,12 +1,19 @@
 .user {
-    display: flex;
-    flex-direction: column;
-    height: 200px;
-    margin-top: 15rem;
-    margin-left: 3rem;
-    border-color: black 1px solid;
+  display: flex;
+  flex-direction: column;
+  height: 300px;
+  width: 300px;
+  margin-top: 18rem;
+  margin-left: 3rem;
+  border: black 1px solid;
+  padding: 1rem;
 }
 
 .element {
-    width: 100px;
+  width: 300px;
+  margin-top: 1rem;
+}
+
+.titleDiv {
+  margin-left: 4rem;
 }

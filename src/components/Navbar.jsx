@@ -12,6 +12,11 @@ function Navbar() {
       </div>
       <ul>
         <li>
+          <Link to="/account" className="linkNavbar">
+            Account
+          </Link>
+        </li>
+        <li>
           <Link to="/" className="linkNavbar">
             Destinations
           </Link>

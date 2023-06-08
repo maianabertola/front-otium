@@ -13,10 +13,10 @@ import AccountCreatedPage from "./pages/AccountCreatedPage";
 import Account from "./pages/LoggedIn";
 import BookingPage from "./pages/BookingPage";
 import ConfirmationBookingPage from "./pages/ConfirmationBookingPage";
-import GalleryPhotos from "./pages/GalleryPhotos"; 
+import GalleryPhotos from "./pages/GalleryPhotos";
 import QuestionnaireUpdate from "./pages/QuestionnaireUpdate";
 import AccountTripBooked from "./pages/AccountTripBooked";
-
+import Protected from "./pages/ProtectedRoutes";
 
 function App() {
   return (
@@ -35,15 +35,17 @@ function App() {
           <Route path="/account-trips" element={<AccountTripBooked />} />
         </Route>
 
-        <Route path="/questionnaire" element={<Questionnaire />} />
-        <Route path="/questionnaire/:id" element={<QuestionnaireUpdate />} />
+        <Route element={<Protected />}>
+          <Route path="/questionnaire" element={<Questionnaire />} />
+          <Route path="/questionnaire/:id" element={<QuestionnaireUpdate />} />
+          <Route path="/account" element={<Account />}></Route>
+        </Route>
         <Route path="/created" element={<Created />} />
         <Route path="/auth">
           <Route path="signup" element={<SignupPage />} />
           <Route path="accountcreated" element={<AccountCreatedPage />} />
           <Route path="login" element={<LoginPage />} />
         </Route>
-        <Route path="/account" element={<Account />}></Route>
       </Routes>
     </>
   );
