@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import Navbar from "../components/Navbar";
 import AuthForm from "../components/AuthForm";
-import "../pages/signupPage.css";
+import "../pages/SignupPage.css";
 
 const collectionUser = "http://localhost:3000/auth/signup";
 function SignupPage() {
