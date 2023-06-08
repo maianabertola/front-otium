@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import service from "../service/service";
 import "../components/AuthForm.css";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
@@ -54,14 +55,14 @@ const AuthForm = ({ mode }) => {
       };
       const userToLogin = { email, password };
       if (mode === "signup") {
-        const response = await axios.post(
-          "http://localhost:3000/auth/signup",
+        const response = await service.post(
+          "/auth/signup",
           userToSignup
         );
         navigate("/auth/accountcreated");
       } else {
-        const response = await axios.post(
-          "http://localhost:3000/auth/login",
+        const response = await service.post(
+          "/auth/login",
           userToLogin
         );
         localStorage.setItem("token", response.data.token);
