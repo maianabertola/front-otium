@@ -2,9 +2,16 @@ import React from "react";
 import "./Navbar.css";
 import { Link } from "react-router-dom";
 import logo from "../assets/OtiumLogo.png";
-import Button from "./Button";
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
 
 function Navbar() {
+  const { setUser } = useContext(AuthContext);
+
+  function logout() {
+    localStorage.removeItem("token");
+    setUser(null);
+  }
   return (
     <nav>
       <div className="logoContainer">
@@ -12,18 +19,13 @@ function Navbar() {
       </div>
       <ul>
         <li>
-          <Link to="/account" className="linkNavbar">
-            Account
-          </Link>
-        </li>
-        <li>
           <Link to="/" className="linkNavbar">
             Destinations
           </Link>
         </li>
         <li>
-          <Link to="/services" className="linkNavbar">
-            Services
+          <Link to="/account" className="linkNavbar">
+            Account
           </Link>
         </li>
         <li>
@@ -45,6 +47,15 @@ function Navbar() {
           <Link to="/auth/signup" className="linkNavbar">
             Sign Up
           </Link>
+        </li>
+        <li>
+          <button
+            onClick={
+              logout
+            }
+          >
+            Log Out
+          </button>
         </li>
         {/* <Button cta={"Book now"} backgroundColor={"black"}></Button> */}
       </ul>

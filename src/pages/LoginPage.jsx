@@ -2,16 +2,13 @@ import React, { useState } from "react";
 import Navbar from "../components/Navbar";
 import "../pages/LoginPage.css";
 import axios from "axios";
-import { AuthContextWrapper } from "../context/AuthContext";
 import AuthForm from "../components/AuthForm";
-import { useNavigate } from "react-router-dom";
 
 const collectionLogin = "http://localhost:3000/auth/login";
 
 function LoginPage() {
   async function handleSubmitLogin(event) {
     event.preventDefault();
-    const navigate = UseNavigete();
     try {
       const response = await axios.post(collectionLogin, {
         email,
