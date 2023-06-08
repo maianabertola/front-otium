@@ -1,5 +1,4 @@
 import "./App.css";
-// mongodb+srv://fabien:Da3baIji0nhqAlt2@otium.lvpcikd.mongodb.net/otium
 import "./components/Layout";
 import { Routes, Route } from "react-router-dom";
 import Homepage from "./pages/Homepage";
@@ -16,7 +15,11 @@ import ConfirmationBookingPage from "./pages/ConfirmationBookingPage";
 import GalleryPhotos from "./pages/GalleryPhotos";
 import QuestionnaireUpdate from "./pages/QuestionnaireUpdate";
 import AccountTripBooked from "./pages/AccountTripBooked";
+
 import Protected from "./pages/ProtectedRoutes";
+
+import BookingPageEdit from "./pages/BookingPageEdit";
+
 
 function App() {
   return (
@@ -28,6 +31,7 @@ function App() {
 
           <Route path="photos" element={<GalleryPhotos />} />
           <Route path="/villa/:id/booking" element={<BookingPage />} />
+          <Route path="/booking/:id" element={<BookingPageEdit />} />
           <Route
             path="/booking-confirmed"
             element={<ConfirmationBookingPage />}
