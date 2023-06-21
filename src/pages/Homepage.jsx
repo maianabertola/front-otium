@@ -15,7 +15,6 @@ import NeedHelp from "../components/NeedHelp";
 import { AuthContext } from "../context/AuthContext";
 import { Link } from "react-router-dom";
 import service from "../service/service";
-
 import "../App.css";
 
 function Homepage() {
@@ -45,15 +44,19 @@ function Homepage() {
       console.log("there is an error when fetching all the services from db");
     }
   };
+
+  //function to nav. to the questionnaire page
   function navToQuestionnaire(event) {
     event.preventDefault();
     navigate("questionnaire");
   }
 
+  //use effect to fire these functions once the page is loaded
   useEffect(() => {
     getAllVillas(), getAllServices();
   }, []);
 
+  //avoid error by displaying div if the data is not loaded
   if (!villas || !services) {
     return <div>Content is loading</div>;
   }
@@ -98,10 +101,8 @@ function Homepage() {
           }
         ></TitleSection>
         <div className="collectionContainer">
-          {villas.Villa.map((villa) => {
-            {
-              /* console.log(villa); */
-            }
+          {/* slicing the mapping to insert the call out between two rows */}
+          {villas.Villa.slice(0, 4).map((villa) => {
             return (
               <>
                 <Link to={`/villa/${villa._id}`}>
@@ -119,7 +120,7 @@ function Homepage() {
         <div className="callOut">
           <div className="textContainerCallOut">
             <h2>Do you need help in your research?</h2>
-            <p>
+            <p style={{ margin: 0, paddingRight: 10 + "vw" }}>
               Immerse yourself in a sanctuary of refined indulgence, where each
               moment unveils blissful tranquility, captivating beauty, and an
               extraordinary connection to nature.
@@ -132,6 +133,22 @@ function Homepage() {
               backgroundColor={"black"}
             ></Button>
           </div>
+        </div>
+        <div className="collectionContainer">
+          {villas.Villa.slice(4).map((villa) => {
+            return (
+              <>
+                <Link to={`/villa/${villa._id}`}>
+                  <VillaCard
+                    key={villa._id}
+                    region={villa.region}
+                    name={villa.name}
+                    slogan={villa.slogan}
+                  ></VillaCard>
+                </Link>
+              </>
+            );
+          })}
         </div>
       </section>
       <section id="values" className="flexRow">
@@ -176,7 +193,7 @@ function Homepage() {
               "Immerse yourself in a sanctuary of refined indulgence, where each moment unveils blissful tranquility, captivating beauty, and an extraordinary connection to nature."
             }
           ></TitleSection>
-          <div className="collectionContainer">
+          <div className="servicesContainer">
             {services.ServiceDetail.map((service) => {
               return (
                 <>

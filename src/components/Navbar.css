@@ -1,27 +1,27 @@
-nav {
+.navbar {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  max-height: 9vh;
-  position: fixed;
+  max-height: 7vh;
+  position: sticky;
   top: 0;
   margin: 0;
-  z-index: 1;
-  background-color: black;
+  z-index: 999;
+  background-color: transparent;
 }
 
-nav:hover {
+/* .navbar:active {
   background-color: hsl(50, 90%, 94%);
   color: hsl(0, 0%, 9%);
   border: 1px solid hsl(0, 0%, 9%);
-}
+} */
 
 .logoContainer {
   width: 3.5vw;
   height: 6vh;
-  margin: 4rem;
+  margin: 4vw;
 }
 
 ul {

@@ -1,19 +1,37 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Navbar.css";
 import { Link } from "react-router-dom";
 import logo from "../assets/OtiumLogo.png";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 
 function Navbar() {
   const { setUser } = useContext(AuthContext);
+  const [navbar, setNavbar] = useState(false);
 
   function logout() {
     localStorage.removeItem("token");
     setUser(null);
   }
+
+  // console.log(window.scrollY);
+  //this function check if the setNavbar must change
+  const changeNavbar = () => {
+    if (window.scrollY >= 80) {
+      setNavbar(true);
+    } else {
+      setNavbar(false);
+    }
+  };
+
+  //event when scrolling call the function changeNavbar
+  window.addEventListener("scroll", changeNavbar);
+  // useEffect(() => {
+  // }, []);
+
   return (
-    <nav>
+    //ternary condition to know if navbar must be active or not
+    <nav className={navbar ? "navbar:active" : "navbar"}>
       <div className="logoContainer">
         <img src={logo} alt="Otium logo" />
       </div>
@@ -49,13 +67,7 @@ function Navbar() {
           </Link>
         </li>
         <li>
-          <button
-            onClick={
-              logout
-            }
-          >
-            Log Out
-          </button>
+          <button onClick={logout}>Log Out</button>
         </li>
         {/* <Button cta={"Book now"} backgroundColor={"black"}></Button> */}
       </ul>

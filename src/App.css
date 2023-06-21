@@ -23,7 +23,7 @@ body {
   background-color: hsl(50, 90%, 94%);
   margin: 0;
   padding: 0;
-  color: hsl(0, 0, 9%);
+  color: hsl(0, 0%, 9%);
 }
 
 h1 {
@@ -49,7 +49,7 @@ h3 {
 }
 
 p {
-  margin-bottom: 1rem;
+  margin-bottom: 1vh;
 }
 
 img {
