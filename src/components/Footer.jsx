@@ -9,9 +9,10 @@ import { Link } from "react-router-dom";
 export default function Footer() {
   return (
     <>
-      <div className="flexRow">
-        <BlackBar height={50}></BlackBar>
-      </div>
+      <div style={{ position: "relative" }}></div>
+      <BlackBar height={50}></BlackBar>
+      <footer id="footer" className="flexRow"></footer>
+
       <BlackBarHorizontal></BlackBarHorizontal>
       <div className="leftFooter">
         <div className="logoFooterContainer">

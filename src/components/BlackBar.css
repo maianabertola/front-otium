@@ -1,6 +1,7 @@
 .blackBar {
   width: 1.8rem;
-  /* height: 90vh; */
   background-color: hsl(0, 0%, 9%);
-  /* margin-bottom: 5rem; */
+  top: 0;
+  left: 50%;
+  position: absolute;
 }

@@ -19,6 +19,7 @@ import AccountTripBooked from "./pages/AccountTripBooked";
 import Protected from "./pages/ProtectedRoutes";
 
 import BookingPageEdit from "./pages/BookingPageEdit";
+import ServicePage from "./pages/ServicePage";
 
 function App() {
   return (
@@ -26,8 +27,8 @@ function App() {
       <Routes>
         <Route element={<Layout />}>
           <Route index element={<Homepage />} />
+          <Route path="/service/:id" element={<ServicePage />} />
           <Route path="/villa/:id" element={<VillaPage />} />
-
           <Route path="photos" element={<GalleryPhotos />} />
           <Route path="/villa/:id/booking" element={<BookingPage />} />
           <Route path="/booking/:id" element={<BookingPageEdit />} />

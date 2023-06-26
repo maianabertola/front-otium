@@ -21,7 +21,6 @@ function Homepage() {
   const navigate = useNavigate();
   const [villas, setVillas] = useState(null);
   const [services, setServices] = useState(null);
-  const [hover, setHover] = useState(false);
   const { user, isLoggedIn } = useContext(AuthContext);
 
   //fetch data from the villa
@@ -79,6 +78,7 @@ function Homepage() {
       </section>
 
       <section id="intro">
+        <BlackBar height={50}></BlackBar>
         <div className="introContainer">
           <div className="introTextContainer">
             {!isLoggedIn && <h1>Ciao,</h1>}
@@ -90,7 +90,6 @@ function Homepage() {
               refined hospitality.
             </p>
           </div>
-          <BlackBar height={60}></BlackBar>
         </div>
       </section>
 
@@ -153,6 +152,7 @@ function Homepage() {
         </div>
       </section>
       <section id="values" className="flexRow">
+        <BlackBar height={82}></BlackBar>
         <div className="introContainer">
           <div className="introTextContainer">
             <h2 style={{ fontSize: 40, fontStyle: "italic" }}>
@@ -161,7 +161,6 @@ function Homepage() {
               Embrace the Art of <br /> Extraordinary Luxury
             </h2>
           </div>
-          <BlackBar></BlackBar>
         </div>
 
         <div className="flexVertical">
@@ -198,43 +197,43 @@ function Homepage() {
             {services.ServiceDetail.map((service) => {
               return (
                 <>
-                  <ServiceCard
-                    nameService={service.title}
-                    img={serviceImg}
-                  ></ServiceCard>
+                  <Link to={`/service/${service._id}`}>
+                    <ServiceCard
+                      nameService={service.title}
+                      img={serviceImg}
+                    ></ServiceCard>
+                  </Link>
                 </>
               );
             })}
           </div>
         </div>
       </section>
-      <section id="aboutUs">
-        <div className="flexRow">
-          <div className="containerPictureVertical">
-            <img src={aboutImg}></img>
-          </div>
-          <BlackBar height={160}></BlackBar>
-          <div className="introContainer">
-            <div className="introTextContainer">
-              <h2 style={{ fontSize: 40, fontStyle: "italic" }}>
-                Otium,
-                <br />
-                Born from a Vision,
-                <br /> Crafted with passion,
-              </h2>
-              <p>
-                Opium was born from a vision to create an unparalleled
-                experience—a harmonious blend of opulence, tranquility, and
-                refined indulgence. With meticulous design and unwavering
-                commitment, we crafted a haven where every detail reflects our
-                dedication. Welcome to a world where the extraordinary is woven
-                into the fabric of your existence.
-              </p>
-              <Button
-                cta={"Discover Our Story"}
-                backgroundColor={"black"}
-              ></Button>
-            </div>
+      <section id="aboutUs" className="flexRow">
+        <div className="containerPictureVertical">
+          <img src={aboutImg}></img>
+        </div>
+        <BlackBar height={100}></BlackBar>
+        <div className="introContainer">
+          <div className="introTextContainer">
+            <h2 style={{ fontSize: 40, fontStyle: "italic" }}>
+              Otium,
+              <br />
+              Born from a Vision,
+              <br /> Crafted with passion,
+            </h2>
+            <p>
+              Opium was born from a vision to create an unparalleled
+              experience—a harmonious blend of opulence, tranquility, and
+              refined indulgence. With meticulous design and unwavering
+              commitment, we crafted a haven where every detail reflects our
+              dedication. Welcome to a world where the extraordinary is woven
+              into the fabric of your existence.
+            </p>
+            <Button
+              cta={"Discover Our Story"}
+              backgroundColor={"black"}
+            ></Button>
           </div>
         </div>
       </section>
