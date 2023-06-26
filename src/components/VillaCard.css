@@ -1,8 +1,7 @@
 .villaCard {
-  width: 328px;
-  height: 500px;
-  margin-top: 3rem;
-  margin-bottom: 1.2rem;
+  width: 22.7vw;
+  height: 70vh;
+  margin: 5vh 0;
   position: relative;
   display: flex;
   justify-content: center;
@@ -43,4 +42,5 @@
   font-family: "Playfair Bold";
   font-weight: 500;
   font-size: 1.2rem;
+  margin: 1vw;
 }

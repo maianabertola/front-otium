@@ -20,6 +20,8 @@ import "../App.css";
 function Homepage() {
   const navigate = useNavigate();
   const [villas, setVillas] = useState(null);
+  const [services, setServices] = useState(null);
+  const [hover, setHover] = useState(false);
   const { user, isLoggedIn } = useContext(AuthContext);
 
   //fetch data from the villa
@@ -35,7 +37,6 @@ function Homepage() {
   };
 
   //fetching the services
-  const [services, setServices] = useState(null);
   const getAllServices = async () => {
     try {
       const myServices = await service.get("/service");

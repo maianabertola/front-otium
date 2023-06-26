@@ -29,17 +29,20 @@ function Button({ cta, backgroundColor, width, onClick }) {
     };
   }
 
+  if (backgroundColor === "transparent") {
+    myStyle = {
+      backgroundColor: "hsl(0, 3%, 31%, 53%)",
+      color: "hsl(0, 0%, 98%)",
+      border: "1px solid hsl(0, 0%, 98%)",
+    };
+  }
+
   let newWidth = `${width}rem`;
 
   const buttonStyle = { ...myStyle, newWidth };
 
   return (
-    <div
-      className="button"
-      onClick={onClick}
-      style={buttonStyle}
-      // onChange={onChange}
-    >
+    <div className="button" onClick={onClick} style={buttonStyle}>
       {cta}
     </div>
   );
