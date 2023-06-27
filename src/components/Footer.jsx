@@ -9,27 +9,47 @@ import { Link } from "react-router-dom";
 export default function Footer() {
   return (
     <>
-      <div style={{ position: "relative" }}></div>
-      <BlackBar height={50}></BlackBar>
-      <footer id="footer" className="flexRow"></footer>
-
+      <BlackBar height={50} position={"relative"}></BlackBar>
       <BlackBarHorizontal></BlackBarHorizontal>
-      <div className="leftFooter">
-        <div className="logoFooterContainer">
-          <img src={logo} alt="logo otium villa" />
+      <footer id="footer">
+        {/* <div style={{ position: "relative", height: 100 }}></div> */}
+        <div className="leftFooter">
+          <div className="logoFooterContainer">
+            <img src={logo} alt="logo otium villa" />
+          </div>
+          <p className="textContainer" style={{ textAlign: "left" }}>
+            Otium: Latin for leisure, a time of blissful repose, where one finds
+            fulfillment through relaxation, contemplation, and indulgence in
+            pleasurable pursuits
+          </p>
         </div>
-        <p className="textContainer" style={{ textAlign: "left" }}>
-          Otium: Latin for leisure, a time of blissful repose, where one finds
-          fulfillment through relaxation, contemplation, and indulgence in
-          pleasurable pursuits
-        </p>
-      </div>
-      {/* <div className="rightFooter">
-        <h3>Our experiences</h3>
-        <Link>All our villas</Link>
-        <Link>The services</Link>
-        <Link>Find your ideal villas</Link>
-      </div> */}
+        <div className="rightFooter">
+          <ol>
+            <h3>Our experiences</h3>
+            <Link>
+              <li className="footerList">All our villas</li>
+            </Link>
+            <Link>
+              <li className="footerList">The services</li>
+            </Link>
+            <Link to="/questionnaire">
+              <li className="footerList">Find your ideal villas</li>
+            </Link>
+          </ol>
+          <ol>
+            <h3>Discover more</h3>
+            <Link>
+              <li className="footerList">About Otium</li>
+            </Link>
+            <Link>
+              <li className="footerList">Contact</li>
+            </Link>
+            <Link>
+              <li className="footerList">Terms and privacy</li>
+            </Link>
+          </ol>
+        </div>
+      </footer>
     </>
   );
 }

@@ -78,7 +78,7 @@ function Homepage() {
       </section>
 
       <section id="intro">
-        <BlackBar height={50}></BlackBar>
+        <BlackBar height={50} position={"absolute"}></BlackBar>
         <div className="introContainer">
           <div className="introTextContainer">
             {!isLoggedIn && <h1>Ciao,</h1>}
@@ -152,7 +152,7 @@ function Homepage() {
         </div>
       </section>
       <section id="values" className="flexRow">
-        <BlackBar height={82}></BlackBar>
+        <BlackBar height={82} position={"absolute"}></BlackBar>
         <div className="introContainer">
           <div className="introTextContainer">
             <h2 style={{ fontSize: 40, fontStyle: "italic" }}>
@@ -213,7 +213,7 @@ function Homepage() {
         <div className="containerPictureVertical">
           <img src={aboutImg}></img>
         </div>
-        <BlackBar height={100}></BlackBar>
+        <BlackBar height={110} position={"absolute"}></BlackBar>
         <div className="introContainer">
           <div className="introTextContainer">
             <h2 style={{ fontSize: 40, fontStyle: "italic" }}>
@@ -237,8 +237,9 @@ function Homepage() {
           </div>
         </div>
       </section>
-      <section id="help"></section>
-      <NeedHelp></NeedHelp>
+      <section id="help">
+        <NeedHelp></NeedHelp>
+      </section>
     </>
   );
 }
