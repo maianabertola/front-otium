@@ -2,7 +2,7 @@
   background-color: hsl(64, 17%, 84%);
   /* z-index: -1; */
   width: 70%;
-  height: 70vh;
+  height: 60vh;
 }
 
 .textServiceContainer {
@@ -13,7 +13,7 @@
 
 .imgServiceContainer {
   width: 30%;
-  height: 90vh;
+  height: 80vh;
 }
 
 .flexrowService {
