@@ -54,4 +54,4 @@ npm run dev
 I am currently working on further improving the project.
 Once I have made significant progress, I will redeploy it so you can see the final result!
 
-You can find the front-end of Otium here : https://github.com/maianabertola/front-otium
+You can find the back-end of Otium here : https://github.com/maianabertola/back-otium
