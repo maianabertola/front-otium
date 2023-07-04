@@ -15,10 +15,10 @@ import ConfirmationBookingPage from "./pages/ConfirmationBookingPage";
 import GalleryPhotos from "./pages/GalleryPhotos";
 import QuestionnaireUpdate from "./pages/QuestionnaireUpdate";
 import AccountTripBooked from "./pages/AccountTripBooked";
-
 import Protected from "./pages/ProtectedRoutes";
-
 import BookingPageEdit from "./pages/BookingPageEdit";
+import VillasCollectionPage from "./pages/VillasCollectionPage";
+import ServicesCollectionPage from "./pages/ServicesCollectionPage";
 import ServicePage from "./pages/ServicePage";
 
 function App() {
@@ -35,6 +35,11 @@ function App() {
           <Route
             path="/booking-confirmed"
             element={<ConfirmationBookingPage />}
+          />
+          <Route path="/villas-collection" element={<VillasCollectionPage />} />
+          <Route
+            path="/services-collection"
+            element={<ServicesCollectionPage />}
           />
         </Route>
 

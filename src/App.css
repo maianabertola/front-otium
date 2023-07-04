@@ -6,6 +6,8 @@
   font-family: "Playfair Bold";
   font-family: "Noto";
   src: url("./fonts/Noto_Sans_KR/NotoSansKR-Regular.otf");
+  font-family: "Playfair Semibold Italic";
+  src: url("./fonts/Playfair_Display/static/PlayfairDisplay-SemiBoldItalic.ttf");
 }
 
 * {
@@ -79,4 +81,8 @@ img {
   width: 100%;
   gap: 1rem;
   justify-content: center;
+}
+
+.pageContainer {
+  margin-top: 6vh;
 }
