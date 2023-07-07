@@ -12,6 +12,7 @@
 
 .precisionsBooking {
   width: 40%;
+  margin-left: 15vw;
   display: flex;
   flex-direction: column;
 }
