@@ -101,7 +101,7 @@ function VillaPage() {
         </div>
         <section id="galleryPhotos">
           <div className="greenBackgroundServicesVilla">
-            <p className="textGallery" style={{ top: 0, left: 45 + "%" }}>
+            <p className="textGallery" style={{ top: 3 + "%", left: 45 + "%" }}>
               Picture
             </p>
             <div className="gallery">

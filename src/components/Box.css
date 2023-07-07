@@ -6,6 +6,9 @@
   text-transform: uppercase;
   letter-spacing: 0.1rem;
   margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .flexBox {
