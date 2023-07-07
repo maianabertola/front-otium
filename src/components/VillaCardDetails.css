@@ -4,17 +4,20 @@
   align-items: center;
 }
 
-table,
+table {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid;
+}
+
+thead,
 tr {
   border-collapse: collapse;
   width: 100%;
   border-bottom: 1px solid;
-  border-left: 1px solid;
-  border-right: 1px solid;
 }
 
 .villaCardDetails {
-  position: absolute;
   top: 50%;
   right: 4%;
   background-color: hsl(50, 90%, 94%);
@@ -30,15 +33,6 @@ tr {
   align-items: center;
   margin: 1rem;
   gap: 2rem;
-}
-
-.flexCells {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  margin-left: 1rem;
-  gap: 1rem;
 }
 
 .flexRowTable {

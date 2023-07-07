@@ -12,6 +12,7 @@ import DatePicker from "react-datepicker";
 import { AuthContext } from "../context/AuthContext";
 import { memo } from "react";
 import service from "../service/service";
+import VillaCardDetails from "../components/VillaCardDetails";
 
 function BookingPage() {
   //Grab info from AuthContext
@@ -29,15 +30,12 @@ function BookingPage() {
   const [message, setMessage] = useState("");
   const [villa, setVilla] = useState("");
   const { id } = useParams();
-  // const collectionVilla = "http://localhost:3000/villa";
-  // const collectionBooking = "http://localhost:3000/booking";
   const navigate = useNavigate();
 
   //fetch Villas Data from db
   const getOneVilla = async () => {
     try {
       const oneVilla = await service.get(`/villa/${id}`);
-      //   console.log(oneVilla.data);
       setVilla(oneVilla.data);
     } catch (error) {
       console.log(
@@ -62,7 +60,6 @@ function BookingPage() {
     event.preventDefault();
     try {
       console.log("you are in submitBooking");
-      // console.log("the date's booking", dates);
       //creating a new array to store the bookedDates from villa collection and from my booking
       const newDatesVillaCollection = [];
 
@@ -104,7 +101,7 @@ function BookingPage() {
     }
   }
 
-  //navigate to the next page once submit is ok
+  //navigate to the next page once submit is done
   function navigateToConfirmationBookingPage(event) {
     event.preventDefault();
     navigate("/booking-confirmed");
@@ -127,8 +124,6 @@ function BookingPage() {
     return [];
   }, [villa]);
 
-  // console.log("memodates should changed after the submit", memoDates);
-
   //if not, display a little message to avoid error message
   if (!villa) {
     return <div>Please wait, content is loading</div>;
@@ -138,100 +133,7 @@ function BookingPage() {
     <>
       <div className="bookingVillaContainer">
         <div className="villaBookingDetails">
-          <table>
-            <thead style={{ textAlign: "center" }}>
-              <tr>
-                <th colSpan={2}>
-                  <h1>{villa.Villa.name}</h1>
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td colSpan={2}>
-                  <h2
-                    style={{ textAlign: "center" }}
-                  >{`${villa.Villa.region} — ${villa.Villa.country}`}</h2>
-                </td>
-              </tr>
-              <tr className="flexRowTable">
-                <td colSpan={2} style={{ width: "40%" }} className="flexCells">
-                  <div className="iconeContainer">
-                    <img src={peopleIcon} />
-                    <p>{`${villa.Villa.numberOfPeople} people`}</p>
-                  </div>
-                </td>
-                <td colSpan={2} style={{ width: "40%" }} className="flexCells">
-                  <div className="iconeContainer">
-                    <img src={squareMeterIcon} />
-                    <p>{`${villa.Villa.squareMeter} m2`}</p>
-                  </div>
-                </td>
-              </tr>
-              <tr className="flexRowTable">
-                <td colSpan={2} style={{ width: "40%" }} className="flexCells">
-                  <div className="iconeContainer">
-                    <img src={bedroomIcon} />
-                    <p>{`${villa.Villa.bedrooms} bedrooms`}</p>
-                  </div>
-                </td>
-                <td colSpan={2} style={{ width: "40%" }} className="flexCells">
-                  <div className="iconeContainer">
-                    <img src={bathIcon} />
-                    <p>{`${villa.Villa.bathrooms} bathrooms`}</p>
-                  </div>
-                </td>
-              </tr>
-              <tr className="flexRowTable">
-                <td colSpan={2} style={{ width: "40%" }} className="flexCells">
-                  <div className="iconeContainer">
-                    <img src={moutainviewIcon} />
-                    <p>{`${villa.Villa.view} view`}</p>
-                  </div>
-                </td>
-                <td colSpan={2} style={{ width: "40%" }} className="flexCells">
-                  <div className="iconeContainer">
-                    <p>From</p>
-                    <p>{`${villa.Villa.pricePerWeek}€/week`}</p>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <tr colSpan={2} className="flexVerticalCTA">
-                  <DatePicker
-                    key={"startDate"}
-                    showIcon
-                    selected={startDate}
-                    onChange={(date) => {
-                      setStartDate(date);
-                    }}
-                    isClearable
-                    closeOnScroll={true}
-                    dateFormat="yyyy/MM/dd"
-                    minDate={new Date()}
-                    excludeDateIntervals={memoDates}
-                  />
-                  <DatePicker
-                    key={endDate}
-                    showIcon
-                    selected={endDate}
-                    onChange={(date) => {
-                      setEndDate(date);
-                    }}
-                    selectsEnd
-                    startDate={startDate}
-                    endDate={endDate}
-                    minDate={startDate}
-                    isClearable
-                    closeOnScroll={true}
-                    dateFormat="yyyy/MM/dd"
-                    excludeDateIntervals={memoDates}
-                    placeholderText="Select a date other than today or yesterday"
-                  />
-                </tr>
-              </tr>
-            </tbody>
-          </table>
+          <VillaCardDetails villa={villa} booking={"true"}></VillaCardDetails>
         </div>
 
         <div className="precisionsBooking">

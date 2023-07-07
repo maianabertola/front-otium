@@ -14,17 +14,7 @@ import { useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate, Outlet, useParams } from "react-router-dom";
 
-export default function VillaCardDetails({
-  name,
-  region,
-  numberOfPeople,
-  squareMeter,
-  beds,
-  bathrooms,
-  view,
-  pricePerWeek,
-  villa,
-}) {
+export default function VillaCardDetails({ villa, booking }) {
   const { startDate, setStartDate, endDate, setEndDate, dates, setDates } =
     useContext(AuthContext);
 
@@ -58,11 +48,24 @@ export default function VillaCardDetails({
     return [];
   }, [villa]);
 
+  //change icone if it's sea view or mountain view
   let icone;
   if (villa.Villa.view === "Sea") {
     icone = seaviewIcon;
   } else {
     icone = moutainviewIcon;
+  }
+
+  //change the position if this card appears in the booking page
+  let myStyle;
+  if (booking === "true") {
+    myStyle = {
+      position: "static",
+    };
+  } else {
+    myStyle = {
+      position: absolute,
+    };
   }
 
   function changePage(event) {
@@ -72,12 +75,12 @@ export default function VillaCardDetails({
 
   return (
     <>
-      <div className="villaCardDetails">
+      <div className="villaCardDetails" style={myStyle}>
         <table>
           <thead style={{ textAlign: "center" }}>
             <tr>
               <th colSpan={2}>
-                <h1>{name}</h1>
+                <h1>{villa.Villa.name}</h1>
               </th>
             </tr>
           </thead>
