@@ -75,20 +75,14 @@ function VillaPage() {
           <p className="descriptionVilla">{villa.Villa.description}</p>
           <h2>An Idyllic Villa for</h2>
           <div className="flexBox">
-            <Box
-              text={"FRIENDS TRIP"}
-              status={villa.Villa.idylicStatus[0]}
-            ></Box>
-            <Box text={"LIFE PARTY"} status={villa.Villa.idylicStatus[1]}></Box>
-            <Box
-              text={"FAMILY MOMENT"}
-              status={villa.Villa.idylicStatus[2]}
-            ></Box>
+            <Box text={"Friends Trip"} status={villa.Villa.idylicStatus}></Box>
+            <Box text={"Life Party"} status={villa.Villa.idylicStatus}></Box>
+            <Box text={"Family Moment"} status={villa.Villa.idylicStatus}></Box>
           </div>
-          <h2>Is Pet frienldy?</h2>
+          <h2>Is Pet friendly?</h2>
           <div className="flexBox">
-            <Box text={"YES"} petFriendly={villa.Villa.petFriendly}></Box>
-            <Box text={"NO"} petFriendly={villa.Villa.petFriendly}></Box>
+            <Box text={"Yes"} petFriendly={villa.Villa.petFriendly}></Box>
+            <Box text={"No"} petFriendly={villa.Villa.petFriendly}></Box>
           </div>
           <h2>Distinctive Features</h2>
           {villa.Villa.distinctiveFeatures.map((feature, index) => {
@@ -107,16 +101,37 @@ function VillaPage() {
         </div>
         <section id="galleryPhotos">
           <div className="greenBackgroundServicesVilla">
+            <p className="textGallery" style={{ top: 0, left: 45 + "%" }}>
+              Picture
+            </p>
             <div className="gallery">
               <div className="imageGalleryContainer1">
                 <img src={imagetest}></img>
               </div>
+              <p
+                className="textGallery"
+                style={{ top: 20 + "%", left: 14 + "%" }}
+              >
+                your
+              </p>
               <div className="imageGalleryContainer2">
                 <img src={imagetest}></img>
               </div>
+              <p
+                className="textGallery"
+                style={{ top: 30 + "%", right: 1 + "%" }}
+              >
+                future
+              </p>
               <div className="imageGalleryContainer3">
                 <img src={imagetest}></img>
               </div>
+              <p
+                className="textGallery"
+                style={{ top: 47 + "%", left: 8 + "%" }}
+              >
+                vacations
+              </p>
               <div className="imageGalleryContainer4">
                 <img src={imagetest}></img>
               </div>
@@ -144,16 +159,6 @@ function VillaPage() {
           villa={villa}
         ></VillaCardDetails>
       </section>
-      {/* <Outlet
-        context={{
-          startDate: [startDate, setStartDate],
-          endDate: [endDate, setEndDate],
-          dates: [dates, setDates],
-          villaId: id,
-          galleryphotos: villa.Villa.galleryphotos,
-          //userId??
-        }}
-      /> */}
     </>
   );
 }

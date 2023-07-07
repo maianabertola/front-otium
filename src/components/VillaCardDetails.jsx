@@ -5,6 +5,7 @@ import squareMeterIcon from "../assets/squaremeterIcon.png";
 import bedroomIcon from "../assets/iconebed.png";
 import bathIcon from "../assets/iconebathroom.png";
 import moutainviewIcon from "../assets/iconeview.png";
+import seaviewIcon from "../assets/seaview.png";
 import service from "../service/service";
 import Button from "./Button";
 import "react-datepicker/dist/react-datepicker.css";
@@ -62,6 +63,12 @@ export default function VillaCardDetails({
   }, [villa]);
 
   // console.log("the villa is booked at these dates", memoDates);
+  let icone;
+  if (villa.Villa.view === "Sea") {
+    icone = seaviewIcon;
+  } else {
+    icone = moutainviewIcon;
+  }
 
   function changePage(event) {
     event.preventDefault();
@@ -118,7 +125,7 @@ export default function VillaCardDetails({
             <tr className="flexRowTable">
               <td colSpan={2} style={{ width: "40%" }} className="flexCells">
                 <div className="iconeContainer">
-                  <img src={moutainviewIcon} />
+                  <img src={icone} />
                   <p>{`${villa.Villa.view} view`}</p>
                 </div>
               </td>
