@@ -139,11 +139,12 @@ function VillaPage() {
                 <img src={imagetest}></img>
               </div>
             </div>
-
-            <Button
-              backgroundColor={"black"}
-              cta={"Explore all the photos"}
-            ></Button>
+            <div className="flexCenter">
+              <Button
+                backgroundColor={"black"}
+                cta={"Explore all the photos"}
+              ></Button>
+            </div>
           </div>
         </section>
         <NeedHelp></NeedHelp>

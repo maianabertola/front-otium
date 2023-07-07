@@ -39,10 +39,6 @@ export default function VillaCardDetails({
     event.preventDefault();
     const newDates = { newStartDate, newEndDate };
     setDates(newDates);
-    // console.log(
-    //   "here's the dates the user wants to book on VillaCardDetails",
-    //   dates
-    // );
   }
 
   useEffect(() => {
@@ -62,7 +58,6 @@ export default function VillaCardDetails({
     return [];
   }, [villa]);
 
-  // console.log("the villa is booked at these dates", memoDates);
   let icone;
   if (villa.Villa.view === "Sea") {
     icone = seaviewIcon;
@@ -98,13 +93,19 @@ export default function VillaCardDetails({
               <td colSpan={2} style={{ width: "40%" }} className="flexCells">
                 <div className="iconeContainer">
                   <img src={peopleIcon} />
-                  <p>{`${villa.Villa.numberOfPeople} people`}</p>
+                </div>
+                <div className="flexTextDetails">
+                  <p
+                    style={{ margin: 0 }}
+                  >{`${villa.Villa.numberOfPeople} people`}</p>
                 </div>
               </td>
               <td colSpan={2} style={{ width: "40%" }} className="flexCells">
                 <div className="iconeContainer">
                   <img src={squareMeterIcon} />
-                  <p>{`${villa.Villa.squareMeter} m2`}</p>
+                </div>
+                <div className="flexTextDetails">
+                  <p style={{ margin: 0 }}>{`${villa.Villa.squareMeter} m2`}</p>
                 </div>
               </td>
             </tr>
@@ -112,13 +113,21 @@ export default function VillaCardDetails({
               <td colSpan={2} style={{ width: "40%" }} className="flexCells">
                 <div className="iconeContainer">
                   <img src={bedroomIcon} />
-                  <p>{`${villa.Villa.bedrooms} bedrooms`}</p>
+                </div>
+                <div className="flexTextDetails">
+                  <p
+                    style={{ margin: 0 }}
+                  >{`${villa.Villa.bedrooms} bedrooms`}</p>
                 </div>
               </td>
               <td colSpan={2} style={{ width: "40%" }} className="flexCells">
                 <div className="iconeContainer">
                   <img src={bathIcon} />
-                  <p>{`${villa.Villa.bathrooms} bathrooms`}</p>
+                </div>
+                <div className="flexTextDetails">
+                  <p
+                    style={{ margin: 0 }}
+                  >{`${villa.Villa.bathrooms} bathrooms`}</p>
                 </div>
               </td>
             </tr>
@@ -126,13 +135,19 @@ export default function VillaCardDetails({
               <td colSpan={2} style={{ width: "40%" }} className="flexCells">
                 <div className="iconeContainer">
                   <img src={icone} />
-                  <p>{`${villa.Villa.view} view`}</p>
+                </div>
+                <div className="flexTextDetails">
+                  <p style={{ margin: 0 }}>{`${villa.Villa.view} view`}</p>
                 </div>
               </td>
               <td colSpan={2} style={{ width: "40%" }} className="flexCells">
                 <div className="iconeContainer">
-                  <p>From</p>
-                  <p>{`${villa.Villa.pricePerWeek}€/week`}</p>
+                  <p style={{ margin: 0 }}>From</p>
+                </div>
+                <div className="flexTextDetails">
+                  <p
+                    style={{ margin: 0 }}
+                  >{`${villa.Villa.pricePerWeek}€/week`}</p>
                 </div>
               </td>
             </tr>

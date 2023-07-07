@@ -105,3 +105,8 @@ ol > li {
   z-index: 1;
   position: absolute;
 }
+
+.flexCenter {
+  display: flex;
+  justify-content: center;
+}

@@ -36,6 +36,7 @@ tr {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
+  align-items: center;
   margin-left: 1rem;
   gap: 1rem;
 }
@@ -54,4 +55,9 @@ tr {
   justify-content: center;
   align-content: center;
   align-items: center;
+}
+
+.flexTextDetails {
+  display: flex;
+  align-items: flex-end;
 }
