@@ -1,18 +1,13 @@
 import { createContext, useEffect, useState } from "react";
 import service from "../service/service";
-const AuthContext = createContext();
 import axios from "axios";
 
-export const AuthCOntext = createContext();
+export const AuthContext = createContext();
 const AuthContextWrapper = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState(null);
   const [token, setToken] = useState("");
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
-  const [dates, setDates] = useState([]);
-
   useEffect(() => {
     authentificationUser();
   }, []);
@@ -27,8 +22,6 @@ const AuthContextWrapper = ({ children }) => {
           },
         });
         setToken(token);
-        // console.log("ici ma rep de user", response);
-        // console.log("ici ma rep.data de user", response.data);
         setUser(response.data);
         setIsLoggedIn(true);
         setIsLoading(false);
@@ -65,12 +58,6 @@ const AuthContextWrapper = ({ children }) => {
         setToken: updateToken,
         logout,
         token,
-        startDate,
-        setStartDate,
-        endDate,
-        setEndDate,
-        dates,
-        setDates,
       }}
     >
       {children}
@@ -78,4 +65,4 @@ const AuthContextWrapper = ({ children }) => {
   );
 };
 
-export { AuthContextWrapper, AuthContext };
+export { AuthContextWrapper };

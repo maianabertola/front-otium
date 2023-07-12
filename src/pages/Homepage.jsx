@@ -16,34 +16,51 @@ import { AuthContext } from "../context/AuthContext";
 import { Link } from "react-router-dom";
 import service from "../service/service";
 import "../App.css";
+import { useQuery } from "react-query";
+import { getAllVillas } from "../api/villa";
+import { getAllServices } from "../api/services";
 
 function Homepage() {
   const navigate = useNavigate();
-  const [villas, setVillas] = useState(null);
-  const [services, setServices] = useState(null);
+  // const [villas, setVillas] = useState(null);
+  // const [services, setServices] = useState(null);
   const { user, isLoggedIn } = useContext(AuthContext);
 
   //fetch data from the villa
-  const getAllVillas = async () => {
-    try {
-      const myVillas = await service.get("/villa");
-      setVillas(myVillas.data);
-    } catch (error) {
-      console.log(
-        "there is an error when fetching all the villas from db on the homepage"
-      );
-    }
-  };
+  // const getAllVillas = async () => {
+  //   try {
+  //     const myVillas = await service.get("/villa");
+  //     setVillas(myVillas.data);
+  //   } catch (error) {
+  //     console.log(
+  //       "there is an error when fetching all the villas from db on the homepage"
+  //     );
+  //   }
+  // };
+
+  const {
+    isLoading: isLoadingVillas,
+    isError: isErrorVillas,
+    error: errorVillas,
+    data: villas,
+  } = useQuery({ queryKey: ["villas"], queryFn: getAllVillas });
 
   //fetching the services
-  const getAllServices = async () => {
-    try {
-      const myServices = await service.get("/service");
-      setServices(myServices.data);
-    } catch (error) {
-      console.log("there is an error when fetching all the services from db");
-    }
-  };
+  // const getAllServices = async () => {
+  //   try {
+  //     const myServices = await service.get("/service");
+  //     setServices(myServices.data);
+  //   } catch (error) {
+  //     console.log("there is an error when fetching all the services from db");
+  //   }
+  // };
+
+  const {
+    isLoading: isLoadingServices,
+    isError: isErrorServices,
+    error: errorServices,
+    data: services,
+  } = useQuery({ queryKey: ["services"], queryFn: getAllServices });
 
   //function to nav. to the questionnaire page
   function navToQuestionnaire(event) {
@@ -52,13 +69,25 @@ function Homepage() {
   }
 
   //use effect to fire these functions once the page is loaded
-  useEffect(() => {
-    getAllVillas(), getAllServices();
-  }, []);
+  // useEffect(() => {
+  //   getAllServices();
+  // }, []);
 
   //avoid error by displaying div if the data is not loaded
-  if (!villas || !services) {
-    return <div>Content is loading</div>;
+  // if (!villas || !services) {
+  // if (!services) return <div>Content is loading</div>;
+
+  if (isLoadingVillas || isLoadingServices) {
+    return <div>Loading...</div>;
+  }
+
+  if (isErrorVillas || isErrorServices) {
+    return (
+      <div>
+        There was an error loading the data:
+        {errorVillas || errorServices}
+      </div>
+    );
   }
 
   return (

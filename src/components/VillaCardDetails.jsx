@@ -6,30 +6,28 @@ import bedroomIcon from "../assets/iconebed.png";
 import bathIcon from "../assets/iconebathroom.png";
 import moutainviewIcon from "../assets/iconeview.png";
 import seaviewIcon from "../assets/seaview.png";
-import service from "../service/service";
 import Button from "./Button";
 import "react-datepicker/dist/react-datepicker.css";
 import DatePicker from "react-datepicker";
-import { useState } from "react";
-import { AuthContext } from "../context/AuthContext";
 import { useNavigate, Outlet, useParams } from "react-router-dom";
+import { BookingContext } from "../context/BookingContext";
 
 export default function VillaCardDetails({ villa, booking }) {
   const { startDate, setStartDate, endDate, setEndDate, dates, setDates } =
-    useContext(AuthContext);
+    useContext(BookingContext);
 
   const navigate = useNavigate();
-
   const { id } = useParams();
 
   // when firing the button, the state is updated with a date object
   function createDate(event) {
+    event.preventDefault();
     const newStartDate = startDate.toISOString();
     const newEndDate = endDate.toISOString();
-    event.preventDefault();
     const newDates = { newStartDate, newEndDate };
     setDates(newDates);
   }
+  console.log("DATES", dates);
 
   useEffect(() => {
     villa;
@@ -48,6 +46,8 @@ export default function VillaCardDetails({ villa, booking }) {
     return [];
   }, [villa]);
 
+  console.log("DATES BOOKED", memoDates);
+
   //change icone if it's sea view or mountain view
   let icone;
   if (villa.Villa.view === "Sea") {
@@ -64,7 +64,7 @@ export default function VillaCardDetails({ villa, booking }) {
     };
   } else {
     myStyle = {
-      position: absolute,
+      position: "absolute",
     };
   }
 

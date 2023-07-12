@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useContext } from "react";
 import "./VillaPage.css";
 import villaHero from "../assets/villaera.webp";
 import Button from "../components/Button";
@@ -9,52 +9,30 @@ import { useParams } from "react-router-dom";
 import Grid from "./Grid";
 import imagetest from "../assets/Positano.jpeg";
 import NeedHelp from "../components/NeedHelp";
-import { AuthContext } from "../context/AuthContext";
-import service from "../service/service";
+import { useQuery } from "react-query";
+import { getOneVilla } from "../api/villa";
+import { BookingContext } from "../context/BookingContext";
 
 function VillaPage() {
-  const [villa, setVilla] = useState("");
-  const [services, setServices] = useState([]);
   const { id } = useParams();
-  const { startDate, endDate, dates } = useContext(AuthContext);
 
-  //fetch Villas Data from db
-  const getOneVilla = async () => {
-    try {
-      const oneVilla = await service.get(`/villa/${id}`);
-      //   console.log(oneVilla.data);
-      setVilla(oneVilla.data);
-    } catch (error) {
-      console.log(
-        error,
-        "there is an error when fetching one villa by ID from db on the villaPage"
-      );
-    }
-  };
-  // console.log(villa);
-
-  //fetch Services Data from db
-  const getAllServices = async () => {
-    try {
-      const otiumServices = await service.get("/service");
-
-      setServices(otiumServices.data);
-    } catch (error) {
-      console.log(
-        "there is an error when fetching all the services from db on the villaPage",
-        error
-      );
-    }
-  };
-
-  //use UseEffect to give time to the data to load
-  useEffect(() => {
-    getOneVilla(), getAllServices();
-  }, []);
+  //fetching the data of one villa by ID
+  const {
+    isLoading,
+    isError,
+    error,
+    data: villa,
+  } = useQuery({
+    queryKey: ["villas", parseInt(id)],
+    queryFn: () => getOneVilla(id),
+  });
 
   //if not, display a little message to avoid error message
-  if (!villa || !services) {
+  if (isLoading) {
     return <div>Please wait, content is loading</div>;
+  }
+  if (isError) {
+    return <div>There is an error: {error} on the Villa Page</div>;
   }
 
   return (
@@ -148,17 +126,7 @@ function VillaPage() {
           </div>
         </section>
         <NeedHelp></NeedHelp>
-        <VillaCardDetails
-          name={villa.Villa.name}
-          region={`${villa.Villa.region} — ${villa.Villa.country}`}
-          numberOfPeople={`${villa.Villa.numberOfPeople} people`}
-          squareMeter={`${villa.Villa.squareMeter} m2`}
-          beds={`${villa.Villa.bedrooms} bedrooms`}
-          bathrooms={`${villa.Villa.bathrooms} bathrooms`}
-          view={`${villa.Villa.view} view`}
-          pricePerWeek={`${villa.Villa.pricePerWeek}€/week`}
-          villa={villa}
-        ></VillaCardDetails>
+        <VillaCardDetails villa={villa}></VillaCardDetails>
       </section>
     </>
   );
