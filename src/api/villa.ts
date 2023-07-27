@@ -41,11 +41,14 @@ export interface Ivillas {
         .then (res => res.data)
   };
 
-  export const getOneVilla = async (id: number) => {
+  export const getOneVilla = async (id: string) => {
     return service.get<Ivillas[]>(`/villa/${id}`)
     .then (res => res.data)
   }
 
-  export const patchVilla = async (id, newDatesVillaCollection) => {
-    return service.patch(`/villa/${id}`, newDatesVillaCollection )
+  export const patchVilla = async ({id, bookedDates}) => {
+    console.log("bookedDates in the patch", bookedDates);
+    console.log("id de la villa in the patch", id);
+    await service.patch(`/villa/${id}`, {bookedDates})
   }
+

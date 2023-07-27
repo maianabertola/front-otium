@@ -30,12 +30,6 @@ function App() {
           <Route path="/service/:id" element={<ServicePage />} />
           <Route path="/villa/:id" element={<VillaPage />} />
           <Route path="photos" element={<GalleryPhotos />} />
-          <Route path="/villa/:id/booking" element={<BookingPage />} />
-          <Route path="/booking/:id" element={<BookingPageEdit />} />
-          <Route
-            path="/booking-confirmed"
-            element={<ConfirmationBookingPage />}
-          />
           <Route path="/villas-collection" element={<VillasCollectionPage />} />
           <Route
             path="/services-collection"
@@ -44,6 +38,12 @@ function App() {
         </Route>
 
         <Route element={<Protected />}>
+          <Route path="/villa/:id/booking" element={<BookingPage />} />
+          <Route path="/booking/:id" element={<BookingPageEdit />} />
+          <Route
+            path="/booking-confirmed"
+            element={<ConfirmationBookingPage />}
+          />
           <Route path="/questionnaire" element={<Questionnaire />} />
           <Route path="/questionnaire/:id" element={<QuestionnaireUpdate />} />
           <Route path="/account" element={<Account />}></Route>

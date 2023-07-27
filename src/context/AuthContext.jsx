@@ -12,11 +12,14 @@ const AuthContextWrapper = ({ children }) => {
     authentificationUser();
   }, []);
 
+  // console.log("token", token);
+  // console.log("LoogedIn?", isLoggedIn);
+
   const authentificationUser = async () => {
     try {
       const token = localStorage.getItem("token");
       if (token) {
-        const response = await axios.get("localhost:3000/auth/verify", {
+        const response = await axios.get("//localhost:3000/auth/verify", {
           headers: {
             Authorization: `Bearer ${token}`,
           },

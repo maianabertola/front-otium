@@ -27,7 +27,6 @@ export default function VillaCardDetails({ villa, booking }) {
     const newDates = { newStartDate, newEndDate };
     setDates(newDates);
   }
-  console.log("DATES", dates);
 
   useEffect(() => {
     villa;
@@ -46,7 +45,7 @@ export default function VillaCardDetails({ villa, booking }) {
     return [];
   }, [villa]);
 
-  console.log("DATES BOOKED", memoDates);
+  // console.log("DATES BOOKED", memoDates);
 
   //change icone if it's sea view or mountain view
   let icone;
@@ -185,20 +184,27 @@ export default function VillaCardDetails({ villa, booking }) {
                 excludeDateIntervals={memoDates}
                 placeholderText="Select a date other than today or yesterday"
               />
-              <Button
-                cta={"Confirm your dates"}
-                backgroundColor={"black"}
-                onClick={createDate}
-              ></Button>
-              {/* <Button
-                backgroundColor={"white"}
-                cta={"Save it in your wishlist"}
-              ></Button> */}
-              <Button
-                backgroundColor={"black"}
-                cta={"Book your stay now"}
-                onClick={changePage}
-              ></Button>
+              {!booking && (
+                <>
+                  <Button
+                    cta={"Confirm your dates"}
+                    backgroundColor={"black"}
+                    onClick={createDate}
+                  ></Button>
+                  <Button
+                    backgroundColor={"black"}
+                    cta={"Book your stay now"}
+                    onClick={changePage}
+                  ></Button>
+                </>
+              )}
+              {booking && (
+                <Button
+                  cta={"Confirm new dates"}
+                  backgroundColor={"black"}
+                  onClick={createDate}
+                ></Button>
+              )}
               <Outlet />
             </tr>
           </tbody>

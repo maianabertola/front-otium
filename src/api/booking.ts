@@ -5,25 +5,29 @@ interface Ibooking {
   numberOfPeople: number;
   pet: boolean;
   message: string;
-  userId: Types.ObjectId;
-  villaId: Types.ObjectId;
+  userId: string;
+  villaId: string;
   bookedDates: {
     Start: Date;
     End: Date;
   };
 }
 
-export const submitBooking = async (
-  numberOfPeople: number,
-  message: string,
-  userId: Types.ObjectId,
-  villaId: string,
-  bookedDates: Date
-) => {
+export const submitBooking = async ({
+  numberOfPeople,
+  pet,
+  message,
+  userId,
+  villaId,
+  bookedDates,
+}) => {
+  console.log("pet dans submitBooking", pet);
+
   await service.post(
     `/booking/${villaId}`,
     {
       numberOfPeople,
+      pet,
       message,
       userId,
       villaId,

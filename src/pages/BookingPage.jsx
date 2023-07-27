@@ -19,18 +19,17 @@ function BookingPage() {
   const { user } = useContext(AuthContext);
 
   //Retrieve data from BookingContext
-  const { startDate, setStartDate, endDate, setEndDate, dates, setDates } =
-    useContext(BookingContext);
-
-  console.log("DATES DANS BOOKING", dates);
+  const { dates } = useContext(BookingContext);
 
   const queryClient = useQueryClient();
 
   const [numberOfPeople, setNumberOfPeople] = useState(1);
   const [message, setMessage] = useState("");
+  const [pet, setPet] = useState(false);
   const { id } = useParams();
   const navigate = useNavigate();
 
+  console.log("pet global", pet);
   //fetch Villas Data from db
   const {
     isLoading,
@@ -42,72 +41,39 @@ function BookingPage() {
     queryFn: () => getOneVilla(id),
   });
 
-  //handling the values before submit
+  //CREATING BOOKING
+  //handling the nb of people before submit
   function handleNumberOfPeople(event) {
     event.preventDefault();
     setNumberOfPeople(event.target.value);
   }
 
+  //handling the message before submit
   function handleMessage(event) {
     event.preventDefault();
     setMessage(event.target.value);
   }
 
-  //create the booking
-  // async function submitBooking(event) {
-  //   event.preventDefault();
-  //   try {
-  //     //creating a new array to store the bookedDates from villa collection and from my booking
-  //     const newDatesVillaCollection = [];
-
-  //     villa.Villa.bookedDates.map((element) => {
-  //       newDatesVillaCollection.push(element);
-  //     });
-  //     newDatesVillaCollection.push(dates);
-
-  //     const patchDates = await service.patch(
-  //       `/villa/${id}`,
-  //       newDatesVillaCollection
-  //     );
-
-  //     //creating a post in Booking collection
-  //     const booking = await service.post(
-  //       `/booking/${id}`,
-  //       {
-  //         numberOfPeople,
-  //         message,
-  //         userId: user._id,
-  //         villaId: id,
-  //         bookedDates: { Start: dates.newStartDate, End: dates.newEndDate },
-  //       },
-  //       {
-  //         headers: {
-  //           Authorization: `Bearer ${localStorage.getItem("token")}`,
-  //         },
-  //       }
-  //     );
-
-  //     navigateToConfirmationBookingPage(event);
-  //   } catch (error) {
-  //     console.log(
-  //       "there's an error when creating a booking or patching the bookedDates in the BookingPage",
-  //       error
-  //     );
-  //   }
-  // }
-
-  //navigate to the next page once submit is done
-  // function navigateToConfirmationBookingPage(event) {
-  //   event.preventDefault();
-  //   navigate("/booking-confirmed");
-  // }
+  function handlePet(event) {
+    event.preventDefault();
+    setPet(event.target.value);
+  }
 
   //handle the booking creation
+  //The mutate function from useMutation hook of react-query accepts a single argument. If you need to pass multiple pieces of data, you should pass them as properties of a single object. This object is then deconstructed in your mutation function
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const dataBooking = await mutate(numberOfPeople, message, user._id, id, {
-      Start: dates.newStartDate,
-      End: dates.newEndDate,
+    console.log("pet in handleSubmit", pet);
+    mutate({
+      numberOfPeople,
+      pet,
+      message,
+      userId: user._id,
+      villaId: id,
+      bookedDates: {
+        Start: dates.newStartDate,
+        End: dates.newEndDate,
+      },
     });
   };
 
@@ -122,76 +88,51 @@ function BookingPage() {
     mutationFn: submitBooking,
     onSuccess: (newBooking) => {
       queryClient.setQueryData(["bookings"], newBooking);
-      handlePatchVilla(e);
+      handlePatchVilla();
     },
-    onError: `error ${error}`,
+    onError: `There is an error with mutate Booking ${error}`,
   });
 
-  //useQuery to create a patch in the villa collection
-  // const {
-  //   isLoading: isLoadingPatchVilla,
-  //   isError: isErrorPatchVilla,
-  //   error: errorPatchVilla,
-  //   mutate: mutateVilla,
-  // } = useMutation({
-  //   mutationFn: patchVilla,
-  //   onSuccess: (newPatchVilla) => {
-  //     queryClient.setQueryData(["villas"], newPatchVilla);
-  //   },
-  // });
+  //refetchQuery -> pour reloader quand le doc est créé
 
-  const patchVilla = async (e) => {
-    e.preventDefault();
-    const newPatchVilla = await patchVilla("toto");
-  }; //can refetchQuery -> pour reloader quand le doc est créé
+  //formating the dates for the patch
+  let bookedDatesToPatch = [
+    {
+      Start: dates.newStartDate,
+      End: dates.newEndDate,
+    },
+  ];
 
-  //  creating a new array to store the bookedDates from villa collection and from my booking
+  //useQuery to patch villa
+  const handlePatchVilla = async () => {
+    console.log("bookedDates to mutate", bookedDatesToPatch);
+    console.log("id de la villa to mutate", id);
 
-  //patch villa
-  function handlePatchVilla(e) {
-    e.preventDefault();
-    mutateVilla(id, newDatesVillaCollection);
-  }
+    mutateVilla({ id, bookedDates: bookedDatesToPatch });
+  };
 
-  // useEffect(() => {
-  //   getOneVilla();
-  // }, []);
-
-  // let newDatesVillaCollection = [];
-  // const datesBooked = useMemo(() => {
-  //   if (villa) {
-  //     villa?.Villa.bookedDates.map((element) => {
-  //       newDatesVillaCollection.push(element);
-  //     });
-  //     newDatesVillaCollection.push(dates);
-  //   }
-  //   return newDatesVillaCollection;
-  // }, [villa]);
-
-  // console.log("DATES", newDatesVillaCollection);
-
-  //memo the results for the dates
-  // const memoDates = useMemo(() => {
-  //   if (villa && villa.Villa && villa.Villa.bookedDates) {
-  //     return villa.Villa.bookedDates.map((element) => {
-  //       return {
-  //         start: new Date(element.Start),
-  //         end: new Date(element.End),
-  //       };
-  //     });
-  //   }
-  //   return [];
-  // }, [villa]);
+  const {
+    isLoading: isLoadingPatchVilla,
+    isError: isErrorPatchVilla,
+    error: errorPatchVilla,
+    mutate: mutateVilla,
+  } = useMutation({
+    mutationFn: patchVilla,
+    onSuccess: (newPatchVilla) => {
+      queryClient.setQueryData(["villas"], newPatchVilla);
+      navigate("/booking-confirmed");
+    },
+  });
 
   //if not, display a little message to avoid error message
-  if (isLoading || isLoadingBooking) {
+  if (isLoading || isLoadingBooking || isLoadingPatchVilla) {
     return <div>Please wait, content is loading</div>;
   }
 
-  if (isError || isErrorBooking) {
+  if (isError || isErrorBooking || isErrorPatchVilla) {
     return (
       <div>
-        Error {error} || {errorBooking}
+        Error {error} || {errorBooking} || {errorPatchVilla}
       </div>
     );
   }
@@ -215,18 +156,35 @@ function BookingPage() {
               onChange={handleNumberOfPeople}
             ></OneInput>
 
-            {/* {villa.petAllowed
-              ? true(
-                  <div>
-                    <p>Are you coming with your pets?</p>
-                    <button onClick={choosePet}>Yes</button>
-                  </div>
-                )
-              : false(
-                  <div>
-                    <p>Remember pets are not allowed in the villa</p>
-                  </div>
-                )} */}
+            {villa.Villa.petFriendly ? (
+              <>
+                <p>Are you coming with your pets?</p>
+                <div className="flexRow">
+                  <OneInput
+                    key={"pet-yes"}
+                    label={"Yes"}
+                    type={"radio"}
+                    value={true}
+                    name={"pet"}
+                    onChange={handlePet}
+                  />
+                  <OneInput
+                    key={"pet-no"}
+                    label={"No"}
+                    type={"radio"}
+                    value={false}
+                    name={"pet"}
+                    onChange={handlePet}
+                    defaultChecked={true}
+                  />
+                </div>
+              </>
+            ) : (
+              <div>
+                <p>Remember pets are not allowed in the villa</p>
+              </div>
+            )}
+
             <OneInput
               label={"Any more information to share?"}
               key={"Message"}

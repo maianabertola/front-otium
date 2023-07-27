@@ -1,7 +1,15 @@
 import React from "react";
 import "../components/OneInput.css";
 
-function OneInput({ label, type, htmlFor, value, name, onChange }) {
+function OneInput({
+  label,
+  type,
+  htmlFor,
+  value,
+  name,
+  onChange,
+  defaultChecked,
+}) {
   return (
     <div className="divInput">
       <label htmlFor={htmlFor}>{label}</label>
@@ -12,6 +20,7 @@ function OneInput({ label, type, htmlFor, value, name, onChange }) {
         id={htmlFor}
         name={name}
         onChange={onChange}
+        defaultChecked={defaultChecked}
       ></input>
     </div>
   );
