@@ -5,7 +5,6 @@ import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import service from "../service/service";
 import "./QuestionnairesDisplay.css";
-import Navbar from "./Navbar";
 
 const collectionQuestionnaire = "/questionnaire";
 

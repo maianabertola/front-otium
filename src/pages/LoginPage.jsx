@@ -1,12 +1,13 @@
 import React, { useState } from "react";
-import Navbar from "../components/Navbar";
 import "../pages/LoginPage.css";
 import AuthForm from "../components/AuthForm";
 import service from "../service/service";
-
-// const collectionLogin = "http://localhost:3000/auth/login";
+import Button from "../components/Button";
+import { useNavigate } from "react-router-dom";
+import BlackBar from "../components/BlackBar";
 
 function LoginPage() {
+  const navigate = useNavigate();
   async function handleSubmitLogin(event) {
     event.preventDefault();
     try {
@@ -18,22 +19,40 @@ function LoginPage() {
       console.log(e);
     }
   }
+
+  function navToCreateAccount(event) {
+    event.preventDefault();
+    navigate("/auth/signup");
+  }
   return (
     <>
-      <Navbar></Navbar>
-      <div className="bodyLogin">
-        <div className="text">
-          <h1>First time here?</h1>
-          <p className="paragraph">
-            As an esteemed member of Otium, gain access to our exclusive
-            collection of villas by submitting a membership application.
-            Experience unrivaled luxury and reserve your dream accommodations.
-            Unlock a world of opulence and tranquility. Join the privileged few
-            at Otium. Apply now.
-          </p>
+      <div className="accountLogContainer">
+        <div className="columnFlex">
+          <h1 style={{ textAlign: "center", marginBottom: 5 + "vh" }}>
+            First time here?
+          </h1>
+          <div className="textWrap">
+            <p style={{ paddingBottom: 10 + "vh" }}>
+              As an esteemed member of Otium, gain access to our exclusive
+              collection of villas by submitting a membership application.
+              Experience unrivaled luxury and reserve your dream accommodations.
+              Unlock a world of opulence and tranquility. Join the privileged
+              few at Otium. Apply now.
+            </p>
+
+            <Button
+              cta={"Connect with us"}
+              backgroundColor={"black"}
+              onClick={navToCreateAccount}
+            ></Button>
+          </div>
         </div>
-        <div className="connection">
-          <p>Already a member?</p>
+
+        <BlackBar position={"static"} height={85}></BlackBar>
+        <div className="columnFlex">
+          <h1 style={{ textAlign: "center", marginBottom: 5 + "vh" }}>
+            Already a member?
+          </h1>
           <AuthForm mode={"login"} />
         </div>
       </div>

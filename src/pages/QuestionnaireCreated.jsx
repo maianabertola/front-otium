@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import service from "../service/service";
 import VillaCard from "../components/VillaCard";
-import Navbar from "../components/Navbar";
 
 function QuestionnaireCreated() {
   const navigate = useNavigate();
@@ -35,7 +34,6 @@ function QuestionnaireCreated() {
 
   return (
     <>
-      <Navbar></Navbar>
       <div className="description">
         <h1>Your questionnaire has been successfully created</h1>
         <p>

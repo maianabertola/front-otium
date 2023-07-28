@@ -1,25 +1,21 @@
-.bodyLogin {
+.accountLogContainer {
   display: flex;
-  align-items: center;
-  margin-top: 10rem;
-  justify-content: space-evenly;
-  margin-top: 10rem;
-  flex-direction: column;
+  flex-direction: row;
+  align-items: flex-start;
+  max-height: 50vh;
+  padding-top: 10vh;
 }
 
-.text {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 5rem;
-}
-
-.connection {
+.columnFlex {
   display: flex;
+  justify-content: flex-start;
+  width: 80%;
   flex-direction: column;
   align-items: center;
+  padding-top: 15vh;
 }
 
-.paragraph {
-  width: 600px;
+.textWrap {
+  width: 60%;
+  text-align: center;
 }

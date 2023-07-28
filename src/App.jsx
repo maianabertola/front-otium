@@ -1,8 +1,7 @@
 import "./App.css";
-import "./components/Layout";
 import { Routes, Route } from "react-router-dom";
 import Homepage from "./pages/Homepage";
-import Layout from "./components/Layout";
+import Layout from "./components/Layout/Layout";
 import Questionnaire from "./pages/QuestionnairePage";
 import Created from "./pages/QuestionnaireCreated";
 import LoginPage from "./pages/LoginPage";

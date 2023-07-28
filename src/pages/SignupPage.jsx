@@ -1,6 +1,5 @@
 import React from "react";
 import service from "../service/service";
-import Navbar from "../components/Navbar";
 import AuthForm from "../components/AuthForm";
 import "../pages/SignupPage.css";
 
@@ -24,7 +23,6 @@ function SignupPage() {
   }
   return (
     <>
-      <Navbar></Navbar>
       <div className="body">
         <h1 className="h1Signup">
           You are one click away to become an Otium member

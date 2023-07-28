@@ -5,6 +5,7 @@ import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import OneInput from "./Input/OneInput";
+import Button from "./Button";
 
 const AuthForm = ({ mode }) => {
   const { authentificationUser } = useContext(AuthContext);
@@ -73,8 +74,8 @@ const AuthForm = ({ mode }) => {
     <>
       {mode === "signup" && (
         <form onSubmit={handleSubmit} className="formulaire">
-          <h1 className="h1">Sign Up</h1>
-          <div className="login box2">
+          <h1>Sign Up</h1>
+          <div>
             <OneInput
               key={"email"}
               label={"email"}
@@ -93,7 +94,7 @@ const AuthForm = ({ mode }) => {
             />
           </div>
           <h3>Identity</h3>
-          <div className="identity box2">
+          <div>
             <OneInput
               key={"name"}
               label={"name"}
@@ -112,7 +113,7 @@ const AuthForm = ({ mode }) => {
             />
           </div>
           <h3>contact details</h3>
-          <div className="identity box2">
+          <div>
             <OneInput
               key={"phoneNumber"}
               label={"phoneNumber"}
@@ -143,7 +144,7 @@ const AuthForm = ({ mode }) => {
       )}
 
       {mode === "login" && (
-        <form onSubmit={handleSubmit}>
+        <div className="inputLoginWrap">
           <OneInput
             label={"Email: "}
             type={"text"}
@@ -158,8 +159,12 @@ const AuthForm = ({ mode }) => {
             name={"password"}
             onChange={handlePasswordChange}
           />
-          <button>{mode}</button>
-        </form>
+          <Button
+            cta={"Login"}
+            backgroundColor={"black"}
+            onClick={handleSubmit}
+          ></Button>
+        </div>
       )}
     </>
   );

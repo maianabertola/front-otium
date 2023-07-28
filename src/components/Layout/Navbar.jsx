@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import "./Navbar.css";
 import { Link } from "react-router-dom";
-import logo from "../assets/OtiumLogo.png";
+import logo from "../../assets/OtiumLogo.png";
 import { useContext, useState } from "react";
-import { AuthContext } from "../context/AuthContext";
+import { AuthContext } from "../../context/AuthContext";
 
 function Navbar() {
-  const { setUser } = useContext(AuthContext);
+  const { setUser, isLoggedIn } = useContext(AuthContext);
   const [navbar, setNavbar] = useState(false);
 
   function logout() {
@@ -37,13 +37,13 @@ function Navbar() {
       </div>
       <ul>
         <li>
-          <Link to="/" className="linkNavbar">
+          <Link to="/villas-collection" className="linkNavbar">
             Destinations
           </Link>
         </li>
         <li>
-          <Link to="/account" className="linkNavbar">
-            Account
+          <Link to="/services-collection" className="linkNavbar">
+            Services
           </Link>
         </li>
         <li>
@@ -56,20 +56,18 @@ function Navbar() {
             About
           </Link>
         </li>
-        <li>
-          <Link to="/auth/login" className="linkNavbar">
-            Log In
-          </Link>
-        </li>
-        <li>
-          <Link to="/auth/signup" className="linkNavbar">
-            Sign Up
-          </Link>
-        </li>
-        <li>
-          <button onClick={logout}>Log Out</button>
-        </li>
-        {/* <Button cta={"Book now"} backgroundColor={"black"}></Button> */}
+        {!isLoggedIn && (
+          <li>
+            <Link to="/auth/login" className="linkNavbar">
+              Account
+            </Link>
+          </li>
+        )}
+        {isLoggedIn && (
+          <li>
+            <button onClick={logout}>Log Out</button>
+          </li>
+        )}
       </ul>
     </nav>
   );

@@ -22,6 +22,15 @@ function BlackBar({ height, position }) {
     };
   }
 
+  if (position === "static") {
+    blackBarStyle = {
+      height: barHeight,
+      position: "static",
+      left: 50 + "%",
+      marginTop: 5 + "vh",
+    };
+  }
+
   return (
     <>
       <div className="blackBar" style={blackBarStyle}></div>
