@@ -1,5 +1,5 @@
 import React from "react";
-import "../components/OneInput.css";
+import "./OneInput.css";
 
 function OneInput({
   label,

@@ -1,6 +1,6 @@
 import { useNavigate, useOutletContext, useParams } from "react-router-dom";
 import React, { useContext, useState, useEffect, useMemo } from "react";
-import OneInput from "../components/OneInput";
+import OneInput from "../components/Input/OneInput";
 import Button from "../components/Button";
 import service from "../service/service";
 import "./BookingPage.css";

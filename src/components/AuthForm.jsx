@@ -4,7 +4,7 @@ import "../components/AuthForm.css";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
-import OneInput from "./OneInput";
+import OneInput from "./Input/OneInput";
 
 const AuthForm = ({ mode }) => {
   const { authentificationUser } = useContext(AuthContext);

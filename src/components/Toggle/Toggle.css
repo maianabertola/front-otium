@@ -1,0 +1,33 @@
+.toggleWrap {
+  color: white;
+  width: 100%;
+}
+
+input[type="radio"] {
+  appearance: none;
+  position: absolute;
+  width: 10%;
+  z-index: -1;
+  border: none;
+}
+
+.btnLabel {
+  padding: 1em;
+  cursor: pointer;
+  color: hsl(0, 0%, 9%);
+  border: 1px solid;
+  transition: 0.3s;
+  user-select: none;
+  display: flex;
+  justify-content: center;
+}
+
+input[type="radio"]:checked + .btnLabel {
+  background-color: hsl(64, 17%, 84%);
+  margin: 0;
+}
+
+.btnLabel:hover {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  margin: 0;
+}

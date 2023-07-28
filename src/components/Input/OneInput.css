@@ -1,0 +1,20 @@
+.divInput {
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  display: flex;
+  background-color: transparent;
+  color: hsl(0, 0%, 9%);
+  height: 46px;
+  width: 381px;
+  margin-bottom: 2vh;
+  text-align: center;
+  border: 1px solid;
+  width: 100%;
+}
+
+label {
+  margin-bottom: 1vh;
+}

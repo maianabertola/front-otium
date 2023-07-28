@@ -1,18 +1,17 @@
-import { useNavigate, useOutletContext, useParams } from "react-router-dom";
-import React, { useContext, useState, useEffect, useMemo } from "react";
-import OneInput from "../components/OneInput";
+import { useNavigate, useParams } from "react-router-dom";
+import React, { useContext, useState } from "react";
 import Button from "../components/Button";
 import "./BookingPage.css";
 import { AuthContext } from "../context/AuthContext";
-import { memo } from "react";
-import service from "../service/service";
 import VillaCardDetails from "../components/VillaCardDetails";
 import { getOneVilla, patchVilla } from "../api/villa";
-import { QueryClient, QueryClientProvider, useMutation } from "react-query";
+import { useMutation } from "react-query";
 import { submitBooking } from "../api/booking";
 import { useQuery } from "react-query";
 import { useQueryClient } from "react-query";
 import { BookingContext } from "../context/BookingContext";
+import Toggle from "../components/Toggle/Toggle";
+import OneInput from "../components/Input/OneInput";
 
 function BookingPage() {
   //Retrieve data from AuthContext
@@ -159,21 +158,17 @@ function BookingPage() {
             {villa.Villa.petFriendly ? (
               <>
                 <p>Are you coming with your pets?</p>
-                <div className="flexRow">
-                  <OneInput
+                <div className="flexToggle">
+                  <Toggle
                     key={"pet-yes"}
                     label={"Yes"}
-                    type={"radio"}
                     value={true}
-                    name={"pet"}
                     onChange={handlePet}
                   />
-                  <OneInput
+                  <Toggle
                     key={"pet-no"}
                     label={"No"}
-                    type={"radio"}
                     value={false}
-                    name={"pet"}
                     onChange={handlePet}
                     defaultChecked={true}
                   />

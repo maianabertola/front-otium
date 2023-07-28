@@ -1,7 +1,7 @@
 import "./QuestionnairePage.css";
 import Button from "../components/Button";
 import React, { useState, useContext } from "react";
-import OneInput from "../components/OneInput";
+import OneInput from "../components/Input/OneInput";
 import Title from "../components/TitleSection";
 import { AuthContext } from "../context/AuthContext";
 import service from "../service/service";

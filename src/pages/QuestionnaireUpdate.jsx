@@ -3,7 +3,7 @@ import service from "../service/service";
 import { useState, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
-import OneInput from "../components/OneInput";
+import OneInput from "../components/Input/OneInput";
 import Title from "../components/TitleSection";
 
 function QuestionnaireUpdate() {
@@ -81,7 +81,7 @@ function QuestionnaireUpdate() {
         numberOfBedroom,
         pickedServices,
       });
-      navigate("/account")
+      navigate("/account");
       console.log("la respinse", response);
       //   navigate(`/questionnaire/${idEnquestion}`);
     } catch (e) {
