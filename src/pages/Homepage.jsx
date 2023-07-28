@@ -22,21 +22,7 @@ import { getAllServices } from "../api/services";
 
 function Homepage() {
   const navigate = useNavigate();
-  // const [villas, setVillas] = useState(null);
-  // const [services, setServices] = useState(null);
-  const { user, isLoggedIn } = useContext(AuthContext);
-
-  //fetch data from the villa
-  // const getAllVillas = async () => {
-  //   try {
-  //     const myVillas = await service.get("/villa");
-  //     setVillas(myVillas.data);
-  //   } catch (error) {
-  //     console.log(
-  //       "there is an error when fetching all the villas from db on the homepage"
-  //     );
-  //   }
-  // };
+  const { isLoggedIn } = useContext(AuthContext);
 
   const {
     isLoading: isLoadingVillas,
@@ -44,16 +30,6 @@ function Homepage() {
     error: errorVillas,
     data: villas,
   } = useQuery({ queryKey: ["villas"], queryFn: getAllVillas });
-
-  //fetching the services
-  // const getAllServices = async () => {
-  //   try {
-  //     const myServices = await service.get("/service");
-  //     setServices(myServices.data);
-  //   } catch (error) {
-  //     console.log("there is an error when fetching all the services from db");
-  //   }
-  // };
 
   const {
     isLoading: isLoadingServices,
@@ -67,15 +43,6 @@ function Homepage() {
     event.preventDefault();
     navigate("questionnaire");
   }
-
-  //use effect to fire these functions once the page is loaded
-  // useEffect(() => {
-  //   getAllServices();
-  // }, []);
-
-  //avoid error by displaying div if the data is not loaded
-  // if (!villas || !services) {
-  // if (!services) return <div>Content is loading</div>;
 
   if (isLoadingVillas || isLoadingServices) {
     return <div>Loading...</div>;
@@ -107,7 +74,7 @@ function Homepage() {
       </section>
 
       <section id="intro">
-        <BlackBar height={50} position={"absolute"}></BlackBar>
+        <BlackBar height={40} position={"absolute"}></BlackBar>
         <div className="introContainer">
           <div className="introTextContainer">
             {!isLoggedIn && <h1>Ciao,</h1>}
@@ -181,7 +148,7 @@ function Homepage() {
         </div>
       </section>
       <section id="values" className="flexRow">
-        <BlackBar height={82} position={"absolute"}></BlackBar>
+        <BlackBar height={75} position={"absolute"}></BlackBar>
         <div className="introContainer">
           <div className="introTextContainer">
             <h2 style={{ fontSize: 40, fontStyle: "italic" }}>
