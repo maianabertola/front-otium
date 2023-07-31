@@ -7,33 +7,19 @@ import { AuthContext } from "../../context/AuthContext";
 
 function Navbar() {
   const { setUser, isLoggedIn } = useContext(AuthContext);
-  const [navbar, setNavbar] = useState(false);
 
   function logout() {
     localStorage.removeItem("token");
     setUser(null);
   }
 
-  // console.log(window.scrollY);
-  //this function check if the setNavbar must change
-  const changeNavbar = () => {
-    if (window.scrollY >= 80) {
-      setNavbar(true);
-    } else {
-      setNavbar(false);
-    }
-  };
-
-  //event when scrolling call the function changeNavbar
-  window.addEventListener("scroll", changeNavbar);
-  // useEffect(() => {
-  // }, []);
-
   return (
     //ternary condition to know if navbar must be active or not
-    <nav className={navbar ? "navbar:active" : "navbar"}>
+    <nav className="navbar">
       <div className="logoContainer">
-        <img src={logo} alt="Otium logo" />
+        <Link to="/" className="linkNavbar">
+          <img src={logo} alt="Otium logo" />
+        </Link>
       </div>
       <ul>
         <li>
