@@ -8,7 +8,7 @@ function ProtectedRoutes() {
     return <p>Loading...</p>;
   }
   if (!isLoggedIn) {
-    return <Navigate to={"/auth/signup"} />;
+    return <Navigate to={"/auth/need-login"} />;
   }
 
   if (isLoggedIn) {

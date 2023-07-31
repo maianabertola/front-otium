@@ -19,6 +19,7 @@ import BookingPageEdit from "./pages/BookingPageEdit";
 import VillasCollectionPage from "./pages/VillasCollectionPage";
 import ServicesCollectionPage from "./pages/ServicesCollectionPage";
 import ServicePage from "./pages/ServicePage";
+import LogginPageRedirection from "./pages/LoginPageRedirection";
 
 function App() {
   return (
@@ -53,6 +54,7 @@ function App() {
           <Route path="signup" element={<SignupPage />} />
           <Route path="accountcreated" element={<AccountCreatedPage />} />
           <Route path="login" element={<LoginPage />} />
+          <Route path="need-login" element={<LogginPageRedirection />} />
         </Route>
       </Routes>
     </>

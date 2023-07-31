@@ -19,3 +19,17 @@
   width: 60%;
   text-align: center;
 }
+
+.accountLogRedirectionContainer {
+  display: flex;
+  flex-direction: column;
+  max-height: 50vh;
+  padding-top: 10vh;
+}
+
+.logInWrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  max-height: 50vh;
+}

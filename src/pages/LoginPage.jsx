@@ -32,7 +32,7 @@ function LoginPage() {
             First time here?
           </h1>
           <div className="textWrap">
-            <p style={{ paddingBottom: 10 + "vh" }}>
+            <p style={{ paddingBottom: 10.5 + "vh" }}>
               As an esteemed member of Otium, gain access to our exclusive
               collection of villas by submitting a membership application.
               Experience unrivaled luxury and reserve your dream accommodations.
