@@ -13,22 +13,29 @@
   z-index: 1;
 }
 
-.heroText {
-  font-size: 3.4rem;
-  color: hsl(0, 0%, 98%);
+.heroTitleContainer {
   position: absolute;
   z-index: 1;
-  top: 40%;
-  left: 25%;
+  top: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.heroTitle {
+  font-size: 3.4rem;
+  color: hsl(0, 0%, 98%);
 }
 
 .heroSlogan {
   display: flex;
   flex-direction: row;
-  width: 70vw;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
   position: absolute;
-  top: 50%;
-  left: 22%;
+  top: 35%;
+  gap: 7vw;
 }
 
 h4 {
@@ -36,7 +43,34 @@ h4 {
   font-size: 76px;
   color: hsl(0, 0%, 98%);
   font-style: italic;
-  margin-right: 3rem;
+}
+
+.logoFirstWrapper {
+  color: hsl(0, 0%, 98%);
+  font-size: 10rem;
+  position: relative;
+  top: 47%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.logoO {
+  position: relative;
+  text-align: center;
+  z-index: 2;
+}
+
+.logoSecondWrapper {
+  color: hsl(0, 0%, 98%);
+  font-size: 10rem;
+  position: relative;
+  top: 28%;
+}
+
+.logoT {
+  text-align: center;
 }
 
 .introContainer {

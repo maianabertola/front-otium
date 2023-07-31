@@ -1,5 +1,7 @@
 import "./Homepage.css";
-import heroImg from "../assets/Positano.jpeg";
+import originalHeroImage from "../assets/Positano.jpeg";
+import discoverHeroImage from "../assets/Discover.jpg";
+import indulgeHeroImage from "../assets/Indulge.jpg";
 import BlackBar from "../components/BlackBar";
 import VillaCard from "../components/VillaCard";
 import Button from "../components/Button";
@@ -10,11 +12,10 @@ import ServiceCard from "../components/ServiceCard";
 import serviceImg from "../assets/ChefService.jpg";
 import aboutImg from "../assets/Founderspictures.jpg";
 import { useNavigate } from "react-router-dom";
-import React, { useEffect, useState, useContext } from "react";
+import React, { useContext, useState } from "react";
 import NeedHelp from "../components/NeedHelp";
 import { AuthContext } from "../context/AuthContext";
 import { Link } from "react-router-dom";
-import service from "../service/service";
 import "../App.css";
 import { useQuery } from "react-query";
 import { getAllVillas } from "../api/villa";
@@ -23,7 +24,10 @@ import { getAllServices } from "../api/services";
 function Homepage() {
   const navigate = useNavigate();
   const { isLoggedIn } = useContext(AuthContext);
+  const [heroImage, setHeroImage] = useState(originalHeroImage);
+  const [imageLoading, setImageLoading] = useState(false);
 
+  //loading villas collection
   const {
     isLoading: isLoadingVillas,
     isError: isErrorVillas,
@@ -31,6 +35,7 @@ function Homepage() {
     data: villas,
   } = useQuery({ queryKey: ["villas"], queryFn: getAllVillas });
 
+  //loading services collection
   const {
     isLoading: isLoadingServices,
     isError: isErrorServices,
@@ -43,6 +48,14 @@ function Homepage() {
     event.preventDefault();
     navigate("questionnaire");
   }
+
+  const handleMouseEnter = (newImage) => {
+    setHeroImage(newImage);
+  };
+
+  const handleImageLoad = () => {
+    setImageLoading(false);
+  };
 
   if (isLoadingVillas || isLoadingServices) {
     return <div>Loading...</div>;
@@ -61,13 +74,31 @@ function Homepage() {
     <>
       <section id="heroSection">
         <div className="heroContainer">
-          <img src={heroImg} />
+          <img
+            src={heroImage}
+            className={imageLoading ? "fade-out" : ""}
+            onLoad={handleImageLoad}
+          />
           <div className="overlay">
-            <h1 className="heroText">Your otium, your perfect stay to</h1>
+            <div className="heroTitleContainer">
+              <h1 className="heroTitle">Your otium, your perfect stay to</h1>
+            </div>
             <div className="heroSlogan">
-              <h4>Retreat</h4>
-              <h4>Discover</h4>
-              <h4>Indulge</h4>
+              <h4 onMouseEnter={() => handleMouseEnter(originalHeroImage)}>
+                Retreat
+              </h4>
+              <h4 onMouseEnter={() => handleMouseEnter(discoverHeroImage)}>
+                Discover
+              </h4>
+              <h4 onMouseEnter={() => handleMouseEnter(indulgeHeroImage)}>
+                Indulge
+              </h4>
+            </div>
+            <div className="logoFirstWrapper">
+              <p className="logoO">O</p>
+            </div>
+            <div className="logoSecondWrapper">
+              <p className="logoT">T</p>
             </div>
           </div>
         </div>
