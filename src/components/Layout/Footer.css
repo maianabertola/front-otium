@@ -30,3 +30,17 @@ ol {
 .footerList {
   margin: 0;
 }
+
+.columnFooter {
+  display: flex;
+  flex-direction: column;
+  align-content: flex-start;
+  justify-content: space-around;
+}
+
+.flexRowFooter {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  padding: 0rem 3rem;
+}
