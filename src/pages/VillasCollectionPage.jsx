@@ -1,36 +1,26 @@
 import React from "react";
-import { useState, useEffect } from "react";
 import "../pages/Homepage.css";
-import service from "../service/service";
 import { Link } from "react-router-dom";
 import VillaCard from "../components/VillaCard";
 import NeedHelp from "../components/NeedHelp";
 import TitlePage from "../components/TitlePage";
+import { useQuery } from "react-query";
+import { getAllVillas } from "../api/villa";
 
 function VillasCollectionPage() {
-  const [villas, setVillas] = useState(null);
+  const {
+    isLoading,
+    isError,
+    error,
+    data: villas,
+  } = useQuery({ queryKey: ["villas"], queryFn: getAllVillas });
 
-  //fetch data from the villa
-  const getAllVillas = async () => {
-    try {
-      console.log("getting into getAllVillas");
-      const myVillas = await service.get("/villa");
-      setVillas(myVillas.data);
-      console.log("HERE", myVillas);
-    } catch (error) {
-      console.log(
-        "there is an error when fetching all the villas from db on the villas collection"
-      );
-    }
-  };
+  if (isLoading) {
+    return <div>Wait a moment</div>;
+  }
 
-  //use effect to fire these functions once the page is loaded
-  useEffect(() => {
-    getAllVillas();
-  }, []);
-
-  if (!villas) {
-    return <div>Please wait a moment</div>;
+  if (isError) {
+    return <div>There's an error {error}</div>;
   }
 
   return (
@@ -46,7 +36,7 @@ function VillasCollectionPage() {
                     key={villa._id}
                     region={villa.region}
                     name={villa.name}
-                    slogan={villa.slogan}
+                    tagline={villa.tagline}
                   ></VillaCard>
                 </Link>
               </>
