@@ -1,11 +1,14 @@
 .gridContainer {
   display: grid;
-  grid-column: 3;
-  grid-row: 3;
+  grid-template-columns: repeat(3, 1fr);
   border: 1px solid black;
+  margin-bottom: 2vh;
 }
 
 .gridItem {
   display: inline-grid;
-  border: 1px solid #000000;
+  padding: 10px;
+  text-align: center;
+  align-items: center;
+  border: 1px solid black;
 }

@@ -52,13 +52,13 @@ function VillaPage() {
           <p className="sloganVilla">{villa.Villa.slogan}</p>
           <p className="descriptionVilla">{villa.Villa.description}</p>
           <h2>An Idyllic Villa for</h2>
-          <div className="flexBox">
+          <div className="flexBoxVilla">
             <Box text={"Friends Trip"} status={villa.Villa.idylicStatus}></Box>
             <Box text={"Life Party"} status={villa.Villa.idylicStatus}></Box>
             <Box text={"Family Moment"} status={villa.Villa.idylicStatus}></Box>
           </div>
           <h2>Is Pet friendly?</h2>
-          <div className="flexBox">
+          <div className="flexBoxVilla">
             <Box text={"Yes"} petFriendly={villa.Villa.petFriendly}></Box>
             <Box text={"No"} petFriendly={villa.Villa.petFriendly}></Box>
           </div>
@@ -72,10 +72,28 @@ function VillaPage() {
             );
           })}
           <h2>Services included</h2>
-          {villa.Villa.services.map((element) => {
-            return <Grid cellContent={element.title}></Grid>;
-          })}
+          <div className="gridContainer">
+            {villa.Villa.services.map((element, index) => {
+              return (
+                <>
+                  <Grid cellContent={element.title} key={index}></Grid>
+                </>
+              );
+            })}
+          </div>
           <h2>Rooms & furnitures</h2>
+          {villa.Villa.roomsDescriptions.map((oneRoom) => {
+            return (
+              <details key={oneRoom.room}>
+                <summary>{oneRoom.room}</summary>
+                <ol>
+                  {oneRoom.description.map((element, index) => {
+                    return <li key={index}>{element}</li>;
+                  })}
+                </ol>
+              </details>
+            );
+          })}
         </div>
         <section id="galleryPhotos">
           <div className="greenBackgroundServicesVilla">

@@ -14,10 +14,13 @@
   font-weight: 400;
   font-style: italic;
   font-size: 2.2rem;
+  padding-bottom: 2vh;
 }
 
 ol > li {
   list-style-type: square;
+  margin-left: 4vw;
+  margin-bottom: 1vh©;
 }
 
 .line {
@@ -30,10 +33,16 @@ ol > li {
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding-top: 1rem;
-  padding-bottom: 2rem;
+  padding-top: 1vh;
+  padding-bottom: 2vh;
 }
 
+.flexBoxVilla {
+  padding-bottom: 2vh;
+  display: flex;
+  flex-direction: row;
+  gap: 1vw;
+}
 .flexFeatures {
   margin: 0;
 }
@@ -109,4 +118,8 @@ ol > li {
 .flexCenter {
   display: flex;
   justify-content: center;
+}
+
+summary {
+  padding: 1vh;
 }

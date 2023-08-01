@@ -40,19 +40,19 @@ h1 {
   font-family: "Playfair Bold Italic";
   font-size: 2.25rem;
   font-style: italic;
-  padding: 1rem 0;
+  padding: 2vh 0;
 }
 
 h2 {
   font-family: "Playfair Black";
   font-size: 1.8rem;
-  padding: 1rem 0;
+  padding: 2vh 0;
 }
 
 h3 {
   font-family: "Playfair Bold Italic";
   font-size: 1.5rem;
-  margin-bottom: 1rem;
+  padding: 2vh 0;
 }
 
 p {
