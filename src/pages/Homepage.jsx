@@ -142,7 +142,7 @@ function Homepage() {
                     key={villa._id}
                     region={villa.region}
                     name={villa.name}
-                    slogan={villa.slogan}
+                    tagline={villa.tagline}
                   ></VillaCard>
                 </Link>
               </>
@@ -175,7 +175,7 @@ function Homepage() {
                     key={villa._id}
                     region={villa.region}
                     name={villa.name}
-                    slogan={villa.slogan}
+                    tagline={villa.tagline}
                   ></VillaCard>
                 </Link>
               </>

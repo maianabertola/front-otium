@@ -66,7 +66,7 @@ function ServicePage() {
         </div>
       </div>
       <TitlePage h1={"This service is"} span={"available in"}></TitlePage>
-      <div className="collectionContainer">
+      <div className="collectionContainerService">
         {villasToDisplay.map((villa) => {
           return (
             <>
@@ -75,7 +75,7 @@ function ServicePage() {
                   key={villa._id}
                   region={villa.region}
                   name={villa.name}
-                  slogan={villa.slogan}
+                  tagline={villa.tagline}
                 ></VillaCard>
               </Link>
             </>

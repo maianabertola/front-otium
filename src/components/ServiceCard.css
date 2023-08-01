@@ -22,4 +22,6 @@
 
 .titleService {
   color: hsl(0, 0%, 98%);
+  text-transform: capitalize;
+  font-family: "Playfair Bold Italic";
 }

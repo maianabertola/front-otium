@@ -60,6 +60,7 @@ h4 {
   position: relative;
   text-align: center;
   z-index: 2;
+  font-family: "Playfair";
 }
 
 .logoSecondWrapper {
@@ -71,6 +72,7 @@ h4 {
 
 .logoT {
   text-align: center;
+  font-family: "Playfair";
 }
 
 .introContainer {
@@ -119,10 +121,10 @@ h4 {
   display: grid;
   grid-template-columns: repeat(4, auto [col-start]);
   grid-template-rows: auto;
-  margin-bottom: 5vh;
-  gap: 1vw;
+  gap: 2vw;
   justify-items: center;
   justify-content: space-around;
+  justify-content: center;
 }
 
 .servicesContainer {

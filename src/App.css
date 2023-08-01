@@ -1,11 +1,19 @@
 @font-face {
   font-family: "Playfair Bold Italic";
   src: url("./fonts/Playfair_Display/static/PlayfairDisplay-BoldItalic.ttf");
+}
+
+@font-face {
   font-family: "Playfair Black";
   src: url("./fonts/Playfair_Display/static/PlayfairDisplay-Black.ttf");
-  font-family: "Playfair Bold";
+}
+
+@font-face {
   font-family: "Noto";
   src: url("./fonts/Noto_Sans_KR/NotoSansKR-Regular.otf");
+}
+
+@font-face {
   font-family: "Playfair Semibold Italic";
   src: url("./fonts/Playfair_Display/static/PlayfairDisplay-SemiBoldItalic.ttf");
 }
@@ -38,14 +46,12 @@ h1 {
 h2 {
   font-family: "Playfair Black";
   font-size: 1.8rem;
-  margin-bottom: 1rem;
   padding: 1rem 0;
 }
 
 h3 {
   font-family: "Playfair Bold Italic";
   font-size: 1.5rem;
-  font-style: italic;
   margin-bottom: 1rem;
 }
 
@@ -103,7 +109,7 @@ img {
 }
 
 .pageContainer {
-  margin: 6vh 0;
+  margin: 10vh 0;
 }
 
 .flexToggle {
@@ -112,4 +118,12 @@ img {
   justify-content: space-between;
   width: 100%;
   margin-bottom: 2vh;
+}
+
+.linkCard {
+  text-transform: none;
+  letter-spacing: 0.1rem;
+  text-decoration: none;
+  cursor: pointer;
+  color: hsl(0, 0%, 9%);
 }

@@ -4,7 +4,7 @@ import imgVilla from "../assets/imageVilla.jpg";
 import { useState } from "react";
 import Button from "./Button";
 
-function villaCard({ region, name, slogan }) {
+function villaCard({ region, name, tagline }) {
   const [hover, setHover] = useState(false);
 
   return (
@@ -23,7 +23,7 @@ function villaCard({ region, name, slogan }) {
         <div className="textVillaCard">
           <h3 className="regionVillaCard">{region}</h3>
           <p className="nameVillaCard">{name}</p>
-          <p className="sloganVillaCard">{slogan}</p>
+          <p className="sloganVillaCard">{tagline}</p>
           {hover && (
             <Button cta={"Discover"} backgroundColor={"transparent"}></Button>
           )}

@@ -6,8 +6,6 @@ import service from "../service/service";
 
 function AccountTripBooked() {
   const { user } = useContext(AuthContext);
-  // const collectionBookingofOneUser = "http://localhost:3000/booking/created";
-  // const collectionBooking = "http://localhost:3000/booking";
   const [userBookings, setUserBookings] = useState(null);
   const [loading, setLoading] = useState(true);
   const [deleteItem, setDeleteItem] = useState(false);

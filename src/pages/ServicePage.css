@@ -1,6 +1,5 @@
 .greenBackgroundService {
   background-color: hsl(64, 17%, 84%);
-  /* z-index: -1; */
   width: 70%;
   height: 60vh;
 }
@@ -21,4 +20,12 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
+}
+
+.collectionContainerService {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2vw;
+  padding: 0 5vw;
 }

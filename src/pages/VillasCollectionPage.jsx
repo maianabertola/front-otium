@@ -41,7 +41,7 @@ function VillasCollectionPage() {
           {villas.Villa.map((villa) => {
             return (
               <>
-                <Link to={`/villa/${villa._id}`}>
+                <Link to={`/villa/${villa._id}`} className="linkCard">
                   <VillaCard
                     key={villa._id}
                     region={villa.region}

@@ -25,6 +25,7 @@
 
 .regionVillaCard {
   text-align: center;
+  text-transform: capitalize;
 }
 
 .nameVillaCard {
@@ -32,7 +33,7 @@
   letter-spacing: 0.1rem;
   font-size: 1.4rem;
   text-align: center;
-  margin-bottom: 1rem;
+  padding: 1vh 1vw;
   font-family: "Noto";
   font-weight: bold;
 }
@@ -43,4 +44,5 @@
   font-weight: 500;
   font-size: 1.2rem;
   margin: 1vw;
+  text-transform: capitalize;
 }
