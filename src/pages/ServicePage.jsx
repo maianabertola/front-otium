@@ -1,54 +1,51 @@
 import React from "react";
-import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import service from "../service/service";
 import "./ServicePage.css";
 import imgService from "../assets/ChefService.jpg";
 import TitlePage from "../components/TitlePage";
 import { Link } from "react-router-dom";
 import VillaCard from "../components/VillaCard";
+import { getAllVillas } from "../api/villa";
+import { useQuery } from "react-query";
+import { getOneService } from "../api/services";
 
 function ServicePage() {
-  const [oneService, setOneService] = useState(null);
-  const [villas, setVillas] = useState(null);
   const { id } = useParams();
 
-  //fetching the services
-  const getOneService = async () => {
-    try {
-      const myService = await service.get(`/service/${id}`);
-      setOneService(myService.data);
-    } catch (error) {
-      console.log("there is an error when fetching one service on ServicePage");
-    }
-  };
+  //loading one service
+  const {
+    isLoading: isLoadingService,
+    isError: isErrorService,
+    error: errorService,
+    data: oneService,
+  } = useQuery({
+    queryKey: ["services", id],
+    queryFn: () => getOneService(id),
+  });
 
-  //fetch data from the villa
-  const getAllVillas = async () => {
-    try {
-      const myVillas = await service.get("/villa");
-      setVillas(myVillas.data);
-    } catch (error) {
-      console.log(
-        "there is an error when fetching all the villas from db on the homepage"
-      );
-    }
-  };
+  //loading villas collection
+  const {
+    isLoading: isLoadingVillas,
+    isError: isErrorVillas,
+    error: errorVillas,
+    data: villas,
+  } = useQuery({ queryKey: ["villas"], queryFn: getAllVillas });
 
-  //use effect to fire these functions once the page is loaded
-  useEffect(() => {
-    getOneService(), getAllVillas();
-  }, []);
-
-  if (!oneService || !villas) {
+  if (isLoadingService || isLoadingVillas) {
     return <div>Please wait a moment</div>;
   }
 
-  //filter the villas if they include the service displayed
+  if (isErrorVillas || isErrorService) {
+    return (
+      <div>
+        There is an error {errorVillas} || {errorService}
+      </div>
+    );
+  }
+
+  // filter the villas if they include the service displayed
   let villasToDisplay = villas.Villa.filter((villa) => {
-    // console.log(villa.services);
     return villa.services.includes(oneService.Service._id);
-    // console.log(oneService.Service._id);
   });
 
   return (

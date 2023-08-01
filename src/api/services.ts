@@ -11,3 +11,7 @@ interface Iservices {
 export const getAllServices = () => {
   return service.get<Iservices[]>("/service").then((res) => res.data);
 };
+
+export const getOneService = (id: string) => {
+  return service.get<Iservices[]>(`/service/${id}`).then((res) => res.data);
+};

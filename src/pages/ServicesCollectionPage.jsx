@@ -44,6 +44,7 @@ function ServicesCollectionPage() {
                   <ServiceCard
                     nameService={service.title}
                     img={serviceImg}
+                    key={service.title}
                   ></ServiceCard>
                 </Link>
               </>
