@@ -49,6 +49,11 @@ function Homepage() {
     navigate("questionnaire");
   }
 
+  function navToAbout(event) {
+    event.preventDefault();
+    navigate("about");
+  }
+
   const handleMouseEnter = (newImage) => {
     setHeroImage(newImage);
   };
@@ -156,8 +161,8 @@ function Homepage() {
           <div className="flexButton">
             <Button
               cta={"Find Your Perfect Retreat"}
-              url={navToQuestionnaire}
               backgroundColor={"black"}
+              onClick={navToQuestionnaire}
             ></Button>
           </div>
         </div>
@@ -260,6 +265,7 @@ function Homepage() {
             <Button
               cta={"Discover Our Story"}
               backgroundColor={"black"}
+              onClick={navToAbout}
             ></Button>
           </div>
         </div>

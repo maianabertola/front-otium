@@ -1,8 +1,25 @@
 import React from "react";
 import TitleSection from "./TitleSection";
 import Button from "./Button";
+import { useNavigate } from "react-router-dom";
 
 function NeedHelp() {
+  const navigate = useNavigate();
+
+  const navToQuestionnaire = (event) => {
+    event.preventDefault();
+    navigate("questionnaire");
+  };
+
+  const emailTo = (event) => {
+    event.preventDefault();
+    window.location.href =
+      "mailto:bonjour@we-are-ensemble.com?subject=" +
+      encodeURIComponent("Questions & answers") +
+      "&body=" +
+      encodeURIComponent("Dear Otium Team,");
+  };
+
   return (
     <>
       <TitleSection
@@ -15,10 +32,12 @@ function NeedHelp() {
         <Button
           cta={"Find Your Perfect Retreat"}
           backgroundColor={"black"}
+          onClick={navToQuestionnaire}
         ></Button>
         <Button
           cta={"Contact the Otium Experts"}
           backgroundColor={"white"}
+          onClick={emailTo}
         ></Button>
       </div>
     </>
