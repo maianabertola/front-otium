@@ -10,6 +10,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import DatePicker from "react-datepicker";
 import { useNavigate, Outlet, useParams } from "react-router-dom";
 import { BookingContext } from "../../context/BookingContext";
+import { createGlobalStyle, css } from "styled-components";
 import "./VillaCardDetails.css";
 
 export default function VillaCardDetails({ villa, booking }) {
@@ -151,8 +152,11 @@ export default function VillaCardDetails({ villa, booking }) {
                 </div>
               </td>
             </tr>
+
             <tr colSpan={2} className="flexVerticalCTA">
               <DatePicker
+                label="StartDate"
+                wrapperClassName="datePicker"
                 key={"startDate"}
                 showIcon
                 selected={startDate}
@@ -164,8 +168,11 @@ export default function VillaCardDetails({ villa, booking }) {
                 dateFormat="yyyy/MM/dd"
                 minDate={new Date()}
                 excludeDateIntervals={memoDates}
+                timeInputLabel="Start Date"
               />
+
               <DatePicker
+                wrapperClassName="datePicker"
                 key={endDate}
                 showIcon
                 selected={endDate}
