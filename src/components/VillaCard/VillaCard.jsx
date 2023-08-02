@@ -1,8 +1,8 @@
 import React from "react";
 import "./VillaCard.css";
-import imgVilla from "../assets/imageVilla.jpg";
+import imgVilla from "../../assets/imageVilla.jpg";
 import { useState } from "react";
-import Button from "./Button";
+import Button from "../Button";
 
 function villaCard({ region, name, tagline }) {
   const [hover, setHover] = useState(false);

@@ -1,9 +1,9 @@
-.divInput {
+.inputWrapper {
   display: flex;
   flex-direction: column;
 }
 
-input {
+.inputLarge {
   display: flex;
   background-color: transparent;
   color: hsl(0, 0%, 9%);

@@ -1,16 +1,16 @@
 import React, { useContext, useEffect, useMemo } from "react";
-import "./VillaCardDetails.css";
-import peopleIcon from "../assets/peopleIcon.png";
-import squareMeterIcon from "../assets/squaremeterIcon.png";
-import bedroomIcon from "../assets/iconebed.png";
-import bathIcon from "../assets/iconebathroom.png";
-import moutainviewIcon from "../assets/iconeview.png";
-import seaviewIcon from "../assets/seaview.png";
-import Button from "./Button";
+import peopleIcon from "../../assets/peopleIcon.png";
+import squareMeterIcon from "../../assets/squaremeterIcon.png";
+import bedroomIcon from "../../assets/iconebed.png";
+import bathIcon from "../../assets/iconebathroom.png";
+import moutainviewIcon from "../../assets/iconeview.png";
+import seaviewIcon from "../../assets/seaview.png";
+import Button from "../Button";
 import "react-datepicker/dist/react-datepicker.css";
 import DatePicker from "react-datepicker";
 import { useNavigate, Outlet, useParams } from "react-router-dom";
-import { BookingContext } from "../context/BookingContext";
+import { BookingContext } from "../../context/BookingContext";
+import "./VillaCardDetails.css";
 
 export default function VillaCardDetails({ villa, booking }) {
   const { startDate, setStartDate, endDate, setEndDate, dates, setDates } =
@@ -44,8 +44,6 @@ export default function VillaCardDetails({ villa, booking }) {
     }
     return [];
   }, [villa]);
-
-  // console.log("DATES BOOKED", memoDates);
 
   //change icone if it's sea view or mountain view
   let icone;

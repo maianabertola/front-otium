@@ -11,9 +11,10 @@ function OneInput({
   defaultChecked,
 }) {
   return (
-    <div className="divInput">
+    <div className="inputWrapper">
       <label htmlFor={htmlFor}>{label}</label>
       <input
+        className="inputLarge"
         key={label}
         type={type}
         value={value}

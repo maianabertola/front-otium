@@ -4,7 +4,7 @@ import "./ServicePage.css";
 import imgService from "../assets/ChefService.jpg";
 import TitlePage from "../components/TitlePage";
 import { Link } from "react-router-dom";
-import VillaCard from "../components/VillaCard";
+import VillaCard from "../components/VillaCard/VillaCard";
 import { getAllVillas } from "../api/villa";
 import { useQuery } from "react-query";
 import { getOneService } from "../api/services";

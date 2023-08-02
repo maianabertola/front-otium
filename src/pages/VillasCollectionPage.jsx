@@ -1,7 +1,7 @@
 import React from "react";
 import "../pages/Homepage.css";
 import { Link } from "react-router-dom";
-import VillaCard from "../components/VillaCard";
+import VillaCard from "../components/VillaCard/VillaCard";
 import NeedHelp from "../components/NeedHelp";
 import TitlePage from "../components/TitlePage";
 import { useQuery } from "react-query";

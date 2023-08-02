@@ -3,7 +3,7 @@ import originalHeroImage from "../assets/Positano.jpeg";
 import discoverHeroImage from "../assets/Discover.jpg";
 import indulgeHeroImage from "../assets/Indulge.jpg";
 import BlackBar from "../components/BlackBar";
-import VillaCard from "../components/VillaCard";
+import VillaCard from "../components/VillaCard/VillaCard";
 import Button from "../components/Button";
 import TitleSection from "../components/TitleSection";
 import SmallItalicText from "../components/SmallItalicText";
