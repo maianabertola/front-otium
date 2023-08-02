@@ -8,6 +8,7 @@ table {
   border-collapse: collapse;
   width: 100%;
   border: 1px solid;
+  background-color: hsl(50, 90%, 94%);
 }
 
 thead,
@@ -15,6 +16,7 @@ tr {
   border-collapse: collapse;
   width: 100%;
   border-bottom: 1px solid;
+  background-color: hsl(50, 90%, 94%);
 }
 
 .villaCardDetails {
@@ -49,6 +51,7 @@ tr {
   justify-content: center;
   align-content: center;
   align-items: center;
+  padding: 3vh 0;
 }
 
 .flexTextDetails {
@@ -61,18 +64,8 @@ tr {
   justify-content: center !important;
   align-items: center !important;
   align-content: center !important;
-  margin-top: 2vh !important;
+  margin-bottom: 1vh;
 }
-
-/* .datePicker .react-datepicker__input-container {
-  position: relative;
-  width: 70%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
-  margin-top: 2vh !important;
-} */
 
 .datePicker
   .react-datepicker__input-container
@@ -80,7 +73,7 @@ tr {
   position: absolute;
   padding: 0.5em;
   top: 16%;
-  left: 15%;
+  left: 5%;
 }
 
 .datePicker .react-datepicker__view-calendar-icon input {
@@ -95,7 +88,7 @@ tr {
   padding: 0px 6px 0px 0px;
   position: absolute;
   top: -1%;
-  right: 15%;
+  right: 10%;
   height: 100%;
   display: table-cell;
   vertical-align: middle;
@@ -108,7 +101,7 @@ input {
   padding-bottom: 2vh;
   text-align: center;
   border: 1px solid;
-  width: 70%;
+  width: 100%;
   align-content: center;
 }
 
@@ -118,4 +111,19 @@ input {
   align-items: center !important;
   align-content: center !important;
   width: 100% !important;
+}
+.flexVerticalDates {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.labelDates {
+  font-size: 0.8rem;
+}
+
+.datesTextWrapper {
+  width: 60%;
+  font-style: italic;
+  font-size: 0.7rem;
+  text-align: center;
 }

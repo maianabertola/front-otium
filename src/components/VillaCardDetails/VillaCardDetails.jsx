@@ -12,10 +12,18 @@ import { useNavigate, Outlet, useParams } from "react-router-dom";
 import { BookingContext } from "../../context/BookingContext";
 import { createGlobalStyle, css } from "styled-components";
 import "./VillaCardDetails.css";
+import addDays from "date-fns/addDays";
 
 export default function VillaCardDetails({ villa, booking }) {
-  const { startDate, setStartDate, endDate, setEndDate, dates, setDates } =
-    useContext(BookingContext);
+  const {
+    startDate,
+    setStartDate,
+    endDate,
+    setEndDate,
+    setDates,
+    minEndDate,
+    setMinEndDate,
+  } = useContext(BookingContext);
 
   const navigate = useNavigate();
   const { id } = useParams();
@@ -27,6 +35,7 @@ export default function VillaCardDetails({ villa, booking }) {
     const newEndDate = endDate.toISOString();
     const newDates = { newStartDate, newEndDate };
     setDates(newDates);
+    navToBooking(event);
   }
 
   useEffect(() => {
@@ -66,10 +75,17 @@ export default function VillaCardDetails({ villa, booking }) {
     };
   }
 
-  function changePage(event) {
+  function navToBooking(event) {
     event.preventDefault();
     navigate(`/villa/${id}/booking`);
   }
+
+  //calculate minimum endDate
+  const handleStartDate = (date) => {
+    setStartDate(date);
+    const newEndDate = addDays(date, 6);
+    setMinEndDate(newEndDate);
+  };
 
   return (
     <>
@@ -154,52 +170,63 @@ export default function VillaCardDetails({ villa, booking }) {
             </tr>
 
             <tr colSpan={2} className="flexVerticalCTA">
-              <DatePicker
-                label="StartDate"
-                wrapperClassName="datePicker"
-                key={"startDate"}
-                showIcon
-                selected={startDate}
-                onChange={(date) => {
-                  setStartDate(date);
-                }}
-                isClearable
-                closeOnScroll={true}
-                dateFormat="yyyy/MM/dd"
-                minDate={new Date()}
-                excludeDateIntervals={memoDates}
-                timeInputLabel="Start Date"
-              />
-
-              <DatePicker
-                wrapperClassName="datePicker"
-                key={endDate}
-                showIcon
-                selected={endDate}
-                onChange={(date) => {
-                  setEndDate(date);
-                }}
-                selectsEnd
-                startDate={startDate}
-                endDate={endDate}
-                minDate={startDate}
-                isClearable
-                closeOnScroll={true}
-                dateFormat="yyyy/MM/dd"
-                excludeDateIntervals={memoDates}
-                placeholderText="Select a date other than today or yesterday"
-              />
+              <div className="flexRow">
+                <div className="flexVerticalDates">
+                  <label className="labelDates">Arrival</label>
+                  <DatePicker
+                    placeholderText="Select a start date"
+                    wrapperClassName="datePicker"
+                    key={"startDate"}
+                    showIcon
+                    selected={startDate}
+                    onChange={(date) => {
+                      handleStartDate(date);
+                    }}
+                    isClearable
+                    closeOnScroll={true}
+                    dateFormat="yyyy/MM/dd"
+                    minDate={new Date()}
+                    excludeDateIntervals={memoDates}
+                    required={true}
+                  />
+                </div>
+                <div className="flexVerticalDates">
+                  <label className="labelDates">Departure</label>
+                  <DatePicker
+                    placeholderText="Select an end date"
+                    wrapperClassName="datePicker"
+                    key={endDate}
+                    showIcon
+                    selected={endDate}
+                    onChange={(date) => {
+                      setEndDate(date);
+                    }}
+                    selectsEnd
+                    startDate={startDate}
+                    endDate={endDate}
+                    minDate={minEndDate}
+                    isClearable
+                    closeOnScroll={true}
+                    dateFormat="yyyy/MM/dd"
+                    excludeDateIntervals={memoDates}
+                    required={true}
+                  />
+                </div>
+              </div>
+              <div className="datesTextWrapper">
+                <p>To enhance your stay, a minimum of 6 nights is requested.</p>
+              </div>
               {!booking && (
                 <>
-                  <Button
+                  {/* <Button
                     cta={"Confirm your dates"}
                     backgroundColor={"black"}
                     onClick={createDate}
-                  ></Button>
+                  ></Button> */}
                   <Button
                     backgroundColor={"black"}
                     cta={"Book your stay now"}
-                    onClick={changePage}
+                    onClick={createDate}
                   ></Button>
                 </>
               )}
