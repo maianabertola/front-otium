@@ -139,6 +139,7 @@ function Homepage() {
               <>
                 <Link to={`/villa/${villa._id}`}>
                   <VillaCard
+                    image={villa.previewPhoto}
                     key={villa._id}
                     region={villa.region}
                     name={villa.name}
@@ -172,6 +173,7 @@ function Homepage() {
               <>
                 <Link to={`/villa/${villa._id}`}>
                   <VillaCard
+                    image={villa.previewPhoto}
                     key={villa._id}
                     region={villa.region}
                     name={villa.name}
@@ -232,7 +234,7 @@ function Homepage() {
                   <Link to={`/service/${service._id}`}>
                     <ServiceCard
                       nameService={service.title}
-                      img={serviceImg}
+                      img={service.imageCover}
                     ></ServiceCard>
                   </Link>
                 </>

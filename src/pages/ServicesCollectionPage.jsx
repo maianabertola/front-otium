@@ -35,7 +35,7 @@ function ServicesCollectionPage() {
                 <Link to={`/service/${service._id}`}>
                   <ServiceCard
                     nameService={service.title}
-                    img={serviceImg}
+                    img={service.imageCover}
                     key={service.title}
                   ></ServiceCard>
                 </Link>

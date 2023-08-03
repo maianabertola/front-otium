@@ -4,7 +4,7 @@ import imgVilla from "../../assets/imageVilla.jpg";
 import { useState } from "react";
 import Button from "../Button";
 
-function villaCard({ region, name, tagline }) {
+function villaCard({ image, region, name, tagline }) {
   const [hover, setHover] = useState(false);
 
   return (
@@ -18,7 +18,7 @@ function villaCard({ region, name, tagline }) {
           setHover(false);
         }}
       >
-        <img src={imgVilla}></img>
+        <img src={image}></img>
         <div className="overlay"> </div>
         <div className="textVillaCard">
           <h3 className="regionVillaCard">{region}</h3>

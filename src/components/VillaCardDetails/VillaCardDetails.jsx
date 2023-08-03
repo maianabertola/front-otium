@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useMemo } from "react";
+import React, { useContext, useEffect, useMemo, useState } from "react";
 import peopleIcon from "../../assets/peopleIcon.png";
 import squareMeterIcon from "../../assets/squaremeterIcon.png";
 import bedroomIcon from "../../assets/iconebed.png";
@@ -27,6 +27,7 @@ export default function VillaCardDetails({ villa, booking }) {
 
   const navigate = useNavigate();
   const { id } = useParams();
+  const [showButton, setShowButton] = useState(false);
 
   // when firing the button, the state is updated with a date object
   function createDate(event) {
@@ -39,7 +40,7 @@ export default function VillaCardDetails({ villa, booking }) {
   }
 
   useEffect(() => {
-    villa;
+    villa, setShowButton;
   }, []);
 
   //memorize the results of the function. Will relaunch if villa changes
@@ -86,6 +87,21 @@ export default function VillaCardDetails({ villa, booking }) {
     const newEndDate = addDays(date, 6);
     setMinEndDate(newEndDate);
   };
+
+  // compare the value of the date to show or no the booking button
+  useEffect(() => {
+    if (
+      startDate.getTime() !== endDate.getTime() &&
+      endDate.getTime() >= addDays(startDate, 6).getTime()
+    ) {
+      setShowButton(true);
+    } else {
+      setShowButton(false);
+    }
+  }, [startDate, endDate]);
+
+  console.log("SHOWBUTN", showButton);
+  console.log("IS EQUAL?", startDate === endDate);
 
   return (
     <>
@@ -182,7 +198,7 @@ export default function VillaCardDetails({ villa, booking }) {
                     onChange={(date) => {
                       handleStartDate(date);
                     }}
-                    isClearable
+                    // isClearable
                     closeOnScroll={true}
                     dateFormat="yyyy/MM/dd"
                     minDate={new Date()}
@@ -205,7 +221,7 @@ export default function VillaCardDetails({ villa, booking }) {
                     startDate={startDate}
                     endDate={endDate}
                     minDate={minEndDate}
-                    isClearable
+                    // isClearable
                     closeOnScroll={true}
                     dateFormat="yyyy/MM/dd"
                     excludeDateIntervals={memoDates}
@@ -216,21 +232,18 @@ export default function VillaCardDetails({ villa, booking }) {
               <div className="datesTextWrapper">
                 <p>To enhance your stay, a minimum of 6 nights is requested.</p>
               </div>
-              {!booking && (
+              {!booking && showButton && (
                 <>
-                  {/* <Button
-                    cta={"Confirm your dates"}
-                    backgroundColor={"black"}
-                    onClick={createDate}
-                  ></Button> */}
                   <Button
                     backgroundColor={"black"}
                     cta={"Book your stay now"}
-                    onClick={createDate}
+                    onClick={() => {
+                      if (showButton === true) createDate;
+                    }}
                   ></Button>
                 </>
               )}
-              {booking && (
+              {booking && showButton && (
                 <Button
                   cta={"Confirm new dates"}
                   backgroundColor={"black"}

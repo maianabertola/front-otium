@@ -33,6 +33,7 @@ function VillasCollectionPage() {
               <>
                 <Link to={`/villa/${villa._id}`} className="linkCard">
                   <VillaCard
+                    image={villa.previewPhoto}
                     key={villa._id}
                     region={villa.region}
                     name={villa.name}

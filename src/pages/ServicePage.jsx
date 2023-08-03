@@ -52,7 +52,7 @@ function ServicePage() {
     <>
       <div className="pageContainer flexrowService">
         <div className="imgServiceContainer">
-          <img src={imgService}></img>
+          <img src={oneService.Service.imageServicePage}></img>
         </div>
         <div className="greenBackgroundService">
           <div className="textServiceContainer">
@@ -69,6 +69,7 @@ function ServicePage() {
             <>
               <Link to={`/villa/${villa._id}`}>
                 <VillaCard
+                  image={villa.previewPhoto}
                   key={villa._id}
                   region={villa.region}
                   name={villa.name}

@@ -37,7 +37,7 @@ function VillaPage() {
     <>
       <section id="heroSection">
         <div className="heroVillaContainer">
-          <img src={villaHero} />
+          <img src={villa.Villa.heroPhoto} />
           <Button
             cta={"More Photos"}
             width={3}
@@ -100,7 +100,7 @@ function VillaPage() {
             </p>
             <div className="gallery">
               <div className="imageGalleryContainer1">
-                <img src={imagetest}></img>
+                <img src={villa.Villa.galeryPhoto[0]}></img>
               </div>
               <p
                 className="textGallery"
@@ -109,7 +109,7 @@ function VillaPage() {
                 your
               </p>
               <div className="imageGalleryContainer2">
-                <img src={imagetest}></img>
+                <img src={villa.Villa.galeryPhoto[1]}></img>
               </div>
               <p
                 className="textGallery"
@@ -118,7 +118,7 @@ function VillaPage() {
                 future
               </p>
               <div className="imageGalleryContainer3">
-                <img src={imagetest}></img>
+                <img src={villa.Villa.galeryPhoto[2]}></img>
               </div>
               <p
                 className="textGallery"
@@ -127,10 +127,10 @@ function VillaPage() {
                 vacations
               </p>
               <div className="imageGalleryContainer4">
-                <img src={imagetest}></img>
+                <img src={villa.Villa.galeryPhoto[3]}></img>
               </div>
               <div className="imageGalleryContainer5">
-                <img src={imagetest}></img>
+                <img src={villa.Villa.galeryPhoto[4]}></img>
               </div>
             </div>
             <div className="flexCenter">
