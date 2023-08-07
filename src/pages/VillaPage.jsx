@@ -1,12 +1,10 @@
 import "./VillaPage.css";
-import villaHero from "../assets/villaera.webp";
 import Button from "../components/Button";
-import VillaCardDetails from "../components/VillaCardDetails/VillaCardDetails";
+import VillaCardDetails from "../components/Card/VillaCardDetails";
 import Box from "../components/Box";
 import DistinctiveFeatures from "../components/DistinctiveFeatures";
 import { useParams } from "react-router-dom";
 import Grid from "./Grid";
-import imagetest from "../assets/Positano.jpeg";
 import NeedHelp from "../components/NeedHelp";
 import { useQuery } from "react-query";
 import { getOneVilla } from "../api/villa";

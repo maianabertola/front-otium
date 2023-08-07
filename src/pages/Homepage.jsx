@@ -1,15 +1,11 @@
 import "./Homepage.css";
-import originalHeroImage from "../assets/Positano.jpeg";
-import discoverHeroImage from "../assets/Discover.jpg";
-import indulgeHeroImage from "../assets/Indulge.jpg";
 import BlackBar from "../components/BlackBar";
-import VillaCard from "../components/VillaCard/VillaCard";
+import VillaCard from "../components/Card/VillaCard";
 import Button from "../components/Button";
 import TitleSection from "../components/TitleSection";
 import SmallItalicText from "../components/SmallItalicText";
 import BlackBarHorizontal from "../components/BlackBarHorizontal";
-import ServiceCard from "../components/ServiceCard";
-import serviceImg from "../assets/ChefService.jpg";
+import ServiceCard from "../components/Card/ServiceCard";
 import aboutImg from "../assets/Founderspictures.jpg";
 import { useNavigate } from "react-router-dom";
 import React, { useContext, useState } from "react";
@@ -20,12 +16,15 @@ import "../App.css";
 import { useQuery } from "react-query";
 import { getAllVillas } from "../api/villa";
 import { getAllServices } from "../api/services";
+import ReactPlayer from "react-player";
 
 function Homepage() {
   const navigate = useNavigate();
   const { isLoggedIn } = useContext(AuthContext);
-  const [heroImage, setHeroImage] = useState(originalHeroImage);
-  const [imageLoading, setImageLoading] = useState(false);
+  const [heroVideo, setHeroVideo] = useState(
+    "https://res.cloudinary.com/dspbzkolr/video/upload/v1691073954/OTIUM/Hero/Original_tkmzsp.mp4"
+  );
+  const [imageLoading, setVideoLoading] = useState(false);
 
   //loading villas collection
   const {
@@ -43,7 +42,7 @@ function Homepage() {
     data: services,
   } = useQuery({ queryKey: ["services"], queryFn: getAllServices });
 
-  //function to nav. to the questionnaire page
+  //function to nav.
   function navToQuestionnaire(event) {
     event.preventDefault();
     navigate("questionnaire");
@@ -54,12 +53,17 @@ function Homepage() {
     navigate("about");
   }
 
+  //changing the hero assets when the mouse is hovering texts
   const handleMouseEnter = (newImage) => {
-    setHeroImage(newImage);
+    setHeroVideo(newImage);
   };
 
   const handleImageLoad = () => {
-    setImageLoading(false);
+    setVideoLoading(false);
+  };
+
+  const handleErrorVideo = () => {
+    return <div>Your browser cannot play this video</div>;
   };
 
   if (isLoadingVillas || isLoadingServices) {
@@ -79,23 +83,49 @@ function Homepage() {
     <>
       <section id="heroSection">
         <div className="heroContainer">
-          <img
-            src={heroImage}
-            className={imageLoading ? "fade-out" : ""}
-            onLoad={handleImageLoad}
-          />
+          <div className="reactPlayerWrapper">
+            <ReactPlayer
+              url={heroVideo}
+              playing
+              loop
+              muted
+              width="100%"
+              height="100%"
+              onLoad={handleImageLoad}
+              onError={handleErrorVideo}
+              className="reactPlayer"
+            />
+          </div>
           <div className="overlay">
             <div className="heroTitleContainer">
               <h1 className="heroTitle">Your otium, your perfect stay to</h1>
             </div>
             <div className="heroSlogan">
-              <h4 onMouseEnter={() => handleMouseEnter(originalHeroImage)}>
+              <h4
+                onMouseEnter={() =>
+                  handleMouseEnter(
+                    "https://res.cloudinary.com/dspbzkolr/video/upload/v1691073954/OTIUM/Hero/Original_tkmzsp.mp4"
+                  )
+                }
+              >
                 Retreat
               </h4>
-              <h4 onMouseEnter={() => handleMouseEnter(discoverHeroImage)}>
+              <h4
+                onMouseEnter={() =>
+                  handleMouseEnter(
+                    "https://res.cloudinary.com/dspbzkolr/video/upload/v1691073961/OTIUM/Hero/Discover_uilifj.mp4"
+                  )
+                }
+              >
                 Discover
               </h4>
-              <h4 onMouseEnter={() => handleMouseEnter(indulgeHeroImage)}>
+              <h4
+                onMouseEnter={() =>
+                  handleMouseEnter(
+                    "https://res.cloudinary.com/dspbzkolr/video/upload/v1691073962/OTIUM/Hero/Indulge_1_pelfmk.mp4"
+                  )
+                }
+              >
                 Indulge
               </h4>
             </div>

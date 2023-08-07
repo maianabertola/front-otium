@@ -1,10 +1,8 @@
 import React from "react";
 import NeedHelp from "../components/NeedHelp";
 import TitlePage from "../components/TitlePage";
-import "../App.css";
 import { Link } from "react-router-dom";
-import ServiceCard from "../components/ServiceCard";
-import serviceImg from "../assets/ChefService.jpg";
+import ServiceCard from "../components/Card/ServiceCard";
 import { useQuery } from "react-query";
 import { getAllServices } from "../api/services";
 

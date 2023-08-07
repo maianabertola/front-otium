@@ -1,7 +1,7 @@
 import React from "react";
 import "./ServiceCard.css";
 import { useState } from "react";
-import Button from "./Button";
+import Button from "../Button";
 
 function ServiceCard({ nameService, img }) {
   const [hover, setHover] = useState(false);

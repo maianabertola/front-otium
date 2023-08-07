@@ -3,7 +3,7 @@ import "./QuestionnaireCreated.css";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import service from "../service/service";
-import VillaCard from "../components/VillaCard/VillaCard";
+import VillaCard from "../components/Card/VillaCard";
 
 function QuestionnaireCreated() {
   const navigate = useNavigate();

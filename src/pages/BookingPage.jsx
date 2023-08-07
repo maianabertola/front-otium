@@ -3,7 +3,7 @@ import React, { useContext, useState } from "react";
 import Button from "../components/Button";
 import "./BookingPage.css";
 import { AuthContext } from "../context/AuthContext";
-import VillaCardDetails from "../components/VillaCardDetails/VillaCardDetails";
+import VillaCardDetails from "../components/Card/VillaCardDetails";
 import { getOneVilla, patchVilla } from "../api/villa";
 import { useMutation } from "react-query";
 import { submitBooking } from "../api/booking";

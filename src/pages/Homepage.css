@@ -2,6 +2,9 @@
   height: 100vh;
   width: 100%;
   position: relative;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
 }
 
 .overlay {
@@ -11,6 +14,19 @@
   top: 0;
   background-color: hsla(0, 0%, 0%, 0.494);
   z-index: 1;
+}
+
+.reactPlayerWrapper {
+  width: 100%;
+  /* height: 100%; */
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+
+.reactPlayer {
+  object-fit: contain;
+  position: relative;
 }
 
 .heroTitleContainer {

@@ -1,10 +1,9 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import "./ServicePage.css";
-import imgService from "../assets/ChefService.jpg";
 import TitlePage from "../components/TitlePage";
 import { Link } from "react-router-dom";
-import VillaCard from "../components/VillaCard/VillaCard";
+import VillaCard from "../components/Card/VillaCard";
 import { getAllVillas } from "../api/villa";
 import { useQuery } from "react-query";
 import { getOneService } from "../api/services";

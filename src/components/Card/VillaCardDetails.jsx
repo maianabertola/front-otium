@@ -10,7 +10,6 @@ import "react-datepicker/dist/react-datepicker.css";
 import DatePicker from "react-datepicker";
 import { useNavigate, Outlet, useParams } from "react-router-dom";
 import { BookingContext } from "../../context/BookingContext";
-import { createGlobalStyle, css } from "styled-components";
 import "./VillaCardDetails.css";
 import addDays from "date-fns/addDays";
 
