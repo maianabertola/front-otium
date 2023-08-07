@@ -8,9 +8,11 @@ import Grid from "./Grid";
 import NeedHelp from "../components/NeedHelp";
 import { useQuery } from "react-query";
 import { getOneVilla } from "../api/villa";
+import { useNavigate } from "react-router-dom";
 
 function VillaPage() {
   const { id } = useParams();
+  const navigate = useNavigate();
 
   //fetching the data of one villa by ID
   const {
@@ -22,6 +24,11 @@ function VillaPage() {
     queryKey: ["villas", parseInt(id)],
     queryFn: () => getOneVilla(id),
   });
+
+  //naviage to gallery photos
+  const navToPhotos = () => {
+    navigate("photos");
+  };
 
   //if not, display a little message to avoid error message
   if (isLoading) {
@@ -40,6 +47,7 @@ function VillaPage() {
             cta={"More Photos"}
             width={3}
             backgroundColor={"grey"}
+            onClick={navToPhotos}
           ></Button>
         </div>
       </section>

@@ -99,9 +99,6 @@ export default function VillaCardDetails({ villa, booking }) {
     }
   }, [startDate, endDate]);
 
-  console.log("SHOWBUTN", showButton);
-  console.log("IS EQUAL?", startDate === endDate);
-
   return (
     <>
       <div className="villaCardDetails" style={myStyle}>

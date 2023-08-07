@@ -8,10 +8,10 @@ const BookingContextWrapper = ({ children }) => {
   const [dates, setDates] = useState([]);
   const [minEndDate, setMinEndDate] = useState(null);
 
-  console.log("starDate", startDate);
-  console.log("endDates", endDate);
-  console.log("dates", dates);
-  console.log("minenddate", minEndDate);
+  // console.log("starDate", startDate);
+  // console.log("endDates", endDate);
+  // console.log("dates", dates);
+  // console.log("minenddate", minEndDate);
 
   return (
     <BookingContext.Provider

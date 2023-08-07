@@ -28,8 +28,8 @@ function App() {
         <Route element={<Layout />}>
           <Route index element={<Homepage />} />
           <Route path="/service/:id" element={<ServicePage />} />
-          <Route path="/villa/:id" element={<VillaPage />} />
-          <Route path="photos" element={<GalleryPhotos />} />
+          <Route path="/villa/:id" element={<VillaPage />}></Route>
+          <Route path="/villa/:id/photos" element={<GalleryPhotos />} />
           <Route path="/villas-collection" element={<VillasCollectionPage />} />
           <Route
             path="/services-collection"
