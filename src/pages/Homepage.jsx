@@ -20,7 +20,7 @@ import ReactPlayer from "react-player";
 
 function Homepage() {
   const navigate = useNavigate();
-  const { isLoggedIn } = useContext(AuthContext);
+  const { isLoggedIn, user } = useContext(AuthContext);
   const [heroVideo, setHeroVideo] = useState(
     "https://res.cloudinary.com/dspbzkolr/video/upload/v1691073954/OTIUM/Hero/Original_tkmzsp.mp4"
   );
@@ -140,9 +140,9 @@ function Homepage() {
       </section>
 
       <section id="intro">
-        <BlackBar height={40} position={"absolute"}></BlackBar>
         <div className="introContainer">
           <div className="introTextContainer">
+            {isLoggedIn && <h1>Ciao, {user.name}</h1>}
             {!isLoggedIn && <h1>Ciao,</h1>}
             <h2>Otium, an exquisite haven for discerning epicureans</h2>
             <p>
@@ -152,6 +152,7 @@ function Homepage() {
               refined hospitality.
             </p>
           </div>
+          <BlackBar height={50} position={"top"}></BlackBar>
         </div>
       </section>
 
@@ -183,7 +184,7 @@ function Homepage() {
         <div className="callOut">
           <div className="textContainerCallOut">
             <h2>Do you need help in your research?</h2>
-            <p style={{ margin: 0, paddingRight: 10 + "vw" }}>
+            <p style={{ margin: 0 }}>
               Immerse yourself in a sanctuary of refined indulgence, where each
               moment unveils blissful tranquility, captivating beauty, and an
               extraordinary connection to nature.
@@ -192,7 +193,7 @@ function Homepage() {
           <div className="flexButton">
             <Button
               cta={"Find Your Perfect Retreat"}
-              backgroundColor={"black"}
+              backgroundColor={"blackEnd"}
               onClick={navToQuestionnaire}
             ></Button>
           </div>
@@ -215,8 +216,7 @@ function Homepage() {
           })}
         </div>
       </section>
-      <section id="values" className="flexRow">
-        <BlackBar height={75} position={"absolute"}></BlackBar>
+      <section id="values">
         <div className="introContainer">
           <div className="introTextContainer">
             <h2 style={{ fontSize: 40, fontStyle: "italic" }}>
@@ -225,27 +225,27 @@ function Homepage() {
               Embrace the Art of <br /> Extraordinary Luxury
             </h2>
           </div>
-        </div>
-
-        <div className="flexVertical">
-          <SmallItalicText
-            title={"Tranquility and Privacy"}
-            paragraph={
-              "Our villas are nestled in exceptional and discreet locations, far from crowds, ensuring utmost privacy for your vacation."
-            }
-          ></SmallItalicText>
-          <SmallItalicText
-            title={"Unparalleled Services"}
-            paragraph={
-              "Experience the finest in hospitality with services that rival the best palaces. From in-house chefs, housekeeping, butlers, and personal trainers to concierge services, we cater to your every need."
-            }
-          ></SmallItalicText>
-          <SmallItalicText
-            title={"Dedicated Team"}
-            paragraph={
-              "Our team is available 7 days a week from 9 am to 8 pm, ready to fulfill your desires and ensure a seamless experience during your stay."
-            }
-          ></SmallItalicText>
+          <BlackBar height={100} position={"bottom"}></BlackBar>
+          <div className="flexVertical">
+            <SmallItalicText
+              title={"Tranquility and Privacy"}
+              paragraph={
+                "Our villas are nestled in exceptional and discreet locations, far from crowds, ensuring utmost privacy for your vacation."
+              }
+            ></SmallItalicText>
+            <SmallItalicText
+              title={"Unparalleled Services"}
+              paragraph={
+                "Experience the finest in hospitality with services that rival the best palaces. From in-house chefs, housekeeping, butlers, and personal trainers to concierge services, we cater to your every need."
+              }
+            ></SmallItalicText>
+            <SmallItalicText
+              title={"Dedicated Team"}
+              paragraph={
+                "Our team is available 7 days a week from 9 am to 8 pm, ready to fulfill your desires and ensure a seamless experience during your stay."
+              }
+            ></SmallItalicText>
+          </div>
         </div>
       </section>
       <BlackBarHorizontal height={160}></BlackBarHorizontal>
@@ -273,12 +273,12 @@ function Homepage() {
           </div>
         </div>
       </section>
-      <section id="aboutUs" className="flexRow">
-        <div className="containerPictureVertical">
-          <img src={aboutImg}></img>
-        </div>
-        <BlackBar height={110} position={"absolute"}></BlackBar>
+      <section id="aboutUs">
         <div className="introContainer">
+          <div className="containerPictureVertical">
+            <img src={aboutImg}></img>
+          </div>
+          <BlackBar height={110} position={"absolute"}></BlackBar>
           <div className="introTextContainer">
             <h2 style={{ fontSize: 40, fontStyle: "italic" }}>
               Otium,

@@ -17,10 +17,13 @@ export default function Footer() {
   };
   return (
     <>
-      <BlackBar height={50} position={"relative"}></BlackBar>
+      <div className="gridFooter">
+        <div></div>
+        <BlackBar height={50} position={"bottom"}></BlackBar>
+        <div></div>
+      </div>
       <BlackBarHorizontal></BlackBarHorizontal>
       <footer id="footer">
-        {/* <div style={{ position: "relative", height: 100 }}></div> */}
         <div className="leftFooter">
           <div className="logoFooterContainer">
             <img src={logo} alt="logo otium villa" />

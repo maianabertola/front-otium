@@ -55,6 +55,13 @@ h3 {
   padding: 2vh 0;
 }
 
+h4 {
+  font-family: "Playfair Bold Italic";
+  font-size: 76px;
+  color: hsl(0, 0%, 98%);
+  font-style: italic;
+}
+
 p {
   margin-bottom: 1vh;
 }
@@ -88,7 +95,10 @@ img {
 .containerPictureVertical {
   width: 560px;
   height: 820px;
-  padding: 2rem;
+  padding: 2vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .spanLineBreak {

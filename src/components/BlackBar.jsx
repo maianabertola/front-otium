@@ -4,21 +4,19 @@ import "./BlackBar.css";
 function BlackBar({ height, position }) {
   const barHeight = `${height}vh`;
   let blackBarStyle;
-  if (position === "absolute") {
-    blackBarStyle = {
-      height: barHeight,
-      position: "absolute",
-      top: 0,
-      left: 50 + "%",
-    };
-  }
-
-  if (position === "relative") {
+  if (position === "top") {
     blackBarStyle = {
       height: barHeight,
       position: "relative",
-      left: 50 + "%",
-      marginTop: 5 + "vh",
+      top: 0,
+    };
+  }
+
+  if (position === "bottom") {
+    blackBarStyle = {
+      height: barHeight,
+      position: "relative",
+      bottom: 0 + "%",
     };
   }
 
