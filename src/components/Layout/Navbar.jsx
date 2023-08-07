@@ -8,11 +8,6 @@ import { AuthContext } from "../../context/AuthContext";
 function Navbar() {
   const { setUser, isLoggedIn } = useContext(AuthContext);
 
-  function logout() {
-    localStorage.removeItem("token");
-    setUser(null);
-  }
-
   return (
     //ternary condition to know if navbar must be active or not
     <nav className="navbar">
@@ -51,7 +46,9 @@ function Navbar() {
         )}
         {isLoggedIn && (
           <li>
-            <button onClick={logout}>Log Out</button>
+            <Link to="/account" className="linkNavbar">
+              Account
+            </Link>
           </li>
         )}
       </ul>

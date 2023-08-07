@@ -1,32 +1,39 @@
-.menuAccount {
-  font-size: 30px;
-  width: 200px;
-  height: 6vh;
-  color: black;
-  margin: 1rem;
+.menuContainer {
+  margin: 10vh 0;
+  margin-left: 4.5vw;
 }
 
-.menu {
+.spanNameUser {
+  font-family: "Playfair Bold Italic";
+  font-size: 2.8rem;
+}
+
+.linkAccount {
+  font-family: "Playfair Black";
+  font-size: 1.8rem;
+  padding: 2vh 0;
+  text-transform: capitalize;
+}
+
+.menuAccount {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  width: 40vh;
-  margin-top: 10rem;
-  position: fixed;
+  align-items: flex-start;
+  width: 40vw;
+  padding: 3vh 0;
 }
 
-.welcome {
-  margin-bottom: 3rem;
-  padding: 0;
+.blackSeparation {
+  width: 50%;
+  height: 2px;
+  background-color: hsl(0, 0%, 9%);
 }
 
-.buttons {
-  display: flex;
-  margin-top: 2rem;
-  justify-content: space-evenly
+.contactWrapper {
+  padding: 5vh 0;
 }
 
-.informations {
-  border: 1px black solid;
-  padding: 1rem;
+.logOut {
+  font-size: 1rem;
+  text-decoration: underline;
 }

@@ -4,7 +4,7 @@ import Menu from "../components/MenuAccount";
 function LoggedIn() {
   return (
     <>
-      <div className="bodi">
+      <div className="pageContainer">
         <Menu></Menu>
       </div>
     </>

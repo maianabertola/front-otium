@@ -87,7 +87,7 @@ const AuthForm = ({ mode }) => {
             <OneInput
               key={"password"}
               label={"password"}
-              type={"text"}
+              type={"password"}
               value={password}
               name={"password"}
               onChange={handlePasswordChange}
@@ -154,7 +154,7 @@ const AuthForm = ({ mode }) => {
           />
           <OneInput
             label={"Password: "}
-            type={"text"}
+            type={"password"}
             value={password}
             name={"password"}
             onChange={handlePasswordChange}

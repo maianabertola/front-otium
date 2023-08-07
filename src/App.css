@@ -57,8 +57,15 @@ h3 {
 
 h4 {
   font-family: "Playfair Bold Italic";
-  font-size: 76px;
+  font-size: 4.75rem;
   color: hsl(0, 0%, 98%);
+  font-style: italic;
+}
+
+h5 {
+  font-family: "Playfair";
+  font-size: 1.8rem;
+  font-weight: lighter;
   font-style: italic;
 }
 
