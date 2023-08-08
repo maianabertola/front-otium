@@ -6,7 +6,7 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 
 function Navbar() {
-  const { setUser, isLoggedIn } = useContext(AuthContext);
+  const { isLoggedIn } = useContext(AuthContext);
 
   return (
     //ternary condition to know if navbar must be active or not
@@ -46,7 +46,7 @@ function Navbar() {
         )}
         {isLoggedIn && (
           <li>
-            <Link to="/account" className="linkNavbar">
+            <Link to="/auth/account" className="linkNavbar">
               Account
             </Link>
           </li>

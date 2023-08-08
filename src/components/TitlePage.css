@@ -1,14 +1,14 @@
 .titlePageContainer {
-  margin-left: 4vw;
+  margin-left: 4.5vw;
 }
 
 .titlePageContainer > h1 {
-  font-weight: bolder;
-  font-style: normal;
+  font-family: "Playfair Black";
   font-size: 3.12rem;
+  font-style: normal;
 }
 
-.titlePageContainer > h1 > span {
+.spanTitlePage {
   font-family: "Playfair Semibold Italic";
   font-weight: 500;
 }

@@ -18,6 +18,16 @@
   src: url("./fonts/Playfair_Display/static/PlayfairDisplay-SemiBoldItalic.ttf");
 }
 
+@font-face {
+  font-family: "Noto Bold";
+  src: url("./fonts/Noto_Sans_KR/NotoSansKR-Bold.otf");
+}
+
+@font-face {
+  font-family: "Noto Medium";
+  src: url("./fonts/Noto_Sans_KR/NotoSansKR-Medium.otf");
+}
+
 * {
   margin: 0;
   padding: 0;

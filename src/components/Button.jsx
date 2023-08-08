@@ -48,7 +48,7 @@ function Button({ cta, backgroundColor, width, onClick }) {
     };
   }
 
-  let newWidth = `${width}rem`;
+  let newWidth = `${width}vw`;
 
   const buttonStyle = { ...myStyle, newWidth };
 

@@ -1,3 +1,28 @@
 .inputLoginWrap {
   width: 60%;
 }
+
+.signupContainer {
+  margin: 0 auto;
+  width: 60%;
+}
+.signUpWrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 0 5vw;
+  align-items: flex-start;
+}
+
+.hrSignUp {
+  width: 100%;
+  background-color: black;
+  height: 1.5px;
+}
+
+.flexRowSignUp {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 5vw;
+  padding: 2vh 0;
+}

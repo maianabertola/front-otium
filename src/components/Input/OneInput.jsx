@@ -12,7 +12,9 @@ function OneInput({
 }) {
   return (
     <div className="inputWrapper">
-      <label htmlFor={htmlFor}>{label}</label>
+      <label className="labelOneInput" htmlFor={htmlFor}>
+        {label}
+      </label>
       <input
         className="inputLarge"
         key={label}

@@ -46,7 +46,7 @@ function MenuAccount() {
 
   return (
     <>
-      <div className="flexRow">
+      <div className="flexRowAccount">
         <div className="menuContainer">
           <h1 style={{ padding: 0 }}>Welcome back</h1>
           <span className="spanNameUser">{user.name},</span>

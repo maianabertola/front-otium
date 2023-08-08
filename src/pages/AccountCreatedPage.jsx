@@ -5,7 +5,7 @@ import "./AccountCreatedPage.css";
 function AccountCreatedPage() {
   const navigate = useNavigate();
   const handleNavigate = () => {
-    navigate("/auth/login");
+    navigate("/login");
   };
   return (
     <>

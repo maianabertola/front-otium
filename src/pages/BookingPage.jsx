@@ -104,9 +104,6 @@ function BookingPage() {
 
   //useQuery to patch villa
   const handlePatchVilla = async () => {
-    console.log("bookedDates to mutate", bookedDatesToPatch);
-    console.log("id de la villa to mutate", id);
-
     mutateVilla({ id, bookedDates: bookedDatesToPatch });
   };
 

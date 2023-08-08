@@ -12,9 +12,6 @@ const AuthContextWrapper = ({ children }) => {
     authentificationUser();
   }, []);
 
-  // console.log("token", token);
-  // console.log("LoogedIn?", isLoggedIn);
-
   const authentificationUser = async () => {
     try {
       const token = localStorage.getItem("token");

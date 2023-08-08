@@ -12,6 +12,7 @@ const AuthForm = ({ mode }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
+  const [surname, setSurName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [birthDate, setBirthDate] = useState("");
   const [address, setAddress] = useState("");
@@ -28,6 +29,10 @@ const AuthForm = ({ mode }) => {
   };
   const handleNameChange = (event) => {
     setName(event.target.value);
+  };
+
+  const handleSurnameChange = (event) => {
+    setSurName(event.target.value);
   };
   const handlePhoneNumberChange = (event) => {
     setPhoneNumber(event.target.value);
@@ -48,6 +53,7 @@ const AuthForm = ({ mode }) => {
         email,
         password,
         name,
+        surname,
         phoneNumber,
         birthDate,
         address,
@@ -56,7 +62,7 @@ const AuthForm = ({ mode }) => {
       const userToLogin = { email, password };
       if (mode === "signup") {
         const response = await service.post("/auth/signup", userToSignup);
-        navigate("/auth/accountcreated");
+        navigate("/accountcreated");
       } else {
         const response = await service.post("/auth/login", userToLogin);
         localStorage.setItem("token", response.data.token);
@@ -73,63 +79,80 @@ const AuthForm = ({ mode }) => {
   return (
     <>
       {mode === "signup" && (
-        <form onSubmit={handleSubmit} className="formulaire">
-          <h1>Sign Up</h1>
-          <div>
-            <OneInput
-              key={"email"}
-              label={"email"}
-              type={"text"}
-              value={email}
-              name={"email"}
-              onChange={handleEmailChange}
-            />
-            <OneInput
-              key={"password"}
-              label={"password"}
-              type={"password"}
-              value={password}
-              name={"password"}
-              onChange={handlePasswordChange}
-            />
-          </div>
-          <h3>Identity</h3>
-          <div>
-            <OneInput
-              key={"name"}
-              label={"name"}
-              type={"text"}
-              value={name}
-              name={"name"}
-              onChange={handleNameChange}
-            />
+        <>
+          <div className="signUpWrapper">
+            <h3>Login</h3>
+
+            <hr className="hrSignUp"></hr>
+
+            <div className="flexRowSignUp">
+              <OneInput
+                key={"email"}
+                label={"Email"}
+                type={"text"}
+                value={email}
+                name={"email"}
+                onChange={handleEmailChange}
+              />
+              <OneInput
+                key={"password"}
+                label={"Password"}
+                type={"password"}
+                value={password}
+                name={"password"}
+                onChange={handlePasswordChange}
+              />
+            </div>
+            <h3>Identity</h3>
+            <hr className="hrSignUp"></hr>
+
+            <div className="flexRowSignUp">
+              <OneInput
+                key={"Name"}
+                label={"Name"}
+                type={"text"}
+                value={name}
+                name={"name"}
+                onChange={handleNameChange}
+              />
+              <OneInput
+                key={"Surname"}
+                label={"Surname"}
+                type={"text"}
+                value={surname}
+                name={"surname"}
+                onChange={handleSurnameChange}
+              />
+            </div>
             <OneInput
               key={"birthDate"}
-              label={"birthDate"}
+              label={"BirthDate"}
               type={"Date"}
               value={birthDate}
               name={"birthDate"}
               onChange={handleBirthDateChange}
             />
-          </div>
-          <h3>contact details</h3>
-          <div>
-            <OneInput
-              key={"phoneNumber"}
-              label={"phoneNumber"}
-              type={"text"}
-              value={phoneNumber}
-              name={"phoneNumber"}
-              onChange={handlePhoneNumberChange}
-            />
-            <OneInput
-              key={"country"}
-              label={"country"}
-              type={"text"}
-              value={country}
-              name={"country"}
-              onChange={handleCountryChange}
-            />
+            <h3>Contact details</h3>
+            <hr className="hrSignUp"></hr>
+
+            <div className="flexRowSignUp">
+              <OneInput
+                key={"phoneNumber"}
+                label={"Phone number"}
+                type={"text"}
+                value={phoneNumber}
+                name={"phoneNumber"}
+                onChange={handlePhoneNumberChange}
+              />
+              <OneInput
+                key={"country"}
+                label={"country"}
+                type={"text"}
+                value={country}
+                name={"country"}
+                onChange={handleCountryChange}
+              />
+            </div>
             <OneInput
               key={"address"}
               label={"address"}
@@ -138,9 +161,15 @@ const AuthForm = ({ mode }) => {
               name={"address"}
               onChange={handleAddressChange}
             />
+            <div className="flexRow">
+              <Button
+                onClick={handleSubmit}
+                backgroundColor={"black"}
+                cta={"Connect with us"}
+              ></Button>
+            </div>
           </div>
-          <button>submit</button>
-        </form>
+        </>
       )}
 
       {mode === "login" && (

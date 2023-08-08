@@ -37,3 +37,9 @@
   font-size: 1rem;
   text-decoration: underline;
 }
+
+.flexRowAccount {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}

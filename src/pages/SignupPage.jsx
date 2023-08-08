@@ -2,8 +2,8 @@ import React from "react";
 import service from "../service/service";
 import AuthForm from "../components/AuthForm";
 import "../pages/SignupPage.css";
+import TitlePage from "../components/TitlePage";
 
-// const collectionUser = "http://localhost:3000/auth/signup";
 function SignupPage() {
   async function handleSubmitUser(event) {
     event.preventDefault();
@@ -12,6 +12,7 @@ function SignupPage() {
         email,
         password,
         name,
+        surname,
         birthDate,
         phoneNumber,
         country,
@@ -23,11 +24,15 @@ function SignupPage() {
   }
   return (
     <>
-      <div className="body">
-        <h1 className="h1Signup">
-          You are one click away to become an Otium member
-        </h1>
-        <AuthForm mode={"signup"} />
+      <div className="pageContainer">
+        <div className="signupContainer">
+          <TitlePage
+            h1={"You are one click away to"}
+            span={"become an Otium member"}
+            center={"true"}
+          ></TitlePage>
+          <AuthForm mode={"signup"} />
+        </div>
       </div>
     </>
   );

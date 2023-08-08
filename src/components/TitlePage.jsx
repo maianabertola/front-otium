@@ -11,7 +11,7 @@ function TitlePage({ h1, span, center }) {
   return (
     <div className="titlePageContainer">
       <h1 style={myStyle}>
-        {h1} <span> {span}</span>
+        {h1} <span className="spanTitlePage"> {span}</span>
       </h1>
     </div>
   );

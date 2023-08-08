@@ -22,6 +22,7 @@ function LoginPage() {
 
   function navToCreateAccount(event) {
     event.preventDefault();
+    console.log("Button clicked"); // Debugging line
     navigate("/auth/signup");
   }
   return (

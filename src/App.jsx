@@ -47,16 +47,17 @@ function App() {
           />
           <Route path="/questionnaire" element={<Questionnaire />} />
           <Route path="/questionnaire/:id" element={<QuestionnaireUpdate />} />
-          <Route path="/account" element={<LoggedIn />}></Route>
-          <Route path="/account-trips" element={<AccountTripBooked />} />
         </Route>
         <Route path="/created" element={<Created />} />
+
         <Route path="/auth">
           <Route path="signup" element={<SignupPage />} />
           <Route path="accountcreated" element={<AccountCreatedPage />} />
           <Route path="login" element={<LoginPage />} />
           <Route path="need-login" element={<LogginPageRedirection />} />
         </Route>
+        <Route path="/account" element={<LoggedIn />}></Route>
+        <Route path="/account-trips" element={<AccountTripBooked />} />
       </Routes>
     </>
   );

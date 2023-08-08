@@ -1,20 +1,20 @@
-.user {
+.userCard {
+  margin-right: 4.5vw;
+  margin-bottom: 4vh;
+}
+
+.userTitleCard {
+  font-family: "Noto Medium";
+}
+
+.flexRowUser {
   display: flex;
   flex-direction: column;
-  height: 300px;
-  width: 300px;
-  margin-top: 18rem;
-  margin-left: 3rem;
-  border: black 1px solid;
-  padding: 1rem;
-  margin-left: 22rem;
 }
 
-.element {
-  width: 300px;
-  margin-top: 1rem;
-}
-
-.titleDiv {
-  margin-left: 4rem;
+.flexRowTitleUser {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
 }

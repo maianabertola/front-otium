@@ -47,8 +47,6 @@ export interface Ivillas {
   }
 
   export const patchVilla = async ({id, bookedDates}) => {
-    console.log("bookedDates in the patch", bookedDates);
-    console.log("id de la villa in the patch", id);
     await service.patch(`/villa/${id}`, {bookedDates})
   }
 
