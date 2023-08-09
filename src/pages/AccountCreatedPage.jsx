@@ -1,24 +1,38 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./AccountCreatedPage.css";
+import TitlePage from "../components/TitlePage";
+import Button from "../components/Button";
 
 function AccountCreatedPage() {
   const navigate = useNavigate();
-  const handleNavigate = () => {
-    navigate("/login");
+  const navToVillas = () => {
+    navigate("/villas-collection");
   };
   return (
     <>
-      <div className="description2">
-        <h1 className="successfully">
-          Your account has been successfully created
-        </h1>
-        <p className="explication">
-          We are delighted to have you as a member of our esteemed community.
-          Let us curate unforgettable moments and tailor-made escapes that will
-          surpass your expectations.
-        </p>
-        <button onClick={handleNavigate}>Continue to login Page</button>
+      <div className="pageContainerConfirmation">
+        <div className="confirmationWrapper">
+          <TitlePage
+            h1={"Your account has been"}
+            span={"successfully created"}
+            center={"true"}
+          ></TitlePage>
+          <div className="confirmationTextWrapper">
+            <p>
+              We are delighted to have you as a member of our esteemed
+              community.
+              <br />
+              Let us curate unforgettable moments and tailor-made escapes that
+              will surpass your expectations.
+            </p>
+          </div>
+        </div>
+        <Button
+          cta={"Book your first Otium villa"}
+          onClick={navToVillas}
+          backgroundColor={"black"}
+        ></Button>
       </div>
     </>
   );

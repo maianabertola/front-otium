@@ -62,7 +62,7 @@ const AuthForm = ({ mode }) => {
       const userToLogin = { email, password };
       if (mode === "signup") {
         const response = await service.post("/auth/signup", userToSignup);
-        navigate("/accountcreated");
+        navigate("/auth/accountcreated");
       } else {
         const response = await service.post("/auth/login", userToLogin);
         localStorage.setItem("token", response.data.token);

@@ -6,13 +6,26 @@ function TitlePage({ h1, span, center }) {
   if (center === "true") {
     myStyle = {
       textAlign: "center",
+      margin: 0,
+    };
+  } else {
+    myStyle = {
+      marginLeft: 4.5 + "vw",
     };
   }
   return (
     <div className="titlePageContainer">
-      <h1 style={myStyle}>
-        {h1} <span className="spanTitlePage"> {span}</span>
-      </h1>
+      {!center && (
+        <h1 style={myStyle}>
+          {h1} <span className="spanTitlePage"> {span}</span>
+        </h1>
+      )}
+      {center && (
+        <h1 style={myStyle}>
+          {h1} <br></br>
+          <span className="spanTitlePage"> {span}</span>
+        </h1>
+      )}
     </div>
   );
 }
