@@ -106,7 +106,7 @@ const AuthForm = ({ mode }) => {
             <h3>Identity</h3>
             <hr className="hrSignUp"></hr>
 
-            <div>
+            <div className="flexRowSignUp">
               <OneInput
                 key={"Name"}
                 label={"Name"}
@@ -144,29 +144,34 @@ const AuthForm = ({ mode }) => {
                 name={"phoneNumber"}
                 onChange={handlePhoneNumberChange}
               />
+
+              <OneInput
+                key={"address"}
+                label={"Address"}
+                type={"text"}
+                value={address}
+                name={"address"}
+                onChange={handleAddressChange}
+              />
+            </div>
+            <div className="flexRowSignUp">
               <OneInput
                 key={"country"}
-                label={"country"}
+                label={"Country"}
                 type={"text"}
                 value={country}
                 name={"country"}
                 onChange={handleCountryChange}
               />
             </div>
-            <OneInput
-              key={"address"}
-              label={"address"}
-              type={"text"}
-              value={address}
-              name={"address"}
-              onChange={handleAddressChange}
-            />
+            <div className="flexRow">
+              <Button
+                onClick={handleSubmit}
+                backgroundColor={"black"}
+                cta={"Connect with us"}
+              ></Button>
+            </div>
           </div>
-          <Button
-            onClick={handleSubmit}
-            backgroundColor={"black"}
-            cta={"Connect with us"}
-          ></Button>
         </>
       )}
 
