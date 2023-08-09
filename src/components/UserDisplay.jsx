@@ -10,26 +10,24 @@ import { useState } from "react";
 import ReadOnlyInput from "./Input/ReadOnlyInput";
 
 function UserDisplay() {
+  //formatting the birthdate
+  const birth = () => {
+    const dateParts = user.birthDate.split("T");
+    return dateParts[0];
+  };
+
   const { user } = useContext(AuthContext);
+
   const [isEditing, setIsEditing] = useState(false);
   const [name, setEditName] = useState(user.name);
-  const [surname, setEditSurname] = useState(user.name);
-  const [birthDate, setEditBirthdate] = useState(user.birthDate);
+  const [surname, setEditSurname] = useState(user.surname);
+  const [birthDate, setEditBirthdate] = useState(birth);
   const [email, setEditMail] = useState(user.email);
   const [phoneNumber, setEditPhoneNumber] = useState(user.phoneNumber);
   const [address, setEditAddress] = useState(user.address);
   const [country, setEditCountry] = useState(user.country);
 
   const queryClient = useQueryClient();
-
-  //formatting the birthdate
-  // let birth;
-  // function formattingBirthDate() {
-  //   useMemo(() => {
-  //     let dateParts = user.birthDate.split("T");
-  //     return (birth = dateParts[0]);
-  //   }, [user.birthDate]);
-  // }
 
   //patch the user info
   const switchEditing = () => {
@@ -63,13 +61,6 @@ function UserDisplay() {
     setEditCountry(event.target.value);
   };
 
-  const { isLoading, isError, error, data, mutate } = useMutation({
-    mutationFn: patchUser,
-    onSuccess: (newPatchUser) => {
-      queryClient.setQueryData(["users", newPatchUser]);
-    },
-  });
-
   const handleEditUser = async () => {
     mutate({
       name,
@@ -79,25 +70,27 @@ function UserDisplay() {
       phoneNumber,
       address,
       country,
-
       userId: user._id,
     });
   };
 
-  if (!user || isLoading) {
+  const { isLoading, isError, error, mutate } = useMutation({
+    mutationFn: patchUser,
+    onSuccess: (newPatchUser) => {
+      queryClient.setQueryData(["users", newPatchUser]);
+      console.log("Your profile has been updated");
+      queryClient.invalidateQueries("users");
+      setIsEditing(false);
+    },
+  });
+
+  if (!user || isLoading || !birth) {
     return <div>Please wait a moment</div>;
   }
 
   if (isError) {
     return <div>There's an error {error}</div>;
   }
-
-  console.log("isEditable?", isEditing);
-  console.log("newname", name);
-
-  // useEffect(() => {
-  //   formattingBirthDate();
-  // }, []);
 
   return (
     <>

@@ -142,7 +142,7 @@ function Homepage() {
       <section id="intro">
         <div className="introContainer">
           <div className="introTextContainer">
-            {isLoggedIn && <h1>Ciao, {user.name}</h1>}
+            {isLoggedIn && <h1>Ciao, {user.surname}</h1>}
             {!isLoggedIn && <h1>Ciao,</h1>}
             <h2>Otium, an exquisite haven for discerning epicureans</h2>
             <p>

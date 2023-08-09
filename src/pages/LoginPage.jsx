@@ -50,7 +50,7 @@ function LoginPage() {
 
         <BlackBar position={"static"} height={85}></BlackBar>
         <div className="columnFlex">
-          <h1 style={{ textAlign: "center", marginBottom: 4 + "vh" }}>
+          <h1 style={{ textAlign: "center", marginBottom: 1 + "vh" }}>
             Already a member?
           </h1>
           <AuthForm mode={"login"} />

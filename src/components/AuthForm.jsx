@@ -6,6 +6,7 @@ import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import OneInput from "./Input/OneInput";
 import Button from "./Button";
+import { Link } from "react-router-dom";
 
 const AuthForm = ({ mode }) => {
   const { authentificationUser } = useContext(AuthContext);
@@ -17,7 +18,7 @@ const AuthForm = ({ mode }) => {
   const [birthDate, setBirthDate] = useState("");
   const [address, setAddress] = useState("");
   const [country, setCountry] = useState("");
-  const [error, setError] = useState("");
+  const [error, setError] = useState(false);
 
   const navigate = useNavigate();
 
@@ -67,15 +68,26 @@ const AuthForm = ({ mode }) => {
         const response = await service.post("/auth/login", userToLogin);
         localStorage.setItem("token", response.data.token);
         setError("");
-        await authentificationUser();
         navigate("/account");
       }
     } catch (error) {
       console.log(error);
       console.log(error.response.data.message);
-      setError(error.response.data.message);
+      setError(true);
     }
   };
+
+  const mailTo = (event) => {
+    event.preventDefault();
+    window.location.href =
+      "mailto:bonjour@we-are-ensemble.com?subject=" +
+      encodeURIComponent("Issue with my account") +
+      "&body=" +
+      encodeURIComponent(
+        "Please send us your email, name and surname to help you. Do not share with us your password."
+      );
+  };
+
   return (
     <>
       {mode === "signup" && (
@@ -175,29 +187,62 @@ const AuthForm = ({ mode }) => {
         </>
       )}
 
-      {mode === "login" && (
-        <div className="inputLoginWrap">
-          <OneInput
-            label={"Email: "}
-            type={"text"}
-            value={email}
-            name={"email"}
-            onChange={handleEmailChange}
-          />
-          <OneInput
-            label={"Password: "}
-            type={"password"}
-            value={password}
-            name={"password"}
-            onChange={handlePasswordChange}
-          />
-
+      {mode === "login" && error === false && (
+        <>
+          <div className="inputLoginWrap">
+            <OneInput
+              label={"Email: "}
+              type={"text"}
+              value={email}
+              name={"email"}
+              onChange={handleEmailChange}
+            />
+            <OneInput
+              label={"Password: "}
+              type={"password"}
+              value={password}
+              name={"password"}
+              onChange={handlePasswordChange}
+            />
+          </div>
           <Button
             cta={"Login"}
             backgroundColor={"black"}
             onClick={handleSubmit}
           ></Button>
-        </div>
+        </>
+      )}
+      {mode === "login" && error === true && (
+        <>
+          <div className="inputLoginWrap">
+            <OneInput
+              label={"Email: "}
+              type={"text"}
+              value={email}
+              name={"email"}
+              onChange={handleEmailChange}
+            />
+            <OneInput
+              label={"Password: "}
+              type={"password"}
+              value={password}
+              name={"password"}
+              onChange={handlePasswordChange}
+            />
+          </div>
+          <Button
+            cta={"Login"}
+            backgroundColor={"black"}
+            onClick={handleSubmit}
+          ></Button>
+          <div className="wrongLoginTextWrapper">
+            <p>
+              The mail or the password you are trying to use are not valid.
+              <br></br>Please try again or contact{" "}
+              <Link onClick={mailTo}>the Otium team.</Link>
+            </p>
+          </div>
+        </>
       )}
     </>
   );

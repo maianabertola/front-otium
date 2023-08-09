@@ -60,9 +60,7 @@ function BookingPage() {
 
   //handle the booking creation
   //The mutate function from useMutation hook of react-query accepts a single argument. If you need to pass multiple pieces of data, you should pass them as properties of a single object. This object is then deconstructed in your mutation function
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    console.log("pet in handleSubmit", pet);
+  const handleSubmit = async () => {
     mutate({
       numberOfPeople,
       pet,

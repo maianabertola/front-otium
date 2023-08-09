@@ -20,12 +20,12 @@ function MenuAccount() {
     setUser(null);
   }
 
-  function displayUser(event) {
+  function displayUser() {
     setUserShow(true);
     setQuestionnaireShow(false);
   }
 
-  function displayQuestionnaire(event) {
+  function displayQuestionnaire() {
     setUserShow(false);
     setQuestionnaireShow(true);
   }
@@ -44,12 +44,15 @@ function MenuAccount() {
     event.preventDefault();
   };
 
+  if (!user) {
+    return <div>Please wait a moment</div>;
+  }
   return (
     <>
       <div className="flexRowAccount">
         <div className="menuContainer">
           <h1 style={{ padding: 0 }}>Welcome back</h1>
-          <span className="spanNameUser">{user.name},</span>
+          <span className="spanNameUser">{user.surname},</span>
           <div className="menuAccount">
             <Link onClick={navigateToAccountTripBooked} className="linkAccount">
               Your retreats

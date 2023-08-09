@@ -22,7 +22,7 @@ export const patchUser = async ({
   userId,
 }) => {
   const response = service.patch(
-    `account/${userId}`,
+    `/account/user/${userId}`,
     {
       name,
       surname,
