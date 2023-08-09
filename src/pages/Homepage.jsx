@@ -279,21 +279,23 @@ function Homepage() {
             <img src={aboutImg}></img>
           </div>
           <BlackBar height={110} position={"absolute"}></BlackBar>
-          <div className="introTextContainer">
-            <h2 style={{ fontSize: 40, fontStyle: "italic" }}>
-              Otium,
-              <br />
-              Born from a Vision,
-              <br /> Crafted with passion,
-            </h2>
-            <p>
-              Opium was born from a vision to create an unparalleled
-              experience—a harmonious blend of opulence, tranquility, and
-              refined indulgence. With meticulous design and unwavering
-              commitment, we crafted a haven where every detail reflects our
-              dedication. Welcome to a world where the extraordinary is woven
-              into the fabric of your existence.
-            </p>
+          <div className="columnFlex">
+            <div className="introTextContainer">
+              <h2 style={{ fontSize: 40, fontStyle: "italic" }}>
+                Otium,
+                <br />
+                Born from a Vision,
+                <br /> Crafted with passion,
+              </h2>
+              <p>
+                Opium was born from a vision to create an unparalleled
+                experience—a harmonious blend of opulence, tranquility, and
+                refined indulgence. With meticulous design and unwavering
+                commitment, we crafted a haven where every detail reflects our
+                dedication. Welcome to a world where the extraordinary is woven
+                into the fabric of your existence.
+              </p>
+            </div>
             <Button
               cta={"Discover Our Story"}
               backgroundColor={"black"}

@@ -175,9 +175,10 @@
 }
 
 #aboutUs .introTextContainer {
-  width: 35vw;
+  width: 30vw;
   margin-left: 4.5vw;
   margin-top: 10vh;
+  margin-bottom: 3vh;
   display: flex;
   flex-direction: column;
   justify-content: center;

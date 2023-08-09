@@ -40,18 +40,17 @@ function LoginPage() {
               Unlock a world of opulence and tranquility. Join the privileged
               few at Otium. Apply now.
             </p>
-
-            <Button
-              cta={"Connect with us"}
-              backgroundColor={"black"}
-              onClick={navToCreateAccount}
-            ></Button>
           </div>
+          <Button
+            cta={"Connect with us"}
+            backgroundColor={"black"}
+            onClick={navToCreateAccount}
+          ></Button>
         </div>
 
         <BlackBar position={"static"} height={85}></BlackBar>
         <div className="columnFlex">
-          <h1 style={{ textAlign: "center", marginBottom: 5 + "vh" }}>
+          <h1 style={{ textAlign: "center", marginBottom: 4 + "vh" }}>
             Already a member?
           </h1>
           <AuthForm mode={"login"} />

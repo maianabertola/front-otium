@@ -1,12 +1,13 @@
 import React from "react";
 import "./Button.css";
 
-function Button({ cta, backgroundColor, width, onClick }) {
+function Button({ cta, backgroundColor, onClick }) {
   let myStyle;
   if (backgroundColor === "black") {
     myStyle = {
       backgroundColor: "hsl(0, 0%, 9%)",
       color: "hsl(0, 0%, 98%)",
+      width: 300 + "px",
     };
   }
 
@@ -48,9 +49,9 @@ function Button({ cta, backgroundColor, width, onClick }) {
     };
   }
 
-  let newWidth = `${width}vw`;
+  // let newWidth = `${width}px`;
 
-  const buttonStyle = { ...myStyle, newWidth };
+  const buttonStyle = { ...myStyle };
 
   return (
     <div className="button" onClick={onClick} style={buttonStyle}>

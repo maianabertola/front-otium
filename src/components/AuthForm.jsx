@@ -106,7 +106,7 @@ const AuthForm = ({ mode }) => {
             <h3>Identity</h3>
             <hr className="hrSignUp"></hr>
 
-            <div className="flexRowSignUp">
+            <div>
               <OneInput
                 key={"Name"}
                 label={"Name"}
@@ -161,14 +161,12 @@ const AuthForm = ({ mode }) => {
               name={"address"}
               onChange={handleAddressChange}
             />
-            <div className="flexRow">
-              <Button
-                onClick={handleSubmit}
-                backgroundColor={"black"}
-                cta={"Connect with us"}
-              ></Button>
-            </div>
           </div>
+          <Button
+            onClick={handleSubmit}
+            backgroundColor={"black"}
+            cta={"Connect with us"}
+          ></Button>
         </>
       )}
 
@@ -188,6 +186,7 @@ const AuthForm = ({ mode }) => {
             name={"password"}
             onChange={handlePasswordChange}
           />
+
           <Button
             cta={"Login"}
             backgroundColor={"black"}
