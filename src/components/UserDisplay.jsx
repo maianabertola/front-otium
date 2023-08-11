@@ -16,6 +16,7 @@ function UserDisplay() {
     return dateParts[0];
   };
 
+  const queryClient = useQueryClient();
   const { user } = useContext(AuthContext);
 
   const [isEditing, setIsEditing] = useState(false);
@@ -27,12 +28,12 @@ function UserDisplay() {
   const [address, setEditAddress] = useState(user.address);
   const [country, setEditCountry] = useState(user.country);
 
-  const queryClient = useQueryClient();
-
-  //patch the user info
+  //the user can edit or not his info
   const switchEditing = () => {
     setIsEditing(true);
   };
+
+  //handle the value from user cards
   const handleNameChange = (event) => {
     setEditName(event.target.value);
   };
@@ -61,6 +62,7 @@ function UserDisplay() {
     setEditCountry(event.target.value);
   };
 
+  //mutation to patch the new information
   const handleEditUser = async () => {
     mutate({
       name,

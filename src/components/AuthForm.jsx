@@ -7,9 +7,10 @@ import { useNavigate } from "react-router-dom";
 import OneInput from "./Input/OneInput";
 import Button from "./Button";
 import { Link } from "react-router-dom";
+import { QueryClient, useMutation } from "react-query";
+import { SignUp, fetchUser } from "../api/user";
 
 const AuthForm = ({ mode }) => {
-  const { authentificationUser } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
@@ -18,10 +19,11 @@ const AuthForm = ({ mode }) => {
   const [birthDate, setBirthDate] = useState("");
   const [address, setAddress] = useState("");
   const [country, setCountry] = useState("");
-  const [error, setError] = useState(false);
 
   const navigate = useNavigate();
+  const { login, isLoginError } = useContext(AuthContext);
 
+  //handling values from the sign up form
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
   };
@@ -47,37 +49,37 @@ const AuthForm = ({ mode }) => {
   const handleCountryChange = (event) => {
     setCountry(event.target.value);
   };
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    try {
-      const userToSignup = {
-        email,
-        password,
-        name,
-        surname,
-        phoneNumber,
-        birthDate,
-        address,
-        country,
-      };
-      const userToLogin = { email, password };
-      if (mode === "signup") {
-        const response = await service.post("/auth/signup", userToSignup);
-        navigate("/auth/accountcreated");
-      } else {
-        const response = await service.post("/auth/login", userToLogin);
-        localStorage.setItem("token", response.data.token);
-        setError("");
-        navigate("/account");
-      }
-    } catch (error) {
-      console.log(error);
-      console.log(error.response.data.message);
-      setError(true);
-    }
+
+  // creating a new user
+  const handleSignUp = async () => {
+    mutateSignUp({
+      email,
+      password,
+      name,
+      surname,
+      phoneNumber,
+      birthDate,
+      address,
+      country,
+    });
   };
 
-  const mailTo = (event) => {
+  const {
+    isLoading: isLoadingSignUp,
+    isError: isErrorSignUp,
+    error: errorSignup,
+    mutate: mutateSignUp,
+  } = useMutation({
+    mutationFn: SignUp,
+    onSucces: (newUser) => {
+      QueryClient.setQueryData(["users", newUser]);
+      console.log("yeah a new user has been created");
+      navigate("/auth/accountcreated");
+    },
+  });
+
+  //send en email to the team for log in support
+  const mailTo = async (event) => {
     event.preventDefault();
     window.location.href =
       "mailto:bonjour@we-are-ensemble.com?subject=" +
@@ -87,7 +89,6 @@ const AuthForm = ({ mode }) => {
         "Please send us your email, name and surname to help you. Do not share with us your password."
       );
   };
-
   return (
     <>
       {mode === "signup" && (
@@ -178,7 +179,7 @@ const AuthForm = ({ mode }) => {
             </div>
             <div className="flexRow">
               <Button
-                onClick={handleSubmit}
+                onClick={handleSignUp}
                 backgroundColor={"black"}
                 cta={"Connect with us"}
               ></Button>
@@ -187,7 +188,7 @@ const AuthForm = ({ mode }) => {
         </>
       )}
 
-      {mode === "login" && error === false && (
+      {mode === "login" && (
         <>
           <div className="inputLoginWrap">
             <OneInput
@@ -208,40 +209,19 @@ const AuthForm = ({ mode }) => {
           <Button
             cta={"Login"}
             backgroundColor={"black"}
-            onClick={handleSubmit}
+            onClick={() => login(email, password)}
           ></Button>
-        </>
-      )}
-      {mode === "login" && error === true && (
-        <>
-          <div className="inputLoginWrap">
-            <OneInput
-              label={"Email: "}
-              type={"text"}
-              value={email}
-              name={"email"}
-              onChange={handleEmailChange}
-            />
-            <OneInput
-              label={"Password: "}
-              type={"password"}
-              value={password}
-              name={"password"}
-              onChange={handlePasswordChange}
-            />
-          </div>
-          <Button
-            cta={"Login"}
-            backgroundColor={"black"}
-            onClick={handleSubmit}
-          ></Button>
-          <div className="wrongLoginTextWrapper">
-            <p>
-              The mail or the password you are trying to use are not valid.
-              <br></br>Please try again or contact{" "}
-              <Link onClick={mailTo}>the Otium team.</Link>
-            </p>
-          </div>
+          {isLoginError && (
+            <>
+              <div className="wrongLoginTextWrapper">
+                <p>
+                  The mail or the password you are trying to use are not valid.
+                  <br></br>Please try again or contact{" "}
+                  <Link onClick={mailTo}>the Otium team.</Link>
+                </p>
+              </div>
+            </>
+          )}
         </>
       )}
     </>

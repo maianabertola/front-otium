@@ -1,28 +1,14 @@
 import React, { useState } from "react";
 import "../pages/LoginPage.css";
 import AuthForm from "../components/AuthForm";
-import service from "../service/service";
 import Button from "../components/Button";
 import { useNavigate } from "react-router-dom";
 import BlackBar from "../components/BlackBar";
 
 function LoginPage() {
   const navigate = useNavigate();
-  async function handleSubmitLogin(event) {
-    event.preventDefault();
-    try {
-      const response = await service.post("/auth/login", {
-        email,
-        password,
-      });
-    } catch (e) {
-      console.log(e);
-    }
-  }
-
   function navToCreateAccount(event) {
     event.preventDefault();
-    console.log("Button clicked"); // Debugging line
     navigate("/auth/signup");
   }
   return (

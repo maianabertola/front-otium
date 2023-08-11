@@ -1,6 +1,5 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import "./MenuAccount.css";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
@@ -8,45 +7,39 @@ import Button from "../components/Button";
 import UserDisplay from "../components/UserDisplay";
 
 function MenuAccount() {
-  let [questionnaireShow, setQuestionnaireShow] = useState(true);
-  let [userShow, setUserShow] = useState(false);
-
-  const { user } = useContext(AuthContext);
+  const { user, logout, isLoading } = useContext(AuthContext);
+  const [displayQuestionnaire, setDisplayQuestionnaire] = useState(null);
+  const [displayUser, setDisplayUser] = useState(null);
 
   const navigate = useNavigate();
 
-  function logout() {
-    localStorage.removeItem("token");
-    setUser(null);
-  }
-
-  function displayUser() {
-    setUserShow(true);
-    setQuestionnaireShow(false);
-  }
-
-  function displayQuestionnaire() {
-    setUserShow(false);
-    setQuestionnaireShow(true);
-  }
+  //toLogOut call the logout function from AuthContext to erase the token
+  const toLogOut = async () => {
+    await logout();
+    navigate("/");
+  };
 
   function navigateToAccountTripBooked(event) {
     event.preventDefault();
     navigate("/account-trips");
+  }
+
+  //emailing the team if issue with the log in
+  const emailTo = (event) => {
+    event.preventDefault();
     window.location.href =
       "mailto:bonjour@we-are-ensemble.com?subject=" +
       encodeURIComponent("Questions & answers") +
       "&body=" +
       encodeURIComponent("Dear Otium Team,");
-  }
-
-  const emailTo = (event) => {
-    event.preventDefault();
   };
 
   if (!user) {
     return <div>Please wait a moment</div>;
   }
+
+  console.log("USER MENUACCOUNT", user);
+
   return (
     <>
       <div className="flexRowAccount">
@@ -75,7 +68,7 @@ function MenuAccount() {
                 onClick={emailTo}
               ></Button>
             </div>
-            <Link onClick={logout} className="logOut">
+            <Link onClick={toLogOut} className="logOut">
               Log Out
             </Link>
           </div>

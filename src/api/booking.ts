@@ -21,8 +21,6 @@ export const submitBooking = async ({
   villaId,
   bookedDates,
 }) => {
-  console.log("pet dans submitBooking", pet);
-
   await service.post(
     `/booking/${villaId}`,
     {

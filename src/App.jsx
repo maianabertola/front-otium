@@ -47,8 +47,8 @@ function App() {
           />
           <Route path="/questionnaire" element={<Questionnaire />} />
           <Route path="/questionnaire/:id" element={<QuestionnaireUpdate />} />
+          <Route path="/created" element={<Created />} />
         </Route>
-        <Route path="/created" element={<Created />} />
 
         <Route path="/auth">
           <Route path="signup" element={<SignupPage />} />

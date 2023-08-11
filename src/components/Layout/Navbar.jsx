@@ -46,7 +46,7 @@ function Navbar() {
         )}
         {isLoggedIn && (
           <li>
-            <Link to="/auth/account" className="linkNavbar">
+            <Link to="/account" className="linkNavbar">
               Account
             </Link>
           </li>
