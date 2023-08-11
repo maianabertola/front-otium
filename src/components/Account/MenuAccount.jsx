@@ -2,14 +2,16 @@ import React, { useContext, useState } from "react";
 import "./MenuAccount.css";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { AuthContext } from "../context/AuthContext";
-import Button from "../components/Button";
-import UserDisplay from "../components/UserDisplay";
+import { AuthContext } from "../../context/AuthContext";
+import Button from "../Button";
+import UserDisplay from "./UserDisplay";
+import RetreatsDisplay from "./RetreatsDisplay";
 
 function MenuAccount() {
   const { user, logout, isLoading } = useContext(AuthContext);
-  const [displayQuestionnaire, setDisplayQuestionnaire] = useState(null);
-  const [displayUser, setDisplayUser] = useState(null);
+  const [displayUser, setDisplayUser] = useState(true);
+  const [displayQuestionnaire, setDisplayQuestionnaire] = useState(false);
+  const [displayRetreats, setDisplayRetreats] = useState(false);
 
   const navigate = useNavigate();
 
@@ -18,11 +20,6 @@ function MenuAccount() {
     await logout();
     navigate("/");
   };
-
-  function navigateToAccountTripBooked(event) {
-    event.preventDefault();
-    navigate("/account-trips");
-  }
 
   //emailing the team if issue with the log in
   const emailTo = (event) => {
@@ -34,11 +31,15 @@ function MenuAccount() {
       encodeURIComponent("Dear Otium Team,");
   };
 
+  const switchtoDisplayRetreat = (event) => {
+    event.preventDefault();
+    setDisplayUser(false);
+    setDisplayRetreats(true);
+  };
+
   if (!user) {
     return <div>Please wait a moment</div>;
   }
-
-  console.log("USER MENUACCOUNT", user);
 
   return (
     <>
@@ -47,7 +48,7 @@ function MenuAccount() {
           <h1 style={{ padding: 0 }}>Welcome back</h1>
           <span className="spanNameUser">{user.surname},</span>
           <div className="menuAccount">
-            <Link onClick={navigateToAccountTripBooked} className="linkAccount">
+            <Link onClick={switchtoDisplayRetreat} className="linkAccount">
               Your retreats
             </Link>
             <div className="blackSeparation"></div>
@@ -61,10 +62,10 @@ function MenuAccount() {
             <div className="blackSeparation"></div>
 
             <div className="contactWrapper">
-              <h5>Need Help?</h5>
+              <h5 style={{ paddingBottom: 2 + "vh" }}>Need Help?</h5>
               <Button
                 cta={"Email us"}
-                backgroundColor={"black"}
+                backgroundColor={"littleBlack"}
                 onClick={emailTo}
               ></Button>
             </div>
@@ -74,7 +75,8 @@ function MenuAccount() {
           </div>
         </div>
         <div>
-          <UserDisplay></UserDisplay>
+          {displayUser && <UserDisplay></UserDisplay>}
+          {displayRetreats && <RetreatsDisplay></RetreatsDisplay>}
         </div>
       </div>
     </>

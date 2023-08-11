@@ -7,10 +7,8 @@ import { useNavigate } from "react-router-dom";
 function ConfirmationBookingPage() {
   const navigate = useNavigate();
 
-  function navtoAccount(event) {
-    console.log("toto");
-    event.preventDefault();
-    navigate("account");
+  function navtoAccount() {
+    navigate("/account");
   }
   return (
     <div className="pageContainer">
@@ -19,17 +17,23 @@ function ConfirmationBookingPage() {
         span={"successfully created"}
         center={"true"}
       ></TitlePage>
-      <p style={{ textAlign: "center" }}>
+      <p
+        style={{
+          textAlign: "center",
+          paddingBottom: 2 + "vh",
+          paddingTop: 1 + "vh",
+        }}
+      >
         Thank you for your trust. Your request has been successfully recorded.
         <br />
-        You can find{" "}
+        You can find
         <Link to="/account-trips"> all your reservations in your account.</Link>
       </p>
       <div className="flexCenter">
         <Button
           cta={"Find all my reservations"}
           backgroundColor={"black"}
-          url={navtoAccount}
+          onClick={navtoAccount}
         ></Button>
       </div>
     </div>

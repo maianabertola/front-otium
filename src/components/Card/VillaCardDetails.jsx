@@ -30,6 +30,7 @@ export default function VillaCardDetails({ villa, booking }) {
 
   // when firing the button, the state is updated with a date object
   function createDate(event) {
+    console.log("TOTO");
     event.preventDefault();
     const newStartDate = startDate.toISOString();
     const newEndDate = endDate.toISOString();
@@ -194,7 +195,6 @@ export default function VillaCardDetails({ villa, booking }) {
                     onChange={(date) => {
                       handleStartDate(date);
                     }}
-                    // isClearable
                     closeOnScroll={true}
                     dateFormat="yyyy/MM/dd"
                     minDate={new Date()}
@@ -217,7 +217,6 @@ export default function VillaCardDetails({ villa, booking }) {
                     startDate={startDate}
                     endDate={endDate}
                     minDate={minEndDate}
-                    // isClearable
                     closeOnScroll={true}
                     dateFormat="yyyy/MM/dd"
                     excludeDateIntervals={memoDates}
@@ -233,9 +232,7 @@ export default function VillaCardDetails({ villa, booking }) {
                   <Button
                     backgroundColor={"black"}
                     cta={"Book your stay now"}
-                    onClick={() => {
-                      if (showButton === true) createDate;
-                    }}
+                    onClick={createDate}
                   ></Button>
                 </>
               )}

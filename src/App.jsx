@@ -8,12 +8,10 @@ import LoginPage from "./pages/LoginPage";
 import VillaPage from "./pages/VillaPage";
 import SignupPage from "./pages/SignupPage";
 import AccountCreatedPage from "./pages/AccountCreatedPage";
-import Account from "./pages/LoggedIn";
 import BookingPage from "./pages/BookingPage";
 import ConfirmationBookingPage from "./pages/ConfirmationBookingPage";
 import GalleryPhotos from "./pages/GalleryPhotos";
 import QuestionnaireUpdate from "./pages/QuestionnaireUpdate";
-import AccountTripBooked from "./pages/AccountTripBooked";
 import Protected from "./pages/ProtectedRoutes";
 import BookingPageEdit from "./pages/BookingPageEdit";
 import VillasCollectionPage from "./pages/VillasCollectionPage";
@@ -57,7 +55,6 @@ function App() {
           <Route path="need-login" element={<LogginPageRedirection />} />
         </Route>
         <Route path="/account" element={<LoggedIn />}></Route>
-        <Route path="/account-trips" element={<AccountTripBooked />} />
       </Routes>
     </>
   );

@@ -1,7 +1,7 @@
 import React from "react";
 import "./Button.css";
 
-function Button({ cta, backgroundColor, onClick }) {
+function Button({ cta, backgroundColor, onClick, width }) {
   let myStyle;
   if (backgroundColor === "black") {
     myStyle = {
@@ -46,6 +46,14 @@ function Button({ cta, backgroundColor, onClick }) {
       color: "hsl(0, 0%, 98%)",
       border: "1px solid hsl(0, 0%, 98%)",
       margin: 0,
+    };
+  }
+
+  if (backgroundColor === "littleBlack") {
+    myStyle = {
+      backgroundColor: "hsl(0, 0%, 9%)",
+      color: "hsl(0, 0%, 98%)",
+      width: 150 + "px",
     };
   }
 

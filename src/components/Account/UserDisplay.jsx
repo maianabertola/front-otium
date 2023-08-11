@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
 import { useContext } from "react";
-import { AuthContext } from "../context/AuthContext";
+import { AuthContext } from "../../context/AuthContext";
 import { Link } from "react-router-dom";
 import "./UserDisplay.css";
 import { useMemo } from "react";
 import { useQueryClient, useMutation } from "react-query";
-import { patchUser } from "../api/user";
+import { patchUser } from "../../api/user";
 import { useState } from "react";
-import ReadOnlyInput from "./Input/ReadOnlyInput";
+import ReadOnlyInput from "../Input/ReadOnlyInput";
 
 function UserDisplay() {
   //formatting the birthdate

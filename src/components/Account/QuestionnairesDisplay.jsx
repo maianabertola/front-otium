@@ -1,9 +1,9 @@
 import React from "react";
 import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
-import { AuthContext } from "../context/AuthContext";
+import { AuthContext } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
-import service from "../service/service";
+import service from "../../service/service";
 import "./QuestionnairesDisplay.css";
 
 const collectionQuestionnaire = "/questionnaire";

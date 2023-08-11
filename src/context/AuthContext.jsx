@@ -4,11 +4,14 @@ import { fetchUser } from "../api/user";
 import { LogIn } from "../api/user";
 import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
+import { useQueryClient } from "react-query";
 
 export const AuthContext = createContext();
 const AuthContextWrapper = ({ children }) => {
+  const queryClient = useQueryClient();
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
+
   const token = localStorage.getItem("token");
 
   //login fire the useMutation with email and password as parameters
@@ -18,21 +21,22 @@ const AuthContextWrapper = ({ children }) => {
 
   const loginMutation = useMutation(LogIn, {
     onSuccess: (data) => {
-      localStorage.setItem("token", data.token);
+      localStorage.setItem("token", data.token); //upated token is stored
+      queryClient.refetchQueries(["users", data.token]); // say to react query to immediately refetch the query
+      navigate("/account");
     },
   });
 
   const { isError: isLoginError, error: loginError } = loginMutation;
 
-  //if login is the success, useQuery notices a change and fetches the user usingfetchUser
+  //if login is the success, useQuery fetch the data using the new token
   const { data, error, isLoading, isError } = useQuery(
     ["users", token],
     () => fetchUser(token),
     {
-      enabled: !!token, // Only run this query if there's a token
-      onSuccess: () => {
+      enabled: !!token, // Only run this query if there's a token in the localStorage
+      onSuccess: (data) => {
         setUser(data);
-        navigate("/account");
       },
     }
   );
@@ -47,8 +51,6 @@ const AuthContextWrapper = ({ children }) => {
   if (isError) {
     return <div>There is an error: {error} </div>;
   }
-
-  console.log("USER AUTHCONTEXT", user);
 
   return (
     <AuthContext.Provider

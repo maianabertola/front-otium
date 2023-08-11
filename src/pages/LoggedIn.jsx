@@ -1,5 +1,5 @@
 import React from "react";
-import Menu from "../components/MenuAccount";
+import Menu from "../components/Account/MenuAccount";
 
 function LoggedIn() {
   return (
