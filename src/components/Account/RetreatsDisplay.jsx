@@ -12,7 +12,6 @@ function AccountTripBooked() {
   const [deleteItem, setDeleteItem] = useState(false);
   const navigate = useNavigate();
 
-  console.log(user);
   useEffect(() => {
     if (user) {
       setLoading(false);

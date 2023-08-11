@@ -19,6 +19,7 @@ import ServicesCollectionPage from "./pages/ServicesCollectionPage";
 import ServicePage from "./pages/ServicePage";
 import LogginPageRedirection from "./pages/LoginPageRedirection";
 import LoggedIn from "./pages/LoggedIn";
+import ProtectedNavRoutes from "./pages/ProtectedNavRoutes";
 
 function App() {
   return (
@@ -39,22 +40,25 @@ function App() {
         <Route element={<Protected />}>
           <Route path="/villa/:id/booking" element={<BookingPage />} />
           <Route path="/booking/:id" element={<BookingPageEdit />} />
+          <Route path="/questionnaire" element={<Questionnaire />} />
+          <Route path="/questionnaire/:id" element={<QuestionnaireUpdate />} />
+        </Route>
+
+        <Route element={<ProtectedNavRoutes />}>
           <Route
             path="/booking-confirmed"
             element={<ConfirmationBookingPage />}
           />
-          <Route path="/questionnaire" element={<Questionnaire />} />
-          <Route path="/questionnaire/:id" element={<QuestionnaireUpdate />} />
           <Route path="/created" element={<Created />} />
+          <Route path="/account" element={<LoggedIn />}></Route>
+          <Route path="/auth/accountcreated" element={<AccountCreatedPage />} />
         </Route>
 
         <Route path="/auth">
           <Route path="signup" element={<SignupPage />} />
-          <Route path="accountcreated" element={<AccountCreatedPage />} />
           <Route path="login" element={<LoginPage />} />
           <Route path="need-login" element={<LogginPageRedirection />} />
         </Route>
-        <Route path="/account" element={<LoggedIn />}></Route>
       </Routes>
     </>
   );

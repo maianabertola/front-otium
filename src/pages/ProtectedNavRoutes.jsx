@@ -1,8 +1,9 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { Navigate, Outlet } from "react-router-dom";
+import NavBar from "../components/Layout/Navbar";
 
-function ProtectedRoutes() {
+function ProtectedNavRoutes() {
   const { isLoggedIn, isLoading } = useContext(AuthContext);
   if (isLoading) {
     return <p>Loading...</p>;
@@ -14,6 +15,7 @@ function ProtectedRoutes() {
   if (isLoggedIn) {
     return (
       <>
+        <NavBar />
         <Outlet />;
       </>
     );
@@ -21,4 +23,4 @@ function ProtectedRoutes() {
   return <div>ProtectedRoutes</div>;
 }
 
-export default ProtectedRoutes;
+export default ProtectedNavRoutes;
