@@ -1,124 +1,56 @@
-.first_block {
-  display: flex;
-  justify-content: space-around;
-  height: 950px;
-  margin-top: 3rem;
+#introQuestionnaire {
+  height: 100vh;
 }
 
-.presentation {
+#introQuestionnaire .introContainer {
+  padding: 10vh 0;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  height: 100%;
+}
+
+#introQuestionnaire .introLeftTextContainer {
+  padding: 0 4.5vw;
+  margin-top: 10vh;
   display: flex;
-  justify-content: center;
   flex-direction: column;
-  justify-content: space-evenly;
-  width: 415px;
-  height: 300px;
+  align-items: flex-end;
+  font-size: 4rem;
+  font-family: "Playfair Semibold Italic";
+  height: 100%;
 }
 
-.presentation div {
+#introQuestionnaire .introRightTextContainer {
+  padding: 30vh 4.5vw 0;
   display: flex;
-  justify-content: flex-end;
-}
-
-.presentation h2 {
-  font-size: 250%;
-}
-
-.separation {
-  display: flex;
-  justify-content: center;
-  width: 20px;
-  background-color: black;
-}
-.retreat {
-  display: flex;
+  flex-direction: column;
   align-items: center;
-  height: 950px;
-}
-.block_retreat {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  justify-content: space-evenly;
-  height: 300px;
+  height: 100%;
 }
 
-.block_retreat p {
-  margin: 0.1rem;
-}
-
-.block_retreat Button {
-  color: white;
-}
-
-.description_retreat {
-  width: 400px;
-}
-
-.second_block {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  margin-top: 10rem;
-}
-
-.second_block div {
+.questionnaireSection {
+  margin-top: 10vh;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.separation2 {
-  display: flex;
-  justify-content: center;
-  margin-top: 10rem;
-  margin-bottom: 10rem;
-  width: 20px;
-  height: 400px;
-  background-color: black;
-}
-
-.date_trip {
-  display: flex;
-  width: 300px;
-}
-
-.services {
-  display: flex;
-  justify-content: center;
-}
-
-.services_block {
+#secondQuestion .flexVertical {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 400px;
-  height: 500px;
-  margin-top: 5rem;
 }
 
-.services_block div {
-  margin: 0.5rem;
-}
-
-.services_align {
+.flexVerticalQuestionnaire {
   display: flex;
-}
-
-.positionButton {
-  display: flex;
-}
-
-button {
-  display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  width: 100px;
-  height: 30px;
-  background-color: hsl(50, 90%, 94%);
-  border-color: gray;
-  border-radius: 3px;
 }
 
-.titleContainers {
-  font-size: 40px;
+.flexToggleQuestionnaire {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 50%;
+  margin-bottom: 2vh;
 }

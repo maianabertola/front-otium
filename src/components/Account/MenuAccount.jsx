@@ -6,6 +6,7 @@ import { AuthContext } from "../../context/AuthContext";
 import Button from "../Button";
 import UserDisplay from "./UserDisplay";
 import RetreatsDisplay from "./RetreatsDisplay";
+import QuestionnaireDisplay from "./QuestionnairesDisplay";
 
 function MenuAccount() {
   const { user, logout, isLoading } = useContext(AuthContext);
@@ -34,7 +35,15 @@ function MenuAccount() {
   const switchtoDisplayRetreat = (event) => {
     event.preventDefault();
     setDisplayUser(false);
+    setDisplayQuestionnaire(false);
     setDisplayRetreats(true);
+  };
+
+  const switchtoDisplayQuestionnaire = (event) => {
+    event.preventDefault();
+    setDisplayUser(false);
+    setDisplayRetreats(false);
+    setDisplayQuestionnaire(true);
   };
 
   if (!user) {
@@ -52,7 +61,10 @@ function MenuAccount() {
               Your retreats
             </Link>
             <div className="blackSeparation"></div>
-            <Link onClick={displayQuestionnaire} className="linkAccount">
+            <Link
+              onClick={switchtoDisplayQuestionnaire}
+              className="linkAccount"
+            >
               Questionnaire
             </Link>
             <div className="blackSeparation"></div>
@@ -77,6 +89,9 @@ function MenuAccount() {
         <div>
           {displayUser && <UserDisplay></UserDisplay>}
           {displayRetreats && <RetreatsDisplay></RetreatsDisplay>}
+          {displayQuestionnaire && (
+            <QuestionnaireDisplay></QuestionnaireDisplay>
+          )}
         </div>
       </div>
     </>

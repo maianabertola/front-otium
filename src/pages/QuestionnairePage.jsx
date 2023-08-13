@@ -5,7 +5,12 @@ import OneInput from "../components/Input/OneInput";
 import Title from "../components/TitleSection";
 import { AuthContext } from "../context/AuthContext";
 import service from "../service/service";
+import useScrollSnap from "react-use-scroll-snap";
+import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import BlackBar from "../components/BlackBar";
+import TitleSection from "../components/TitleSection";
+import Toggle from "../components/Toggle/Toggle";
 
 const collectionDate = "/questionnaire";
 
@@ -20,6 +25,9 @@ function QuestionnairePage() {
   const [petFriendly, setPetFriendly] = useState("");
   const [numberOfBedroom, setNumberOfBedroom] = useState(1);
   const [pickedServices, setPickedServices] = useState([]);
+
+  const scrollRef = useRef();
+  useScrollSnap({ ref: scrollRef, duration: 50, delay: 20 });
 
   const navigate = useNavigate();
 
@@ -68,13 +76,10 @@ function QuestionnairePage() {
   };
   async function handleSubmitQuestionnaire(event) {
     event.preventDefault();
-    console.log(user);
-    const id = user._id;
-
     try {
       const response = await service.post("/questionnaire", {
         name,
-        userId: id,
+        userId: user._id,
         pickedCountry,
         pickedView,
         pickedIdyllicStatus,
@@ -90,146 +95,164 @@ function QuestionnairePage() {
   }
   return (
     <>
-      <div className="first_block">
-        <div className="presentation">
-          <h1 className="titleContainers">
-            "Take rest; a field that has rested gives a bountiful crop."
-          </h1>
-          <div>
-            <p>- Ovid</p>
+      <section id="introQuestionnaire" ref={scrollRef}>
+        <div className="introContainer">
+          <div className="introLeftTextContainer">
+            <h1>
+              "Take rest; a field that has rested gives a bountiful crop."
+            </h1>
+            <div>
+              <p
+                style={{
+                  fontSize: 2.5 + "rem",
+                  fontFamily: "Playfair Semibold",
+                }}
+              >
+                - Ovid
+              </p>
+            </div>
           </div>
-        </div>
-        <div className="separation"></div>
-        <div className="retreat">
-          <div className="block_retreat">
-            <p className="description_retreat">
+          <BlackBar height={100}></BlackBar>
+          <div className="introRightTextContainer">
+            <p
+              style={{
+                paddingTop: 2 + "vh",
+                paddingBottom: 4 + "vh",
+                width: 80 + "%",
+                textAlign: "center",
+              }}
+            >
               Indulge in the journey of finding your perfect Opium villa through
               our questionnaire. Designed with meticulous care, this interactive
               experience guides you through a seamless exploration of your
               desires, preferences, and dreams.
             </p>
-            <Button>Find Your Perfect Retreat </Button>
+            <Button
+              backgroundColor={"black"}
+              cta={"Find Your Perfect Retreat"}
+            ></Button>
           </div>
         </div>
+      </section>
+      <section id="firstQuestion" className="questionnaireSection">
+        <TitleSection
+          title={"What the name of your retreat project ?"}
+        ></TitleSection>
+        <OneInput
+          key={"name"}
+          label={""}
+          type={"text"}
+          value={name}
+          name={"name"}
+          onChange={handleNameChange}
+          placeholder={"My trip with my family - winter 2024"}
+          required={true}
+        />
+      </section>
+      <section id={"secondQuestion"} className="questionnaireSection"></section>
+      <TitleSection title={"Which country appeals you?"}></TitleSection>
+      <div className="flexVerticalQuestionnaire">
+        {["France", "Italy", "Spain"].map((country) => {
+          return (
+            <OneInput
+              key={country}
+              label={country}
+              type={"checkbox"}
+              value={country}
+              name={"country"}
+              onChange={handleCountryChange}
+            />
+          );
+        })}
       </div>
-      <form onSubmit={handleSubmitQuestionnaire} className="second_block">
-        <div>
-          <Title title={"What the name of your retreat project ?"}></Title>
-          <OneInput
-            key={"name"}
-            label={""}
-            type={"text"}
-            value={name}
-            name={"name"}
-            onChange={handleNameChange}
-          />
-          <div className="separation2"></div>
-          <Title title={"Which country appeals you?"}></Title>
-          {["France", "Italy", "Spain"].map((country) => {
-            return (
-              <OneInput
-                key={country}
-                label={country}
-                type={"checkbox"}
-                value={country}
-                name={"country"}
-                onChange={handleCountryChange}
-              />
-            );
-          })}
-          <div className="separation2"></div>
-          <Title title={"What view do your prefer for your holidays?"}></Title>
-          {["mountain", "sea"].map((view) => {
-            return (
-              <OneInput
-                key={view}
-                label={view}
-                type={"radio"}
-                value={view}
-                name={"view"}
-                onChange={handleViewChange}
-              />
-            );
-          })}
-          <div className="separation2"></div>
-          <Title title={"What atmosphere do you seek?"}></Title>
-          {["Family Moment", "Life Party", "Friends Trip"].map((trip) => {
-            return (
-              <OneInput
-                key={trip}
-                label={trip}
-                type={"checkbox"}
-                value={trip}
-                name={"idyllicStatus"}
-                onChange={handleIdyllicStatusChange}
-              />
-            );
-          })}
-          <div className="separation2"></div>
-          <Title title={"How many people are accompanying you?"}></Title>
-          <OneInput
-            key={"number"}
-            label={""}
-            type={"number"}
-            htmlFor={"people"}
-            value={numberOfPeople}
-            name={"numberOfPeople"}
-            onChange={handleNumberOfPeopleChange}
-          />
-          <div className="separation2"></div>
-          <Title title={"Do you travel with your pets?"}></Title>
-          {["yes", "no"].map((response) => {
-            return (
-              <OneInput
-                key={response}
-                label={response}
-                type={"radio"}
-                value={response}
-                name={"petFriendly"}
-                onChange={handlePetFriendlyChange}
-              />
-            );
-          })}
-          <div className="separation2"></div>
-          <Title title={"How many bedrooms do you need?"}></Title>
-          <OneInput
-            key={"number1"}
-            label={""}
-            type={"number"}
-            value={numberOfBedroom}
-            name={"numberOfBedroom"}
-            onChange={handleNumberOfBedroomChange}
-          />
-          <div className="separation2"></div>
-          <Title title={"What services are essential for you?"}></Title>
-          {[
-            "Yachting",
-            "Event planner",
-            "Sport coach",
-            "Exclusive Excursions",
-            "Personal Stylist",
-            "Ultimate Spa",
-            "Private Chef",
-            "Chauffeur",
-            "Gouvernante",
-          ].map((services) => {
-            return (
-              <OneInput
-                key={services}
-                label={services}
-                type={"checkbox"}
-                htmlFor={services}
-                value={services}
-                name={"services"}
-                onChange={handleServicesChange}
-              />
-            );
-          })}
+      <section id={"thirdQuestion"} className="questionnaireSection">
+        <TitleSection title={"What atmosphere do you seek?"}></TitleSection>
+
+        {["Family Moment", "Life Party", "Friends Trip"].map((trip) => {
+          return (
+            <OneInput
+              key={trip}
+              label={trip}
+              type={"checkbox"}
+              value={trip}
+              name={"idyllicStatus"}
+              onChange={handleIdyllicStatusChange}
+            />
+          );
+        })}
+      </section>
+      <section id={"fourthQuestion"} className="questionnaireSection">
+        <Title title={"How many people are accompanying you?"}></Title>
+        <OneInput
+          key={"number"}
+          label={""}
+          type={"number"}
+          htmlFor={"people"}
+          value={numberOfPeople}
+          name={"numberOfPeople"}
+          onChange={handleNumberOfPeopleChange}
+        />
+      </section>
+      <section id={"fifthQuestion"} className="questionnaireSection">
+        <TitleSection title={"Do you travel with your pets?"}></TitleSection>
+
+        <div className="flexToggleQuestionnaire">
+          <Toggle
+            key={"isPetFriendly"}
+            label={"Yes"}
+            value={true}
+            name={"petFriendly"}
+            onChange={handlePetFriendlyChange}
+          ></Toggle>
+          <Toggle
+            key={"isNotPetFriendly"}
+            label={"No"}
+            value={false}
+            name={"petFriendly"}
+            onChange={handlePetFriendlyChange}
+          ></Toggle>
         </div>
-        <div className="positionButton">
-          <button>find</button>
-        </div>
-      </form>
+      </section>
+      <section id={"sixthQuestion"} className="questionnaireSection">
+        <TitleSection title={"How many bedrooms do you need?"}></TitleSection>
+        <OneInput
+          key={"number1"}
+          label={""}
+          type={"number"}
+          value={numberOfBedroom}
+          name={"numberOfBedroom"}
+          onChange={handleNumberOfBedroomChange}
+        />
+      </section>
+      <section id={"seventhQuestion"} className="questionnaireSection">
+        <TitleSection
+          title={"What services are essential for you?"}
+        ></TitleSection>
+        {[
+          "Yachting",
+          "Event planner",
+          "Sport coach",
+          "Exclusive Excursions",
+          "Personal Stylist",
+          "Ultimate Spa",
+          "Private Chef",
+          "Chauffeur",
+          "Gouvernante",
+        ].map((services) => {
+          return (
+            <OneInput
+              key={services}
+              label={services}
+              type={"checkbox"}
+              htmlFor={services}
+              value={services}
+              name={"services"}
+              onChange={handleServicesChange}
+            />
+          );
+        })}
+        <Button cta={"Discover the results"} backgroundColor={"black"}></Button>
+      </section>
     </>
   );
 }

@@ -19,6 +19,10 @@
 }
 
 @font-face {
+  font-family: "Playfair Semibold";
+  src: url("./fonts/Playfair_Display/static/PlayfairDisplay-SemiBold.ttf");
+}
+@font-face {
   font-family: "Noto Bold";
   src: url("./fonts/Noto_Sans_KR/NotoSansKR-Bold.otf");
 }

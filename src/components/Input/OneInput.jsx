@@ -9,6 +9,7 @@ function OneInput({
   name,
   onChange,
   defaultChecked,
+  placeholder,
 }) {
   return (
     <div className="inputWrapper">
@@ -24,6 +25,7 @@ function OneInput({
         name={name}
         onChange={onChange}
         defaultChecked={defaultChecked}
+        placeholder={placeholder}
       ></input>
     </div>
   );
