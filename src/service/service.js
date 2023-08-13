@@ -10,7 +10,6 @@ service.interceptors.request.use((interceptedRequest) => {
   return interceptedRequest;
 });
 
-//http://localhost:3000/photos/${photoId}/reviews
 service.getReviewsOfPicture = async (id) => {
   const response = await service.get(`/photos/${id}/reviews`);
   return response.data.reviews;
