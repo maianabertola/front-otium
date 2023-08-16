@@ -3,7 +3,7 @@ const service = axios.create({
   baseURL: import.meta.env.VITE_BACKEND_URL,
 });
 
-service.headers = { "Access-Control-Allow-Origin": "*" };
+// service.headers = { "Access-Control-Allow-Origin": "*" };
 
 service.interceptors.request.use((interceptedRequest) => {
   interceptedRequest.headers.Authorization = `Bearer ${localStorage.getItem(
