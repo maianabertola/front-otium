@@ -1,0 +1,34 @@
+.flexRowAbout {
+  display: flex;
+  flex-direction: row;
+}
+
+.textAbout {
+  padding: 2vh 0;
+  padding-right: 4.5vw;
+  width: 70%;
+}
+
+.listAbout {
+  font-weight: 400;
+}
+
+.olAbout {
+  padding: 2vh 0 4vh;
+}
+.olAbout > li {
+  font-size: 1rem;
+}
+
+.linkText {
+  text-decoration: underline;
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+.callOutAbout {
+  background-color: hsl(64, 17%, 84%);
+  width: 50%;
+  padding: 4vh 4vw;
+  margin: 0 auto;
+}
