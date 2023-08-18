@@ -158,3 +158,9 @@ img {
   cursor: pointer;
   color: hsl(0, 0%, 9%);
 }
+
+.flexColumnCenter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

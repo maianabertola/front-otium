@@ -20,6 +20,8 @@ import ServicePage from "./pages/ServicePage";
 import LogginPageRedirection from "./pages/LoginPageRedirection";
 import LoggedIn from "./pages/LoggedIn";
 import ProtectedNavRoutes from "./pages/ProtectedNavRoutes";
+import AboutPage from "./pages/AboutPage";
+import PageNotFound from "./pages/PageNotFound";
 
 function App() {
   return (
@@ -35,6 +37,8 @@ function App() {
             path="/services-collection"
             element={<ServicesCollectionPage />}
           />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="*" element={<PageNotFound />} />
         </Route>
 
         <Route element={<Protected />}>
