@@ -27,7 +27,10 @@ function ConfirmationBookingPage() {
         Thank you for your trust. Your request has been successfully recorded.
         <br />
         You can find
-        <Link to="/account-trips"> all your reservations in your account.</Link>
+        <a href="/account-trips" className="linkText">
+          {" "}
+          all your reservations in your account.
+        </a>
       </p>
       <div className="flexCenter">
         <Button

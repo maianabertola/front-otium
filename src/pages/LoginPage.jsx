@@ -37,7 +37,10 @@ function LoginPage({ isRedirected }) {
               collection of villas by submitting a membership application.
               Experience unrivaled luxury and reserve your dream accommodations.
               Unlock a world of opulence and tranquility. Join the privileged
-              few at Otium. Apply now.
+              few at Otium.{" "}
+              <a className="linkText" href="/about">
+                Or check our About page.
+              </a>
             </p>
           </div>
 

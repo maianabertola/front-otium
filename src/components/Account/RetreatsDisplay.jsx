@@ -7,7 +7,7 @@ import Button from "../Button";
 
 function AccountTripBooked() {
   const { user } = useContext(AuthContext);
-  const [userBookings, setUserBookings] = useState(null);
+  const [userBookings, setUserBookings] = useState([]);
   const [loading, setLoading] = useState(true);
   const [deleteItem, setDeleteItem] = useState(false);
   const navigate = useNavigate();
@@ -34,7 +34,6 @@ function AccountTripBooked() {
   //get all the bookings made by the user
   const getUserBookings = async () => {
     try {
-      // console.log("into getUserBookings");
       const allBookings = await service.get("/booking/created", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -81,12 +80,10 @@ function AccountTripBooked() {
     return <p>Loading user data...</p>;
   }
 
-  console.log("USERBOOKNGS", userBookings);
-
   return (
     <div className="flexRowRetreats">
       <h1>Your retreats</h1>
-      {userBookings ? (
+      {userBookings.length !== 0 && (
         <div className="cardBookingWrapper">
           {userBookings.Booking.map((booking) => (
             <div key={booking._id} className="cardBooking">
@@ -122,19 +119,21 @@ function AccountTripBooked() {
             </div>
           ))}
         </div>
-      ) : (
+      )}
+      {userBookings.length === 0 && (
         <>
-          <div>
+          <div className="flexColumnCenter">
             <p className="textRetreatsWrapper">
               You don't have book any Otium villas for the moment. <br />
               Discover our whole collection of destinations to inspire you.
             </p>
+
+            <Button
+              cta={"Discover your future destinations"}
+              backgroundColor={"black"}
+              onClick={navToVillasCollection}
+            ></Button>
           </div>
-          <Button
-            cta={"Discover your future destinations"}
-            backgroundColor={"black"}
-            onClick={navToVillasCollection}
-          ></Button>
         </>
       )}
     </div>

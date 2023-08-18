@@ -46,6 +46,13 @@ function MenuAccount() {
     setDisplayQuestionnaire(true);
   };
 
+  const switchToDisplayUser = (event) => {
+    event.preventDefault();
+    setDisplayUser(true);
+    setDisplayRetreats(false);
+    setDisplayQuestionnaire(false);
+  };
+
   if (!user) {
     return <div>Please wait a moment</div>;
   }
@@ -68,7 +75,7 @@ function MenuAccount() {
               Questionnaire
             </Link>
             <div className="blackSeparation"></div>
-            <Link onClick={displayUser} className="linkAccount">
+            <Link onClick={switchToDisplayUser} className="linkAccount">
               Profile
             </Link>
             <div className="blackSeparation"></div>

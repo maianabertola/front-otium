@@ -139,7 +139,7 @@ function AboutPage() {
                 fontSize: 1 + "rem",
               }}
             >
-              Login: maia@gmail.com Password: otiumvilla
+              Login: maianab@gmail.com Password: otium
             </p>
           </div>
         </div>

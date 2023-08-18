@@ -20,12 +20,6 @@
   font-size: 1rem;
 }
 
-.linkText {
-  text-decoration: underline;
-  text-transform: none;
-  letter-spacing: normal;
-}
-
 .callOutAbout {
   background-color: hsl(64, 17%, 84%);
   width: 50%;

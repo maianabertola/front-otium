@@ -164,3 +164,9 @@ img {
   flex-direction: column;
   align-items: center;
 }
+
+.linkText {
+  text-decoration: underline;
+  text-transform: none;
+  letter-spacing: normal;
+}
