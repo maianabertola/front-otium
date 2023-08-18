@@ -2,6 +2,19 @@
 
 Otium is a fictional luxury villa rental brand that offers exceptional villas with top-notch services in Spain, France, and Italy. This project was developed as the final project for the Ironhack bootcamp, where both the frontend and backend of the website/app were created.
 
+## Updates
+
+The site is now deployed on https://otium.netlify.app/
+
+**What's next?**
+- Implement React Query on every pages
+- Finish the questionnaire and the questionnaire display in the user account
+- Create animation on the website
+- Send email notification (booking, new account, questionnaire etc.)
+- Work on the responsive screens
+- Add prices and stripe on the Booking Page
+
+
 ## Project Overview
 
 Otium features the following sections/pages:
@@ -49,9 +62,4 @@ Make sure to import the `parseISO` function from the `date-fns` library.
 To start the development server, run:
 npm run dev
 
-## Future Updates
 
-I am currently working on further improving the project.
-Once I have made significant progress, I will redeploy it so you can see the final result!
-
-You can find the back-end of Otium here : https://github.com/maianabertola/back-otium
