@@ -9,7 +9,7 @@ function ProtectedNavRoutes() {
     return <p>Loading...</p>;
   }
   if (!isLoggedIn) {
-    return <Navigate to={"need-login"} />;
+    return <Navigate to={"auth/need-login"} />;
   }
 
   if (isLoggedIn) {
