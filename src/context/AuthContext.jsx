@@ -10,6 +10,7 @@ export const AuthContext = createContext();
 const AuthContextWrapper = ({ children }) => {
   const queryClient = useQueryClient();
   const [user, setUser] = useState(null);
+  const [needLogin, setNeedLogin] = useState(false);
   const navigate = useNavigate();
 
   const token = localStorage.getItem("token");
@@ -61,6 +62,8 @@ const AuthContextWrapper = ({ children }) => {
         login,
         isLoginError,
         isLoading,
+        setNeedLogin,
+        needLogin,
       }}
     >
       {children}

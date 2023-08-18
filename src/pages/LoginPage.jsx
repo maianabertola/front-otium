@@ -1,18 +1,31 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "../pages/LoginPage.css";
 import AuthForm from "../components/AuthForm";
 import Button from "../components/Button";
 import { useNavigate } from "react-router-dom";
 import BlackBar from "../components/BlackBar";
+import TitlePage from "../components/TitlePage";
+import { AuthContext } from "../context/AuthContext";
 
-function LoginPage() {
+function LoginPage({ isRedirected }) {
+  const { needLogin } = useContext(AuthContext);
+
   const navigate = useNavigate();
-  function navToCreateAccount(event) {
-    event.preventDefault();
+  function navToCreateAccount() {
     navigate("/auth/signup");
   }
+
+  console.log(isRedirected);
+
   return (
     <>
+      {needLogin && (
+        <TitlePage
+          h1={"This page is"}
+          span={"reserved to our members"}
+          center={"true"}
+        ></TitlePage>
+      )}
       <div className="accountLogContainer">
         <div className="columnFlex">
           <h1 style={{ textAlign: "center", marginBottom: 5 + "vh" }}>
@@ -27,6 +40,7 @@ function LoginPage() {
               few at Otium. Apply now.
             </p>
           </div>
+
           <Button
             cta={"Connect with us"}
             backgroundColor={"black"}

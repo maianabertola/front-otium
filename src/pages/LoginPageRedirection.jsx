@@ -23,7 +23,7 @@ function LoginPage() {
 
   function navToCreateAccount(event) {
     event.preventDefault();
-    navigate("signup");
+    navigate("auth/signup");
   }
   return (
     <>

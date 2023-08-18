@@ -3,12 +3,13 @@ import { AuthContext } from "../context/AuthContext";
 import { Navigate, Outlet } from "react-router-dom";
 
 function ProtectedRoutes() {
-  const { isLoggedIn, isLoading } = useContext(AuthContext);
+  const { isLoggedIn, isLoading, setNeedLogin } = useContext(AuthContext);
   if (isLoading) {
     return <p>Loading...</p>;
   }
   if (!isLoggedIn) {
-    return <Navigate to={"auth/need-login"} />;
+    setNeedLogin(true);
+    return <Navigate to={"auth/login"} />;
   }
 
   if (isLoggedIn) {
