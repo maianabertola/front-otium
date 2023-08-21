@@ -13,6 +13,7 @@ import DatePicker from "react-datepicker";
 import { AuthContext } from "../context/AuthContext";
 import { memo } from "react";
 import { parseISO } from "date-fns";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 function BookingPage() {
   const { id } = useParams();
@@ -159,7 +160,7 @@ function BookingPage() {
 
   //if not, display a little message to avoid error message
   if (!booking || !villa || !startDate || !endDate || !numberOfPeople) {
-    return <div>Please wait, content is loading</div>;
+    return <LoadingSpinner></LoadingSpinner>;
   }
 
   return (

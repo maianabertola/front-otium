@@ -8,6 +8,7 @@ import { useQueryClient, useMutation } from "react-query";
 import { patchUser } from "../../api/user";
 import { useState } from "react";
 import ReadOnlyInput from "../Input/ReadOnlyInput";
+import LoadingSpinner from "../LoadingSpinner";
 
 function UserDisplay() {
   //formatting the birthdate
@@ -87,7 +88,7 @@ function UserDisplay() {
   });
 
   if (!user || isLoading || !birth) {
-    return <div>Please wait a moment</div>;
+    return <LoadingSpinner></LoadingSpinner>;
   }
 
   if (isError) {

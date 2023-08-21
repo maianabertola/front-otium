@@ -5,6 +5,8 @@ import { LogIn } from "../api/user";
 import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
 import { useQueryClient } from "react-query";
+import { Ellipsis } from "react-awesome-spinners";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 export const AuthContext = createContext();
 const AuthContextWrapper = ({ children }) => {
@@ -43,7 +45,7 @@ const AuthContextWrapper = ({ children }) => {
   );
 
   if (isLoading) {
-    return <div>Please wait a moment</div>;
+    return <LoadingSpinner></LoadingSpinner>;
   }
 
   //if the token matches, the user is not null nore unedfined so he's loggedIn

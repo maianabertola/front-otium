@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import ServiceCard from "../components/Card/ServiceCard";
 import { useQuery } from "react-query";
 import { getAllServices } from "../api/services";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 function ServicesCollectionPage() {
   const {
@@ -15,7 +16,7 @@ function ServicesCollectionPage() {
   } = useQuery({ querykey: ["services"], queryFn: getAllServices });
 
   if (isLoading) {
-    return <div>Please wait a moment</div>;
+    return <LoadingSpinner></LoadingSpinner>;
   }
 
   if (isError) {

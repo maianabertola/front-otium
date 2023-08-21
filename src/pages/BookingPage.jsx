@@ -12,6 +12,7 @@ import { useQueryClient } from "react-query";
 import { BookingContext } from "../context/BookingContext";
 import Toggle from "../components/Toggle/Toggle";
 import OneInput from "../components/Input/OneInput";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 function BookingPage() {
   //Retrieve data from AuthContext
@@ -120,7 +121,7 @@ function BookingPage() {
 
   //if not, display a little message to avoid error message
   if (isLoading || isLoadingBooking || isLoadingPatchVilla) {
-    return <div>Please wait, content is loading</div>;
+    return <LoadingSpinner></LoadingSpinner>;
   }
 
   if (isError || isErrorBooking || isErrorPatchVilla) {

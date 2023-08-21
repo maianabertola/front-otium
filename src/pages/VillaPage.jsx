@@ -32,7 +32,7 @@ function VillaPage() {
 
   //if not, display a little message to avoid error message
   if (isLoading) {
-    return <div>Please wait, content is loading</div>;
+    return <Loading></Loading>;
   }
   if (isError) {
     return <div>There is an error: {error} on the Villa Page</div>;

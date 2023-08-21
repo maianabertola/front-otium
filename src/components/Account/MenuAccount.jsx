@@ -7,6 +7,7 @@ import Button from "../Button";
 import UserDisplay from "./UserDisplay";
 import RetreatsDisplay from "./RetreatsDisplay";
 import QuestionnaireDisplay from "./QuestionnairesDisplay";
+import LoadingSpinner from "../LoadingSpinner";
 
 function MenuAccount() {
   const { user, logout, isLoading } = useContext(AuthContext);
@@ -54,7 +55,7 @@ function MenuAccount() {
   };
 
   if (!user) {
-    return <div>Please wait a moment</div>;
+    <LoadingSpinner></LoadingSpinner>;
   }
 
   return (
