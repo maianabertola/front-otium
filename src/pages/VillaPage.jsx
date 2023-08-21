@@ -9,6 +9,7 @@ import NeedHelp from "../components/NeedHelp";
 import { useQuery } from "react-query";
 import { getOneVilla } from "../api/villa";
 import { useNavigate } from "react-router-dom";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 function VillaPage() {
   const { id } = useParams();
@@ -32,7 +33,7 @@ function VillaPage() {
 
   //if not, display a little message to avoid error message
   if (isLoading) {
-    return <Loading></Loading>;
+    return <LoadingSpinner></LoadingSpinner>;
   }
   if (isError) {
     return <div>There is an error: {error} on the Villa Page</div>;

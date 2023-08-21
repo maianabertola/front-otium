@@ -10,7 +10,7 @@ function LoadingSpinner() {
   };
   return (
     <div style={style}>
-      <Ellipsis color={"black"} size={33} sizeUnit={"%"}></Ellipsis>
+      <Ellipsis color={"black"} size={33}></Ellipsis>
     </div>
   );
 }

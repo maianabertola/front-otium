@@ -8,6 +8,10 @@
   align-items: center;
 }
 
+.villaCard:hover {
+  transition: all 5s ease-in-out;
+}
+
 .textVillaCard {
   height: 100%;
   width: 100%;
@@ -21,6 +25,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  /* transition: all 3s ease-in-out; */
 }
 
 .regionVillaCard {

@@ -30,7 +30,6 @@ export default function VillaCardDetails({ villa, booking }) {
 
   // when firing the button, the state is updated with a date object
   function createDate(event) {
-    console.log("TOTO");
     event.preventDefault();
     const newStartDate = startDate.toISOString();
     const newEndDate = endDate.toISOString();
