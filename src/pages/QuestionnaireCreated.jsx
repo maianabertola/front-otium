@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import service from "../service/service";
 import VillaCard from "../components/Card/VillaCard";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 function QuestionnaireCreated() {
   const navigate = useNavigate();
@@ -29,7 +30,7 @@ function QuestionnaireCreated() {
   let villaToDisplay = {};
 
   if (!villas.length) {
-    return <div>wait</div>;
+    return <LoadingSpinner></LoadingSpinner>;
   }
 
   return (

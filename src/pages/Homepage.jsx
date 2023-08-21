@@ -12,19 +12,21 @@ import React, { useContext, useState } from "react";
 import NeedHelp from "../components/NeedHelp";
 import { AuthContext } from "../context/AuthContext";
 import { Link } from "react-router-dom";
-import "../App.css";
 import { useQuery } from "react-query";
 import { getAllVillas } from "../api/villa";
 import { getAllServices } from "../api/services";
 import ReactPlayer from "react-player";
+import { Ellipsis } from "react-awesome-spinners";
 
 function Homepage() {
   const navigate = useNavigate();
   const { isLoggedIn, user } = useContext(AuthContext);
-  const [heroVideo, setHeroVideo] = useState(
+  const [mainVideo, setMainVideo] = useState(
     "https://res.cloudinary.com/dspbzkolr/video/upload/v1691073954/OTIUM/Hero/Original_tkmzsp.mp4"
   );
-  const [imageLoading, setVideoLoading] = useState(false);
+  const [nextVideo, setNextVideo] = useState(null);
+  const [mainVideoTransformation, setMainVideoTransformation] = useState(0);
+  const [nextVideoTransformation, setNextVideoTransformation] = useState(100);
 
   //loading villas collection
   const {
@@ -54,12 +56,12 @@ function Homepage() {
   }
 
   //changing the hero assets when the mouse is hovering texts
-  const handleMouseEnter = (newImage) => {
-    setHeroVideo(newImage);
-  };
-
-  const handleImageLoad = () => {
-    setVideoLoading(false);
+  const handleMouseEnter = (newVideo) => {
+    setMainVideoTransformation(-100); // start slide to left
+    setTimeout(() => {
+      setNextVideo(newVideo); // change video URL when faded out
+      setNextVideoTransformation(0); // slide the new video
+    }, 1000);
   };
 
   const handleErrorVideo = () => {
@@ -67,7 +69,7 @@ function Homepage() {
   };
 
   if (isLoadingVillas || isLoadingServices) {
-    return <div>Loading...</div>;
+    return <Ellipsis></Ellipsis>;
   }
 
   if (isErrorVillas || isErrorServices) {
@@ -84,16 +86,29 @@ function Homepage() {
       <section id="heroSection">
         <div className="heroContainer">
           <div className="reactPlayerWrapper">
+            {nextVideo && (
+              <ReactPlayer
+                url={nextVideo}
+                playing
+                loop
+                muted
+                width="100%"
+                height="100%"
+                onError={handleErrorVideo}
+                className="reactPlayer"
+                style={{ transform: `translateY(${nextVideoTransformation}%)` }}
+              />
+            )}
             <ReactPlayer
-              url={heroVideo}
+              url={mainVideo}
               playing
               loop
               muted
               width="100%"
               height="100%"
-              onLoad={handleImageLoad}
               onError={handleErrorVideo}
               className="reactPlayer"
+              style={{ transform: `translateY(${mainVideoTransformation}%)` }}
             />
           </div>
           <div className="overlay">

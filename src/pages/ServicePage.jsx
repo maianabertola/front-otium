@@ -7,6 +7,7 @@ import VillaCard from "../components/Card/VillaCard";
 import { getAllVillas } from "../api/villa";
 import { useQuery } from "react-query";
 import { getOneService } from "../api/services";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 function ServicePage() {
   const { id } = useParams();
@@ -31,7 +32,7 @@ function ServicePage() {
   } = useQuery({ queryKey: ["villas"], queryFn: getAllVillas });
 
   if (isLoadingService || isLoadingVillas) {
-    return <div>Please wait a moment</div>;
+    return <LoadingSpinner></LoadingSpinner>;
   }
 
   if (isErrorVillas || isErrorService) {

@@ -16,7 +16,7 @@ function VillasCollectionPage() {
   } = useQuery({ queryKey: ["villas"], queryFn: getAllVillas });
 
   if (isLoading) {
-    return <div>Wait a moment</div>;
+    return <LoadingSpinner></LoadingSpinner>;
   }
 
   if (isError) {
