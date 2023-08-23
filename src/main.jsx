@@ -6,6 +6,7 @@ import { BrowserRouter } from "react-router-dom";
 import { AuthContextWrapper } from "./context/AuthContext";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { BookingContextWrapper } from "./context/BookingContext";
+import { ParallaxProvider } from "react-scroll-parallax";
 
 const queryClient = new QueryClient();
 ReactDOM.createRoot(document.getElementById("root")).render(
@@ -14,7 +15,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <BrowserRouter>
         <BookingContextWrapper>
           <AuthContextWrapper>
-            <App />
+            <ParallaxProvider>
+              <App />
+            </ParallaxProvider>
           </AuthContextWrapper>
         </BookingContextWrapper>
       </BrowserRouter>

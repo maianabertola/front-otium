@@ -16,7 +16,7 @@ import { getAllVillas } from "../api/villa";
 import { getAllServices } from "../api/services";
 import ReactPlayer from "react-player";
 import LoadingSpinner from "../components/LoadingSpinner";
-import aboutImg from "../assets/Founderspictures.jpg";
+import { Parallax } from "react-scroll-parallax";
 
 function Homepage() {
   const navigate = useNavigate();
@@ -24,9 +24,6 @@ function Homepage() {
   const [mainVideo, setMainVideo] = useState(
     "https://res.cloudinary.com/dspbzkolr/video/upload/v1691073954/OTIUM/Hero/Original_tkmzsp.mp4"
   );
-  const [nextVideo, setNextVideo] = useState(null);
-  const [mainVideoTransformation, setMainVideoTransformation] = useState(0);
-  const [nextVideoTransformation, setNextVideoTransformation] = useState(100);
 
   //loading villas collection
   const {
@@ -57,7 +54,7 @@ function Homepage() {
 
   //changing the hero assets when the mouse is hovering texts
   const handleMouseEnter = (newVideo) => {
-    setNextVideo(newVideo); // change video URL when faded out
+    setMainVideo(newVideo); // change video URL when faded out
   };
 
   const handleErrorVideo = () => {
@@ -82,18 +79,16 @@ function Homepage() {
       <section id="heroSection">
         <div className="heroContainer">
           <div className="reactPlayerWrapper">
-            {nextVideo && (
-              <ReactPlayer
-                url={nextVideo}
-                playing
-                loop
-                muted
-                width="100%"
-                height="100%"
-                onError={handleErrorVideo}
-                className="reactPlayer"
-              />
-            )}
+            <ReactPlayer
+              url={mainVideo}
+              playing
+              loop
+              muted
+              width="100%"
+              height="100%"
+              onError={handleErrorVideo}
+              className="reactPlayer"
+            />
           </div>
           <div className="overlay">
             <div className="heroTitleContainer">
@@ -167,15 +162,21 @@ function Homepage() {
           {villas.Villa.slice(0, 4).map((villa) => {
             return (
               <>
-                <Link to={`/villa/${villa._id}`}>
-                  <VillaCard
-                    image={villa.previewPhoto}
-                    key={villa._id}
-                    region={villa.region}
-                    name={villa.name}
-                    tagline={villa.tagline}
-                  ></VillaCard>
-                </Link>
+                <Parallax
+                  speed={2}
+                  translateX={["-10vw", "10vw"]}
+                  easing={"easeInOut"}
+                >
+                  <Link to={`/villa/${villa._id}`}>
+                    <VillaCard
+                      image={villa.previewPhoto}
+                      key={villa._id}
+                      region={villa.region}
+                      name={villa.name}
+                      tagline={villa.tagline}
+                    ></VillaCard>
+                  </Link>
+                </Parallax>
               </>
             );
           })}
@@ -201,15 +202,21 @@ function Homepage() {
           {villas.Villa.slice(4).map((villa) => {
             return (
               <>
-                <Link to={`/villa/${villa._id}`}>
-                  <VillaCard
-                    image={villa.previewPhoto}
-                    key={villa._id}
-                    region={villa.region}
-                    name={villa.name}
-                    tagline={villa.tagline}
-                  ></VillaCard>
-                </Link>
+                <Parallax
+                  speed={2}
+                  translateX={["10vw", "-10vw"]}
+                  easing={"easeInOut"}
+                >
+                  <Link to={`/villa/${villa._id}`}>
+                    <VillaCard
+                      image={villa.previewPhoto}
+                      key={villa._id}
+                      region={villa.region}
+                      name={villa.name}
+                      tagline={villa.tagline}
+                    ></VillaCard>
+                  </Link>
+                </Parallax>
               </>
             );
           })}
@@ -260,12 +267,14 @@ function Homepage() {
             {services.ServiceDetail.map((service) => {
               return (
                 <>
-                  <Link to={`/service/${service._id}`}>
-                    <ServiceCard
-                      nameService={service.title}
-                      img={service.imageCover}
-                    ></ServiceCard>
-                  </Link>
+                  <Parallax opacity={[-15, 15]}>
+                    <Link to={`/service/${service._id}`}>
+                      <ServiceCard
+                        nameService={service.title}
+                        img={service.imageCover}
+                      ></ServiceCard>
+                    </Link>
+                  </Parallax>
                 </>
               );
             })}
@@ -275,7 +284,7 @@ function Homepage() {
       <section id="aboutUs">
         <div className="introContainer">
           <div className="containerPictureVertical">
-            <img src={aboutImg}></img>
+            <img src="https://res.cloudinary.com/dspbzkolr/image/upload/v1691052033/OTIUM/Founderspictures_dnihod.jpg"></img>
           </div>
           <BlackBar height={110} position={"absolute"}></BlackBar>
           <div className="columnFlex">
