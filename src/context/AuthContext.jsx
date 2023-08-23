@@ -5,7 +5,6 @@ import { LogIn } from "../api/user";
 import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
 import { useQueryClient } from "react-query";
-import { Ellipsis } from "react-awesome-spinners";
 import LoadingSpinner from "../components/LoadingSpinner";
 
 export const AuthContext = createContext();

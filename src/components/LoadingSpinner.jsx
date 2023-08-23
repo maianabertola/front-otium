@@ -1,5 +1,5 @@
 import React from "react";
-import { Ellipsis } from "react-awesome-spinners";
+import { PropagateLoader } from "react-spinners";
 
 function LoadingSpinner() {
   const style = {
@@ -10,7 +10,7 @@ function LoadingSpinner() {
   };
   return (
     <div style={style}>
-      <Ellipsis color={"black"} size={33}></Ellipsis>
+      <PropagateLoader color="black"></PropagateLoader>
     </div>
   );
 }
