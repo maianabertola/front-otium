@@ -6,7 +6,6 @@ import TitleSection from "../components/TitleSection";
 import SmallItalicText from "../components/SmallItalicText";
 import BlackBarHorizontal from "../components/BlackBarHorizontal";
 import ServiceCard from "../components/Card/ServiceCard";
-import aboutImg from "../assets/Founderspictures.jpg";
 import { useNavigate } from "react-router-dom";
 import React, { useContext, useState } from "react";
 import NeedHelp from "../components/NeedHelp";
@@ -16,7 +15,8 @@ import { useQuery } from "react-query";
 import { getAllVillas } from "../api/villa";
 import { getAllServices } from "../api/services";
 import ReactPlayer from "react-player";
-import { Ellipsis } from "react-awesome-spinners";
+import LoadingSpinner from "../components/LoadingSpinner";
+import aboutImg from "../assets/Founderspictures.jpg";
 
 function Homepage() {
   const navigate = useNavigate();
@@ -57,11 +57,7 @@ function Homepage() {
 
   //changing the hero assets when the mouse is hovering texts
   const handleMouseEnter = (newVideo) => {
-    setMainVideoTransformation(-100); // start slide to left
-    setTimeout(() => {
-      setNextVideo(newVideo); // change video URL when faded out
-      setNextVideoTransformation(0); // slide the new video
-    }, 1000);
+    setNextVideo(newVideo); // change video URL when faded out
   };
 
   const handleErrorVideo = () => {
@@ -69,7 +65,7 @@ function Homepage() {
   };
 
   if (isLoadingVillas || isLoadingServices) {
-    return <Ellipsis></Ellipsis>;
+    return <LoadingSpinner></LoadingSpinner>;
   }
 
   if (isErrorVillas || isErrorServices) {
@@ -96,20 +92,8 @@ function Homepage() {
                 height="100%"
                 onError={handleErrorVideo}
                 className="reactPlayer"
-                style={{ transform: `translateY(${nextVideoTransformation}%)` }}
               />
             )}
-            <ReactPlayer
-              url={mainVideo}
-              playing
-              loop
-              muted
-              width="100%"
-              height="100%"
-              onError={handleErrorVideo}
-              className="reactPlayer"
-              style={{ transform: `translateY(${mainVideoTransformation}%)` }}
-            />
           </div>
           <div className="overlay">
             <div className="heroTitleContainer">
