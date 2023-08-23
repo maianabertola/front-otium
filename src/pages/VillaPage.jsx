@@ -46,8 +46,7 @@ function VillaPage() {
           <img src={villa.Villa.heroPhoto} />
           <Button
             cta={"More Photos"}
-            width={3}
-            backgroundColor={"grey"}
+            backgroundColor={"buttonHeroVilla"}
             onClick={navToPhotos}
           ></Button>
         </div>

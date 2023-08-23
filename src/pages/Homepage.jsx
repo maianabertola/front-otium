@@ -192,7 +192,7 @@ function Homepage() {
           <div className="flexButton">
             <Button
               cta={"Find Your Perfect Retreat"}
-              backgroundColor={"blackEnd"}
+              backgroundColor={"blackButtonNoMargin"}
               onClick={navToQuestionnaire}
             ></Button>
           </div>

@@ -1,8 +1,123 @@
-.button {
+.smallBlackButton {
   text-transform: uppercase;
   letter-spacing: 0.1rem;
-  /* margin: 3vh 0 1vh 0; */
+  background-color: hsl(0, 0%, 9%);
+  color: hsl(0, 0%, 98%);
+  width: 150px;
+  opacity: 1;
   padding: 1vw 2vw;
   text-align: center;
   cursor: pointer;
+}
+
+.smallBlackButton:hover {
+  cursor: pointer;
+  transition: 1s ease-in-out;
+  background-color: hsl(50, 90%, 94%);
+  color: hsl(0, 75%, 3%);
+  border: 1px solid black;
+}
+
+.blackButtonNoMargin {
+  background-color: hsl(0, 0%, 9%);
+  color: hsl(0, 0%, 98%);
+  border: 1px solid hsl(0, 0%, 98%);
+  margin: 0;
+  opacity: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  padding: 1vw 2vw;
+  text-align: center;
+  cursor: pointer;
+}
+
+.blackButtonNoMargin:hover {
+  cursor: pointer;
+  transition: 1s ease-in-out;
+  background-color: hsl(50, 90%, 94%);
+  color: hsl(0, 75%, 3%);
+  border: 1px solid black;
+}
+
+.transparent {
+  background-color: hsl(0, 3%, 31%, 53%);
+  color: hsl(0, 0%, 98%);
+  border: 1px solid hsl(0, 0%, 98%);
+  margin: 3vh 0 1vh 0;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  padding: 1vw 2vw;
+  text-align: center;
+  cursor: pointer;
+}
+
+.transparent:hover {
+  cursor: pointer;
+  transition: 1s ease-in-out;
+  background-color: hsla(51, 87%, 94%, 0.743);
+  color: hsl(0, 75%, 3%);
+  border: 1px solid black;
+}
+
+.black {
+  background-color: hsl(0, 0%, 9%);
+  color: hsl(0, 0%, 98%);
+  width: 300px;
+  opacity: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  padding: 1vw 2vw;
+  text-align: center;
+  cursor: pointer;
+}
+
+.black:hover {
+  cursor: pointer;
+  transition: 1s ease-in-out;
+  background-color: hsl(50, 90%, 94%);
+  color: hsl(0, 75%, 3%);
+  border: 1px solid black;
+}
+
+.white {
+  background-color: "transparent";
+  color: hsl(0, 0%, 9%);
+  border: 1px solid;
+  opacity: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  padding: 1vw 2vw;
+  text-align: center;
+  cursor: pointer;
+}
+
+.white:hover {
+  cursor: pointer;
+  transition: 1s ease-in-out;
+  background-color: hsl(0, 0%, 9%);
+  color: hsl(0, 0%, 98%);
+}
+
+.buttonHeroVilla {
+  background-color: hsl(0, 3%, 31%, 53%);
+  color: hsl(0, 0%, 98%);
+  border: 1px solid hsl(0, 0%, 98%);
+  width: 150px;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  padding: 1vw 2vw;
+  text-align: center;
+  cursor: pointer;
+  position: absolute;
+  top: 80%;
+  left: 6%;
+  margin: 3vh 0 1vh 0;
+}
+
+.buttonHeroVilla:hover {
+  cursor: pointer;
+  transition: 1s ease-in-out;
+  background-color: hsla(51, 87%, 94%, 0.743);
+  color: hsl(0, 75%, 3%);
+  border: 1px solid black;
 }

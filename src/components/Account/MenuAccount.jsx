@@ -85,7 +85,7 @@ function MenuAccount() {
               <h5 style={{ paddingBottom: 2 + "vh" }}>Need Help?</h5>
               <Button
                 cta={"Email us"}
-                backgroundColor={"littleBlack"}
+                backgroundColor={"smallBlackButton"}
                 onClick={emailTo}
               ></Button>
             </div>
