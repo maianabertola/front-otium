@@ -49,6 +49,9 @@
   padding: 1vw 2vw;
   text-align: center;
   cursor: pointer;
+  transition: 10s ease-in-out;
+  transition-duration: 4s;
+  transition-delay: 2s;
 }
 
 .transparent:hover {
