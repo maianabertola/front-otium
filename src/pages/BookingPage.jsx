@@ -19,7 +19,7 @@ function BookingPage() {
   const { user } = useContext(AuthContext);
 
   //Retrieve data from BookingContext
-  const { dates } = useContext(BookingContext);
+  const { dates, startDate, endDate } = useContext(BookingContext);
 
   const queryClient = useQueryClient();
 
@@ -90,8 +90,6 @@ function BookingPage() {
     onError: `There is an error with mutate Booking ${error}`,
   });
 
-  //refetchQuery -> pour reloader quand le doc est créé
-
   //formating the dates for the patch
   let bookedDatesToPatch = [
     {
@@ -99,6 +97,16 @@ function BookingPage() {
       End: dates.newEndDate,
     },
   ];
+
+  //calculate difference between the dates
+
+  const nights = Math.round(
+    (endDate.getTime() - startDate.getTime()) / (1000 * 3600 * 24)
+  );
+  const pricePerNight = villa.Villa.pricePerWeek / 7;
+  const totalPriceNights = Math.round(nights * pricePerNight);
+  const petfees = 200;
+  const total = petfees + totalPriceNights;
 
   //useQuery to patch villa
   const handlePatchVilla = async () => {
@@ -119,7 +127,7 @@ function BookingPage() {
   });
 
   //if not, display a little message to avoid error message
-  if (isLoading || isLoadingBooking || isLoadingPatchVilla) {
+  if (isLoading || isLoadingBooking || isLoadingPatchVilla || !villa) {
     return <LoadingSpinner></LoadingSpinner>;
   }
 
@@ -194,12 +202,45 @@ function BookingPage() {
               name={"message"}
               onChange={handleMessage}
             ></OneInput>
+            <div className="flexPriceInfos">
+              <div>
+                <p className="infoPrice">Night Price per {nights} nights</p>
+              </div>
+              <div>
+                <p>{totalPriceNights} €</p>
+              </div>
+            </div>
+            <hr></hr>
+            {pet && (
+              <>
+                <div className="flexPriceInfos">
+                  <div>
+                    <p className="infoPrice">Pet fees</p>
+                  </div>
+                  <div>
+                    <p>{petfees} €</p>
+                  </div>
+                </div>
+                <hr></hr>
+              </>
+            )}
+            <div className="flexPriceInfos">
+              <div>
+                <p className="infoPrice">Total</p>
+              </div>
+              <div>
+                <p>{total} €</p>
+              </div>
+            </div>
+            <hr style={{ marginBottom: 2 + "vh" }}></hr>
             {villa.Villa.numberOfPeople >= numberOfPeople && (
-              <Button
-                cta={"Reserve now"}
-                backgroundColor="black"
-                onClick={handleSubmit}
-              ></Button>
+              <div className="flexCenter">
+                <Button
+                  cta={"Reserve now"}
+                  backgroundColor="black"
+                  onClick={handleSubmit}
+                ></Button>
+              </div>
             )}
           </form>
         </div>

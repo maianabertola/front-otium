@@ -6,6 +6,7 @@ import NeedHelp from "../components/NeedHelp";
 import TitlePage from "../components/TitlePage";
 import { useQuery } from "react-query";
 import { getAllVillas } from "../api/villa";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 function VillasCollectionPage() {
   const {
