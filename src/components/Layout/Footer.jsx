@@ -20,18 +20,12 @@ export default function Footer() {
     <>
       <div className="gridFooter">
         <div></div>
-        <Parallax scaleY={[0, 1]} startScroll={5000} endScroll={6600}>
+        <Parallax scaleY={[0, 1]} shouldAlwaysCompleteAnimation={true}>
           <BlackBar height={50} position={"bottom"}></BlackBar>
         </Parallax>
         <div></div>
       </div>
-      <Parallax
-        scaleX={[0, 1]}
-        // onAnimationEnd={true}
-        startScroll={5000}
-        endScroll={6600}
-        speed={2}
-      >
+      <Parallax scaleX={[0, 1]} shouldAlwaysCompleteAnimation={true} speed={2}>
         <BlackBarHorizontal></BlackBarHorizontal>
       </Parallax>
       <footer id="footer">

@@ -177,6 +177,7 @@ function VillaPage() {
           </div>
         </section>
         <NeedHelp></NeedHelp>
+
         <VillaCardDetails villa={villa}></VillaCardDetails>
       </section>
     </>

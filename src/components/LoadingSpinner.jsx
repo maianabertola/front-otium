@@ -1,17 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { PropagateLoader } from "react-spinners";
 
 function LoadingSpinner() {
+  const [isLoading, setIsLoading] = useState(true);
   const style = {
     position: "fixed",
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
   };
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 4000);
+  });
   return (
-    <div style={style}>
-      <PropagateLoader color="black"></PropagateLoader>
-    </div>
+    <>
+      {isLoading && (
+        <div style={style}>
+          <PropagateLoader color="black"></PropagateLoader>
+        </div>
+      )}
+    </>
   );
 }
 
