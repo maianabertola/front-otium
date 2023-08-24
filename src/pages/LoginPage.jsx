@@ -15,8 +15,6 @@ function LoginPage({ isRedirected }) {
     navigate("/auth/signup");
   }
 
-  console.log(isRedirected);
-
   return (
     <>
       {needLogin && (

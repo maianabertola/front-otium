@@ -16,3 +16,10 @@
   display: flex;
   flex-direction: column;
 }
+
+.disclaimerWrapper {
+  font-style: italic;
+  font-size: 0.7rem;
+  text-align: left;
+  padding: 1vh 0;
+}

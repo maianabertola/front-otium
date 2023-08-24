@@ -29,7 +29,6 @@ function BookingPage() {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  console.log("pet global", pet);
   //fetch Villas Data from db
   const {
     isLoading,
@@ -150,6 +149,15 @@ function BookingPage() {
               name={"numberOfPeople"}
               onChange={handleNumberOfPeople}
             ></OneInput>
+            {villa.Villa.numberOfPeople < numberOfPeople && (
+              <>
+                <p className="disclaimerWrapper">
+                  Apologies, this villa has a capacity limit of{" "}
+                  {villa.Villa.numberOfPeople} guests.<br></br> Please adjust
+                  your booking request accordingly.
+                </p>
+              </>
+            )}
 
             {villa.Villa.petFriendly ? (
               <>
@@ -171,8 +179,10 @@ function BookingPage() {
                 </div>
               </>
             ) : (
-              <div>
-                <p>Remember pets are not allowed in the villa</p>
+              <div style={{ width: 100 + "%" }}>
+                <p className="disclaimerWrapper">
+                  Remember: pets are not allowed in this villa.
+                </p>
               </div>
             )}
 
@@ -184,11 +194,13 @@ function BookingPage() {
               name={"message"}
               onChange={handleMessage}
             ></OneInput>
-            <Button
-              cta={"Reserve now"}
-              backgroundColor="black"
-              onClick={handleSubmit}
-            ></Button>
+            {villa.Villa.numberOfPeople >= numberOfPeople && (
+              <Button
+                cta={"Reserve now"}
+                backgroundColor="black"
+                onClick={handleSubmit}
+              ></Button>
+            )}
           </form>
         </div>
       </div>
