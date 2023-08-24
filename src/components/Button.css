@@ -84,7 +84,7 @@
 }
 
 .white {
-  background-color: "transparent";
+  background-color: hsl(50, 90%, 94%);
   color: hsl(0, 0%, 9%);
   border: 1px solid;
   opacity: 1;

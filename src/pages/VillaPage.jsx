@@ -11,10 +11,12 @@ import { getOneVilla } from "../api/villa";
 import { useNavigate } from "react-router-dom";
 import LoadingSpinner from "../components/LoadingSpinner";
 import { Parallax } from "react-scroll-parallax";
+import { useRef } from "react";
 
 function VillaPage() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const ref = useRef();
 
   //fetching the data of one villa by ID
   const {
@@ -32,6 +34,10 @@ function VillaPage() {
     navigate("photos");
   };
 
+  function scrollTopPage() {
+    ref.current.scrollIntoView();
+  }
+
   //if not, display a little message to avoid error message
   if (isLoading) {
     return <LoadingSpinner></LoadingSpinner>;
@@ -43,7 +49,7 @@ function VillaPage() {
   return (
     <>
       <section id="heroSection">
-        <div className="heroVillaContainer">
+        <div className="heroVillaContainer" ref={ref}>
           <img src={villa.Villa.heroPhoto} />
           <Button
             cta={"More Photos"}
@@ -154,11 +160,18 @@ function VillaPage() {
                 <img src={villa.Villa.galeryPhoto[4]}></img>
               </div>
               <div className="buttonGalleryContainer">
-                <Button
-                  backgroundColor={"black"}
-                  cta={"Explore all the photos"}
-                  onClick={navToPhotos}
-                ></Button>
+                <div className="flexRow">
+                  <Button
+                    backgroundColor={"black"}
+                    cta={"Explore all the photos"}
+                    onClick={navToPhotos}
+                  ></Button>
+                  <Button
+                    backgroundColor={"white"}
+                    cta={`Reserve now the ${villa.Villa.name}`}
+                    onClick={scrollTopPage}
+                  ></Button>
+                </div>
               </div>
             </div>
           </div>
