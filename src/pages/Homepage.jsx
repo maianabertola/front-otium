@@ -165,9 +165,11 @@ function Homepage() {
             return (
               <>
                 <Parallax
-                  speed={2}
-                  translateX={["-10vw", "10vw"]}
+                  speed={4}
+                  translateX={["7%", "-30%"]}
                   easing={"easeInOut"}
+                  startScroll={1200}
+                  endScroll={2000}
                 >
                   <Link to={`/villa/${villa._id}`}>
                     <VillaCard
@@ -205,9 +207,11 @@ function Homepage() {
             return (
               <>
                 <Parallax
-                  speed={2}
-                  translateX={["10vw", "-10vw"]}
+                  speed={4}
+                  translateX={["-30%", "7%"]}
                   easing={"easeInOut"}
+                  startScroll={1500}
+                  endScroll={2800}
                 >
                   <Link to={`/villa/${villa._id}`}>
                     <VillaCard
@@ -233,7 +237,7 @@ function Homepage() {
               Embrace the Art of <br /> Extraordinary Luxury
             </h2>
           </div>
-          <Parallax scaleY={[0.6, 1]}>
+          <Parallax scaleY={[0, 1]} startScroll={2000} endScroll={3600}>
             <BlackBar height={100} position={"bottom"}></BlackBar>
           </Parallax>
           <div className="flexVertical">
@@ -258,8 +262,13 @@ function Homepage() {
           </div>
         </div>
       </section>
-      <Parallax scaleX={[0.6, 1]}>
-        <BlackBarHorizontal height={160}></BlackBarHorizontal>
+      <Parallax scaleX={[0, 1]}>
+        <BlackBarHorizontal
+          height={160}
+          startScroll={70}
+          endScroll={100}
+          speed={4}
+        ></BlackBarHorizontal>
       </Parallax>
       <section id="services">
         <div className="greenBackgroundServices">
