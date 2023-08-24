@@ -146,7 +146,9 @@ function Homepage() {
               refined hospitality.
             </p>
           </div>
-          <BlackBar height={50} position={"top"}></BlackBar>
+          <Parallax scaleY={[0, 1]}>
+            <BlackBar height={50} position={"top"}></BlackBar>
+          </Parallax>
         </div>
       </section>
 
@@ -231,7 +233,9 @@ function Homepage() {
               Embrace the Art of <br /> Extraordinary Luxury
             </h2>
           </div>
-          <BlackBar height={100} position={"bottom"}></BlackBar>
+          <Parallax scaleY={[0.6, 1]}>
+            <BlackBar height={100} position={"bottom"}></BlackBar>
+          </Parallax>
           <div className="flexVertical">
             <SmallItalicText
               title={"Tranquility and Privacy"}
@@ -254,7 +258,9 @@ function Homepage() {
           </div>
         </div>
       </section>
-      <BlackBarHorizontal height={160}></BlackBarHorizontal>
+      <Parallax scaleX={[0.6, 1]}>
+        <BlackBarHorizontal height={160}></BlackBarHorizontal>
+      </Parallax>
       <section id="services">
         <div className="greenBackgroundServices">
           <TitleSection
@@ -267,7 +273,14 @@ function Homepage() {
             {services.ServiceDetail.map((service) => {
               return (
                 <>
-                  <Parallax opacity={[-15, 15]}>
+                  <Parallax
+                    translateY={[20, -30]}
+                    easing={"easeInCirc"}
+                    speed={5}
+                    shouldAlwaysCompleteAnimation={true}
+                    // startScroll={1}
+                    // endScroll={150}
+                  >
                     <Link to={`/service/${service._id}`}>
                       <ServiceCard
                         nameService={service.title}
@@ -286,7 +299,10 @@ function Homepage() {
           <div className="containerPictureVertical">
             <img src="https://res.cloudinary.com/dspbzkolr/image/upload/v1691052033/OTIUM/Founderspictures_dnihod.jpg"></img>
           </div>
-          <BlackBar height={110} position={"absolute"}></BlackBar>
+          <Parallax scaleY={[0, 1]} startScroll={0} endScroll={7000} speed={4}>
+            <BlackBar height={110} position={"top"}></BlackBar>
+          </Parallax>
+
           <div className="columnFlex">
             <div className="introTextContainer">
               <h2 style={{ fontSize: 40, fontStyle: "italic" }}>

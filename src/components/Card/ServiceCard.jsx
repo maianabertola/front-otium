@@ -2,12 +2,22 @@ import React from "react";
 import "./ServiceCard.css";
 import { useState } from "react";
 import Button from "../Button";
+import { Parallax } from "react-scroll-parallax";
 
 function ServiceCard({ nameService, img }) {
   const [hover, setHover] = useState(false);
 
   return (
     <>
+      {/* <Parallax
+        rotateY={[80, 0]}
+        translateY={[-8, 8]}
+        easing={"easeInCirc"}
+        shouldAlwaysCompleteAnimation={true}
+        startScroll={0}
+        endScroll={180}
+        speed={-10}
+      > */}
       <div
         className="serviceCard"
         onMouseEnter={() => {
@@ -26,6 +36,7 @@ function ServiceCard({ nameService, img }) {
           )}
         </div>
       </div>
+      {/* </Parallax> */}
     </>
   );
 }
