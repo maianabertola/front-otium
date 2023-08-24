@@ -10,6 +10,7 @@ import { useQuery } from "react-query";
 import { getOneVilla } from "../api/villa";
 import { useNavigate } from "react-router-dom";
 import LoadingSpinner from "../components/LoadingSpinner";
+import { Parallax } from "react-scroll-parallax";
 
 function VillaPage() {
   const { id } = useParams();
@@ -100,38 +101,52 @@ function VillaPage() {
           })}
         </div>
         <section id="galleryPhotos">
-          <div className="greenBackgroundServicesVilla">
-            <p className="textGallery" style={{ top: 3 + "%", left: 45 + "%" }}>
-              Picture
-            </p>
+          <div className="greenBackgroundGallery">
+            <Parallax translateY={[-100, 100]} translateX={[0, 0]}>
+              <p
+                className="textGallery"
+                style={{ top: 3 + "%", left: 45 + "%" }}
+              >
+                Picture
+              </p>
+            </Parallax>
+
             <div className="gallery">
               <div className="imageGalleryContainer1">
                 <img src={villa.Villa.galeryPhoto[0]}></img>
               </div>
-              <p
-                className="textGallery"
-                style={{ top: 20 + "%", left: 14 + "%" }}
-              >
-                your
-              </p>
+
+              <Parallax translateY={[30, 100]}>
+                <p
+                  className="textGallery"
+                  style={{ top: 30 + "%", left: 14 + "%" }}
+                >
+                  your
+                </p>
+              </Parallax>
               <div className="imageGalleryContainer2">
                 <img src={villa.Villa.galeryPhoto[1]}></img>
               </div>
-              <p
-                className="textGallery"
-                style={{ top: 30 + "%", right: 1 + "%" }}
-              >
-                future
-              </p>
+              <Parallax translateY={[100, 300]} translateX={[650, 650]}>
+                <p
+                  className="textGallery"
+                  style={{ top: 30 + "%", right: 1 + "%" }}
+                >
+                  future
+                </p>
+              </Parallax>
               <div className="imageGalleryContainer3">
                 <img src={villa.Villa.galeryPhoto[2]}></img>
               </div>
-              <p
-                className="textGallery"
-                style={{ top: 47 + "%", left: 8 + "%" }}
-              >
-                vacations
-              </p>
+              <Parallax translateY={[800, 1200]} translateX={[-200, -200]}>
+                <p
+                  className="textGallery"
+                  style={{ top: 10 + "%", left: 8 + "%" }}
+                >
+                  vacations
+                </p>
+              </Parallax>
+
               <div className="imageGalleryContainer4">
                 <img src={villa.Villa.galeryPhoto[3]}></img>
               </div>
@@ -143,6 +158,7 @@ function VillaPage() {
               <Button
                 backgroundColor={"black"}
                 cta={"Explore all the photos"}
+                onClick={navToPhotos}
               ></Button>
             </div>
           </div>
