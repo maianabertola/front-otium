@@ -49,7 +49,7 @@ ol > li {
 
 .greenBackgroundGallery {
   background-color: hsl(64, 17%, 84%);
-  z-index: -1;
+  z-index: 1;
   width: 100%;
   height: 280vh;
   position: relative;
@@ -105,6 +105,14 @@ ol > li {
   grid-row-start: 10;
   grid-row-end: 14;
   z-index: 2;
+}
+
+.buttonGalleryContainer {
+  grid-row-start: 15;
+  margin: 0 auto;
+  z-index: 2;
+  grid-column-start: 1;
+  grid-column-end: 9;
 }
 
 .textGallery {

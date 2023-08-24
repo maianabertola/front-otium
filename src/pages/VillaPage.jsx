@@ -153,13 +153,13 @@ function VillaPage() {
               <div className="imageGalleryContainer5">
                 <img src={villa.Villa.galeryPhoto[4]}></img>
               </div>
-            </div>
-            <div className="flexCenter">
-              <Button
-                backgroundColor={"black"}
-                cta={"Explore all the photos"}
-                onClick={navToPhotos}
-              ></Button>
+              <div className="buttonGalleryContainer">
+                <Button
+                  backgroundColor={"black"}
+                  cta={"Explore all the photos"}
+                  onClick={navToPhotos}
+                ></Button>
+              </div>
             </div>
           </div>
         </section>
