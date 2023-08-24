@@ -5,6 +5,7 @@ import BlackBarHorizontal from "../BlackBarHorizontal";
 import logo from "../../assets/OtiumLogo.png";
 import { Link } from "react-router-dom";
 import { SocialIcon } from "react-social-icons";
+import { Parallax } from "react-scroll-parallax";
 
 export default function Footer() {
   const emailTo = (event) => {
@@ -19,10 +20,20 @@ export default function Footer() {
     <>
       <div className="gridFooter">
         <div></div>
-        <BlackBar height={50} position={"bottom"}></BlackBar>
+        <Parallax scaleY={[0, 1]} startScroll={5000} endScroll={6600}>
+          <BlackBar height={50} position={"bottom"}></BlackBar>
+        </Parallax>
         <div></div>
       </div>
-      <BlackBarHorizontal></BlackBarHorizontal>
+      <Parallax
+        scaleX={[0, 1]}
+        // onAnimationEnd={true}
+        startScroll={5000}
+        endScroll={6600}
+        speed={2}
+      >
+        <BlackBarHorizontal></BlackBarHorizontal>
+      </Parallax>
       <footer id="footer">
         <div className="leftFooter">
           <div className="logoFooterContainer">

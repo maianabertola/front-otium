@@ -299,7 +299,7 @@ function Homepage() {
           <div className="containerPictureVertical">
             <img src="https://res.cloudinary.com/dspbzkolr/image/upload/v1691052033/OTIUM/Founderspictures_dnihod.jpg"></img>
           </div>
-          <Parallax scaleY={[0, 1]} startScroll={0} endScroll={7000} speed={4}>
+          <Parallax scaleY={[0, 1]} startScroll={0} endScroll={7000} speed={10}>
             <BlackBar height={110} position={"top"}></BlackBar>
           </Parallax>
 

@@ -9,15 +9,6 @@ function ServiceCard({ nameService, img }) {
 
   return (
     <>
-      {/* <Parallax
-        rotateY={[80, 0]}
-        translateY={[-8, 8]}
-        easing={"easeInCirc"}
-        shouldAlwaysCompleteAnimation={true}
-        startScroll={0}
-        endScroll={180}
-        speed={-10}
-      > */}
       <div
         className="serviceCard"
         onMouseEnter={() => {
@@ -36,7 +27,6 @@ function ServiceCard({ nameService, img }) {
           )}
         </div>
       </div>
-      {/* </Parallax> */}
     </>
   );
 }
