@@ -7,12 +7,13 @@ Otium is a fictional luxury villa rental brand that offers exceptional villas wi
 The site is now deployed on https://otium.netlify.app/
 
 **What's next?**
-- Implement React Query on every pages
+- Implement React Query on every page
 - Finish the questionnaire and the questionnaire display in the user account
-- Create animation on the website
+✅ Create animation on the website
 - Send email notification (booking, new account, questionnaire etc.)
 - Work on the responsive screens
-- Add prices and stripe on the Booking Page
+- Create a map with special recommendations to eat, drink, have fun around the villas
+✅ Add prices on the Booking Page
 
 
 ## Project Overview
