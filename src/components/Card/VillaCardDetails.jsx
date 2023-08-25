@@ -1,10 +1,4 @@
 import React, { useContext, useEffect, useMemo, useState } from "react";
-import peopleIcon from "../../assets/peopleIcon.png";
-import squareMeterIcon from "../../assets/squaremeterIcon.png";
-import bedroomIcon from "../../assets/iconebed.png";
-import bathIcon from "../../assets/iconebathroom.png";
-import moutainviewIcon from "../../assets/iconeview.png";
-import seaviewIcon from "../../assets/seaview.png";
 import Button from "../Button";
 import "react-datepicker/dist/react-datepicker.css";
 import DatePicker from "react-datepicker";
@@ -56,12 +50,12 @@ export default function VillaCardDetails({ villa, booking }) {
   }, [villa]);
 
   //change icone if it's sea view or mountain view
-  let icone;
-  if (villa.Villa.view === "Sea") {
-    icone = seaviewIcon;
-  } else {
-    icone = moutainviewIcon;
-  }
+  // let icone;
+  // if (villa.Villa.view === "Sea") {
+  //   icone = seaviewIcon;
+  // } else {
+  //   icone = moutainviewIcon;
+  // }
 
   //change the position if this card appears in the booking page
   let myStyle;
@@ -121,7 +115,7 @@ export default function VillaCardDetails({ villa, booking }) {
             <tr className="flexRowTable">
               <td colSpan={2} style={{ width: "40%" }} className="flexCells">
                 <div className="iconeContainer">
-                  <img src={peopleIcon} />
+                  <img src="https://res.cloudinary.com/dspbzkolr/image/upload/v1692950397/OTIUM/Icones/peopleicone_og62ry.png" />
                 </div>
                 <div className="flexTextDetails">
                   <p
@@ -131,7 +125,7 @@ export default function VillaCardDetails({ villa, booking }) {
               </td>
               <td colSpan={2} style={{ width: "40%" }} className="flexCells">
                 <div className="iconeContainer">
-                  <img src={squareMeterIcon} />
+                  <img src="https://res.cloudinary.com/dspbzkolr/image/upload/v1692950427/OTIUM/Icones/squareicone_vvraqn.png" />
                 </div>
                 <div className="flexTextDetails">
                   <p style={{ margin: 0 }}>{`${villa.Villa.squareMeter} m2`}</p>
@@ -141,7 +135,7 @@ export default function VillaCardDetails({ villa, booking }) {
             <tr className="flexRowTable">
               <td colSpan={2} style={{ width: "40%" }} className="flexCells">
                 <div className="iconeContainer">
-                  <img src={bedroomIcon} />
+                  <img src="https://res.cloudinary.com/dspbzkolr/image/upload/v1692950397/OTIUM/Icones/bedicone_q0pkkf.png" />
                 </div>
                 <div className="flexTextDetails">
                   <p
@@ -151,7 +145,7 @@ export default function VillaCardDetails({ villa, booking }) {
               </td>
               <td colSpan={2} style={{ width: "40%" }} className="flexCells">
                 <div className="iconeContainer">
-                  <img src={bathIcon} />
+                  <img src="https://res.cloudinary.com/dspbzkolr/image/upload/v1692950105/OTIUM/Icones/Bathroom%20icone.png" />
                 </div>
                 <div className="flexTextDetails">
                   <p
@@ -162,9 +156,15 @@ export default function VillaCardDetails({ villa, booking }) {
             </tr>
             <tr className="flexRowTable">
               <td colSpan={2} style={{ width: "40%" }} className="flexCells">
-                <div className="iconeContainer">
-                  <img src={icone} />
-                </div>
+                {villa.Villa.view === "Sea" ? (
+                  <div className="iconeContainer">
+                    <img src="https://res.cloudinary.com/dspbzkolr/image/upload/v1692950397/OTIUM/Icones/seaIcone_klmrms.png" />
+                  </div>
+                ) : (
+                  <div className="iconeContainer">
+                    <img src="https://res.cloudinary.com/dspbzkolr/image/upload/v1692950397/OTIUM/Icones/mountainicone_l13jwu.png" />
+                  </div>
+                )}
                 <div className="flexTextDetails">
                   <p style={{ margin: 0 }}>{`${villa.Villa.view} view`}</p>
                 </div>

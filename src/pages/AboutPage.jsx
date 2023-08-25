@@ -96,6 +96,16 @@ function AboutPage() {
               </a>
             </li>
             <li>
+              The icones were created by{" "}
+              <a
+                href="https://thenounproject.com/nookfulloption/"
+                target="blank"
+                className="linkText"
+              >
+                Nook Full Option
+              </a>
+            </li>
+            <li>
               If you want to know more about me you can check{" "}
               <a
                 href="https://www.we-are-ensemble.com"
